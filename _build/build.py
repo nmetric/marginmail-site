@@ -258,6 +258,7 @@ def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, e
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="msvalidate.01" content="1951CD811CAF01F1D35718A61772027D">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
