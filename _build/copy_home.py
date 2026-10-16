@@ -88,7 +88,7 @@ DETAILS = dict(lbl='The details',
 S_MACPRIV = dict(lbl='Private email: no servers, no tracking', h='Made for the Mac. Made for privacy.',
           body=('Margin is a native Mac app, built from the start to keep your mail yours. There’s no Margin server in the '
                 'middle: we can’t read your mail, and we can’t see how you use the app.'),
-          points=[('No usage tracking.', 'No analytics or telemetry in the app, so we can’t see how you use it. No cookies or analytics on this site either.'),
+          points=[('No usage tracking.', 'No analytics or telemetry in the app, so we can’t see how you use it. This site sets no cookies and doesn’t track you: we count visits anonymously on our own server, with no ads or third parties, and we honor Do Not Track.'),
                   ('Tracking pixels blocked.', 'Remote images are blocked by default. Load them for one message, or always for a sender you trust. Hidden 1×1 tracking pixels are stripped even when you load images, and the images Margin does load are fetched without cookies or referrer.'),
                   ('No read receipts.', 'Margin never adds read receipts or open tracking to the mail you send.'),
                   ('No Margin server.', 'Your mail goes between your Mac and Google, and nowhere else.'),
@@ -118,9 +118,9 @@ FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT
  ('How much does Margin cost?', 'Margin is free during the beta. Pricing will be announced before the beta ends, well before anything changes for you. Joining the beta only needs your email address, and the only email we’ll send is your invite.'),
  ('Is there a Margin app for iPhone?', 'Not yet. Margin starts on the Mac, where your mail, calendar and people share one window. An iPhone companion app is planned for later. Until then, your mail stays in Gmail as usual, so you can keep using Gmail on your phone.'),
  ('What Mac do I need for Margin?', 'Margin needs macOS 26 or later. Request notes use Apple Intelligence, so they need a Mac where Apple Intelligence is available and turned on. Everything else, including the calendar, follow-up notes, live words and People, works without it.'),
- ('When can I join the Margin beta?', 'Join the list on this page and we’ll email you when your invite is ready. We’re letting people in a few at a time so we can listen closely to each wave. Your email address is all we ask for, and we don’t track visits to this site.'),
+ ('When can I join the Margin beta?', 'Join the list on this page and we’ll email you when your invite is ready. We’re letting people in a few at a time so we can listen closely to each wave. Your email address is all we ask for. This site sets no cookies and doesn’t track you; we only count visits anonymously on our own server.'),
 ]
 
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare Margin', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3
-FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no analytics. · © 2026 Margin'
+FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'

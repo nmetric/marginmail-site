@@ -30,7 +30,7 @@ ENDPOINT = 'https://waitlist-869207349396.us-central1.run.app/join'
 BUILT = '2026-10-16'
 DEFINITION = 'Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
-FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no analytics. · © 2026 Margin'
+FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
 _HASH = {}
 
 
@@ -235,6 +235,17 @@ def sky():
             f'<div class="air"><div class="sx"><div class="sy">{sun}</div></div></div></div>')
 
 
+# One anonymous page-view count per load (see the privacy policy, "Site visit counts"). No cookies, no IDs, nothing stored
+# in the browser. Skipped for automation, Do Not Track / GPC, and localhost (unless ?debug).
+BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search);'
+          'if(n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
+          'var r="";try{r=document.referrer?new URL(document.referrer).hostname:""}catch(e){}'
+          'var w=innerWidth,j=q.has("joined"),b=JSON.stringify({p:document.querySelector("meta[name=page-path]")?document.querySelector("meta[name=page-path]").content:l.pathname,r:r,'
+          'us:q.get("utm_source")||q.get("s")||q.get("src")||"",um:q.get("utm_medium")||"",uc:q.get("utm_campaign")||"",'
+          'rc:j?"":q.get("r")||q.get("ref")||"",d:w<768?"phone":w<1200?"tablet":"desktop"});'
+          'addEventListener("load",function(){n.sendBeacon("' + ENDPOINT.replace("/join", "/hit") + '",new Blob([b],{type:"text/plain"}))})}catch(e){}})();')
+
+
 def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, extra='', motion=(), og_image='/og/margin-og.png'):
     url = SITE + path
     og_alt = og_alt or "Margin: Mail that knows what needs you. A native Mac email app for Gmail, with the handwritten note 'give your inbox some margin'."
@@ -278,6 +289,7 @@ def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, e
 <link rel="preload" href="{v('/fonts/newsreader-latin.woff2')}" as="font" type="font/woff2" crossorigin>
 {extra}<link rel="stylesheet" href="{v('/css/site.css')}">{mcss}
 <script>document.documentElement.className+=' js'</script>
+<script>{BEACON}</script>
 {ldj}
 </head>'''
 
@@ -811,6 +823,7 @@ def not_found():
     hh = head('Page not found · Margin', 'This page doesn’t exist. Go to the Margin homepage or compare Margin with other Mac mail apps.', '/404.html')
     hh = hh.replace('<meta name="robots" content="index,follow,max-image-preview:large">', '<meta name="robots" content="noindex">')
     hh = re.sub(r'<link rel="canonical"[^>]*>\n', '', hh)
+    hh = hh.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex">\n<meta name="page-path" content="/404">')
     write('404.html', page(hh, body))
 
 
@@ -968,7 +981,7 @@ def main():
         p = meta['url'].replace(SITE, '')
         sec = meta.get('section', '')
         article(os.path.join(ROOT, 'content/seo/pages', f), p, {'best': 'Best of', 'guides': 'Guides'}.get(sec, sec), f'/{sec}/')
-    legal('privacy', 'Privacy Policy', 'How Margin handles your data: no Margin server for your mail, no analytics or tracking, optional AI on your terms, and what the beta waitlist stores.')
+    legal('privacy', 'Privacy Policy', 'How Margin handles your data: no Margin server for your mail, no tracking, anonymous site visit counts, optional AI on your terms, and the waitlist.')
     legal('terms', 'Terms of Service', 'The terms for using Margin, the native Mac mail and calendar app, during its beta.')
     not_found()
     sitemap()

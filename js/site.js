@@ -1,4 +1,4 @@
-/* marginmail.ai — the little JavaScript the site uses. No tracking, no cookies, no storage. */
+/* marginmail.ai — the little JavaScript the site uses. No cookies, no tracking, nothing stored in the browser. */
 (function () {
   'use strict';
   var ENDPOINT = 'https://waitlist-869207349396.us-central1.run.app/join';
@@ -147,7 +147,8 @@
         email: email,
         source: srcParam || form.getAttribute('data-source') || '',
         ref: refParam,
-        hp: form.querySelector('input[name=hp]').value
+        hp: form.querySelector('input[name=hp]').value,
+        page: location.pathname
       };
       var ctrl = 'AbortController' in window ? new AbortController() : null;
       var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : 0;

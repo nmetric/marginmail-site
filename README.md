@@ -1,6 +1,6 @@
 # marginmail.ai
 
-The public site for Margin: the homepage with the beta signup, comparison pages, guides, and the Privacy Policy and Terms. Static HTML served free by GitHub Pages. No frameworks, no npm, no analytics, no cookies, no third-party requests.
+The public site for Margin: the homepage with the beta signup, comparison pages, guides, and the Privacy Policy and Terms. Static HTML served free by GitHub Pages. No frameworks, no npm, no cookies, no third-party requests. Visits are counted anonymously by our own endpoint (`POST /hit`, see `waitlist/README.md`): one inline beacon per page view, skipped for Do Not Track / GPC and automation.
 
 ## Build
 
