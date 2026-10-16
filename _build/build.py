@@ -31,7 +31,7 @@ ENDPOINT = 'https://join.marginmail.ai/join'
 BUILT = '2026-10-16'
 DEFINITION = 'Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
-FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
+FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
 _HASH = {}
 
 
@@ -132,7 +132,7 @@ LOCK = ('<svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rec
         '<path d="M4.4 5.6V4.2a2.1 2.1 0 0 1 4.2 0v1.4" fill="none" stroke="#5C554B" stroke-width="1.3"/></svg>')
 
 ORG = {"@type": "Organization", "@id": f"{SITE}/#org", "name": "Margin", "url": f"{SITE}/", "logo": f"{SITE}/logo.png",
-       "email": "hello@marginmail.ai", "founder": {"@type": "Person", "name": "Ben Nowacky"},
+       "email": "hello@marginmail.ai",
        "description": "Margin makes a native Mac email app for Gmail with a calendar and personal CRM built in."}
 WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name": "Margin", "publisher": {"@id": f"{SITE}/#org"}, "inLanguage": "en"}
 
@@ -922,7 +922,7 @@ LLMS_FACTS = """Key facts:
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude on the Mac, only on click (Write it, What's been decided). AI never sends email.
 - Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts in your voice, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies (a page per person with conversations, meetings, tasks and local time; companies by domain); Done instead of Archive; typing under 16 ms per key.
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
-- Founder: Ben Nowacky. Contact: hello@marginmail.ai
+- Contact: hello@marginmail.ai
 """
 
 

@@ -41,7 +41,7 @@ Social cards: `python3 _build/og.py` renders `og/compare-*.png`, `og/guides-*.pn
 - HTTPS: Let's Encrypt via GitHub. Turn on "Enforce HTTPS" in Settings → Pages once DNS resolves: `gh api -X PUT repos/nmetric/marginmail-site/pages -F https_enforced=true`.
 
 ## Domain and DNS
-- Registrar and DNS: **GoDaddy** (account of bnowacky). Nameservers: `ns45/ns46.domaincontrol.com`. Registered 2026-10-12.
+- Registrar and DNS: **GoDaddy**. Nameservers: `ns45/ns46.domaincontrol.com`. Registered 2026-10-12.
 
 | Type | Name | Value | Purpose |
 |---|---|---|---|
@@ -54,7 +54,7 @@ Social cards: `python3 _build/og.py` renders `og/compare-*.png`, `og/guides-*.pn
 
 ## Email: hello@marginmail.ai
 - **Service:** Forward Email (forwardemail.net), free plan, no account. The whole setup is the DNS records above.
-- **Current rule:** `hello@marginmail.ai` forwards to Ben's personal Gmail. The rule is encrypted in the TXT record so the destination isn't public.
+- **Current rule:** `hello@marginmail.ai` forwards to the owner's inbox. The rule is encrypted in the TXT record so the destination isn't public.
 - **To change or add an address:**
   1. Encrypt the new rule:
      ```

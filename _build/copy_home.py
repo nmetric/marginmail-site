@@ -123,4 +123,4 @@ FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT
 
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare Margin', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3
-FOOT_SMALL = 'Made on a Mac by Ben Nowacky. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
+FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'

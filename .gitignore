@@ -1,8 +1,8 @@
 .claude/
 # Working files live in the private repo nmetric/marginmail-source (see README)
-content/
-docs/
-brand/
-assets/
-waitlist/
-tools/
+/content/
+/docs/
+/brand/
+/assets/
+/waitlist/
+/tools/
