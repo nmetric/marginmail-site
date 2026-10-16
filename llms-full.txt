@@ -1,0 +1,1197 @@
+# Margin
+
+> Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. AI runs on your Mac (Apple Intelligence) or through your own Claude if you opt in. There is no Margin server for your mail, no analytics, and AI never sends. It is in beta and free during the beta.
+
+Key facts:
+- Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
+- Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
+- Price: free during the beta. Pricing not yet announced.
+- Privacy: Margin talks directly to Google from the Mac. No Margin server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
+- AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude on the Mac, only on click (Write it, What's been decided). AI never sends email.
+- Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts in your voice, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies (a page per person with conversations, meetings, tasks and local time; companies by domain); Done instead of Archive; typing under 16 ms per key.
+- Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
+- Founder: Ben Nowacky. Contact: hello@marginmail.ai
+
+## Home (https://marginmail.ai/)
+
+### What is Margin?
+
+Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you (follow-ups, meeting invites and requests), helps you find a meeting time as you type, and gives everyone you write to a page. Its AI is optional: it runs on your Mac or through your own Claude, never on a Margin server, and it never sends email for you.
+
+### What the margin is for
+
+The margin is where the work gets clear. Every good page of notes has one. It’s where you find time in a full day. Where you keep the facts worth remembering. Where you skim to see what was decided and what still needs you. Where you underline what matters, circle the ask, and make the call. Margin brings that to your mail. It finds the time, keeps your people close, marks what needs you, and turns a chaotic day into a short, ordered stack. Then it gets out of the way.
+
+### Follow-up reminders, requests and meeting invites: Only what needs you.
+
+Margin writes a short note in the margin when someone's waiting on you, when you're waiting on a reply, or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left for Later.
+
+### Email and calendar in one window: Find time in the margins of your day.
+
+Your calendar sits right beside your inbox. Meeting invites you haven’t answered look different, and a Needs your answer list keeps them together. Accept with A, Maybe with M, Decline with D, and the email files itself. Need to schedule a meeting? See both calendars side by side, pick a time, and the hold is placed for you.
+
+### Schedule meetings and attach files as you type: Type the plan. Margin does the rest.
+
+As you write, dates, people, files and promises become actions. Type “Tuesday with Ava” and both calendars’ free times appear. Type “the pricing deck” and the file is attached. It’s all rules, so it’s instant, private and works with AI off.
+
+### Email summaries and highlighted asks: Skim it. Know what matters.
+
+When someone asks you for something, Margin highlights the exact sentence and marks the row in the margin. Every card says why it’s there. On a long thread, What’s been decided sums it up: what’s settled, what’s still open and who’s waiting on whom.
+
+### Private AI email replies, written in your voice: A draft in your voice. Sent by you.
+
+Jot a few notes and press Write it. Margin drafts the reply in your voice, right in front of you, and flags anything it added that the thread didn’t have. You read it. You send it.
+
+Write it uses your own Claude on this Mac, only if you turn it on. Request notes use Apple Intelligence, on-device. Margin works fully with AI off.
+
+### A personal CRM built from your email and calendar: Everyone you write to has a page.
+
+Conversations, meetings, tasks and their local time, all in one place, built from the mail and calendar you already have. Companies group themselves by email domain, and breadcrumbs always lead you back to where you were.
+
+### Private email: no servers, no tracking: Made for the Mac. Made for privacy.
+
+Margin is a native Mac app, built from the start to keep your mail yours. There’s no Margin server in the middle: we can’t read your mail, and we can’t see how you use the app.
+
+- No usage tracking. No analytics or telemetry in the app, so we can’t see how you use it. No cookies or analytics on this site either.
+- Tracking pixels blocked. Remote images are blocked by default. Load them for one message, or always for a sender you trust. Hidden 1×1 tracking pixels are stripped even when you load images, and the images Margin does load are fetched without cookies or referrer.
+- No read receipts. Margin never adds read receipts or open tracking to the mail you send.
+- No Margin server. Your mail goes between your Mac and Google, and nowhere else.
+- AI that stays with you. Apple Intelligence on your Mac first; your own Claude only if you opt in. AI never sends.
+- Your data, your account. Margin’s own data lives in your Google account’s private app folder.
+
+### Inbox zero, with a sunrise: Done feels good here.
+
+Clear the stack and Margin shows a calm scene for a moment: a sunrise over the horizon, still water, a beam of light, chosen by the time of day. Small things like that are on purpose.
+
+### FAQ
+
+**What is Margin?**
+Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. Its optional AI runs on your Mac and never sends email.
+
+**Is there a native Gmail app for Mac?**
+Google doesn’t make a Gmail app for the Mac; Gmail runs in a browser. Margin is a native macOS app built on the Gmail API, so your Gmail and Google Workspace accounts get real Mac windows, notifications and keyboard shortcuts, with your calendar and the people you write to in the same window.
+
+**Does Margin store my emails on its servers?**
+No. There is no Margin server for your mail. Margin connects directly to Google from your Mac, so your messages stay with you and Google. Margin’s own small settings live in your Google Drive’s hidden app folder. There are no analytics in the app, so we can’t see how you use it.
+
+**Is Margin’s AI private?**
+Yes. Request notes use Apple Intelligence on your Mac, so nothing leaves it. If you choose, Write it and What’s been decided use your own Claude on your Mac, under your own plan, only when you click. Margin never sees your Claude login, uses no API key, and runs no AI server.
+
+**Can I use Margin without AI?**
+Yes. Margin works fully with AI off. Follow-up and meeting notes, live words, the calendar, Find a time, People and Companies all run on plain rules. Turning AI on adds Request notes, which are found on your Mac, and Write it, which drafts replies with your own Claude.
+
+**Can Margin’s AI send emails for me?**
+No, never. Margin’s AI can draft a reply, but only you can send it. Before you do, Margin flags anything the draft added that the thread didn’t have, such as a new recipient, a link, a number or a code, and labels which AI wrote it.
+
+**Does Margin work with multiple Gmail accounts?**
+Yes. You can add several Gmail and Google Workspace accounts and see them in one unified inbox, with your calendars together beside it. Margin supports Google accounts today. iCloud and other providers are planned for later, and Margin will say so clearly when they arrive.
+
+**Does Margin have a calendar?**
+Yes. Your Google Calendar sits beside your inbox. Invitations you haven’t answered look different and gather in a Needs your answer list. Press A, M or D to accept, maybe or decline, and the invite’s email files itself. Find a time shows both calendars side by side and places the hold.
+
+**How do follow-up reminders work in Margin?**
+When you’re waiting on a reply, Margin notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or move it to Later. It works on rules, with AI off.
+
+**Does Margin use read receipts or tracking pixels?**
+No. Margin never adds read receipts or open tracking to the mail you send. It also blocks remote images in mail you receive by default, so senders’ tracking pixels don’t load unless you allow images for that sender.
+
+**How much does Margin cost?**
+Margin is free during the beta. Pricing will be announced before the beta ends, well before anything changes for you. Joining the beta only needs your email address, and the only email we’ll send is your invite.
+
+**Is there a Margin app for iPhone?**
+Not yet. Margin starts on the Mac, where your mail, calendar and people share one window. An iPhone companion app is planned for later. Until then, your mail stays in Gmail as usual, so you can keep using Gmail on your phone.
+
+**What Mac do I need for Margin?**
+Margin needs macOS 26 or later. Request notes use Apple Intelligence, so they need a Mac where Apple Intelligence is available and turned on. Everything else, including the calendar, follow-up notes, live words and People, works without it.
+
+**When can I join the Margin beta?**
+Join the list on this page and we’ll email you when your invite is ready. We’re letting people in a few at a time so we can listen closely to each wave. Your email address is all we ask for, and we don’t track visits to this site.
+
+## Compare Margin with other mail apps (https://marginmail.ai/compare/)
+
+**Short answer:** Margin is a native Mac app for Gmail and Google Workspace that puts your mail, calendar and people in one window, notes what needs you, and runs optional AI on your Mac or through your own Claude, with no Margin server. Every mail app makes different trade-offs. These pages say plainly where each one is the better choice.
+
+*Facts checked October 16, 2026. We re-check each page at least every quarter and whenever a product changes its pricing. Spot something out of date? Write to hello@marginmail.ai.*
+
+### Comparisons
+
+| Product | Best for | Read |
+|---|---|---|
+| Spark | Every provider and platform, a free plan, teams | [Margin vs Spark](/compare/spark/) |
+| Superhuman | Maximum AI help and speed across platforms | [Margin vs Superhuman](/compare/superhuman/) |
+| Apple Mail | Free, built in, mixed providers | [Margin vs Apple Mail](/compare/apple-mail/) |
+| Outlook for Mac | Microsoft 365 workplaces | [Margin vs Outlook for Mac](/compare/outlook-mac/) |
+| Gmail on the web | Free, any browser, Gemini across Google | [Margin vs Gmail](/compare/gmail/) |
+| Airmail | Deep customization, every provider | [Margin vs Airmail](/compare/airmail/) |
+| Mimestream | A pure, native Gmail client | [Margin vs Mimestream](/compare/mimestream/) |
+| Shortwave | The most capable cloud AI agent for Gmail | [Margin vs Shortwave](/compare/shortwave/) |
+| Notion Mail | Closed Sept 22, 2026 | [Notion Mail alternative](/compare/notion-mail/) |
+| HEY | A fresh start with a new address | [Margin vs HEY](/compare/hey/) |
+| Canary Mail | Every provider, encryption, low price | [Margin vs Canary Mail](/compare/canary/) |
+| Missive | Teams sharing an inbox | [Margin vs Missive](/compare/missive/) |
+
+### Margin is the better choice when
+
+- You use **Gmail or Google Workspace** (one account or several) on a **Mac**.
+- You want your **calendar and the people you write to** in the same window as your mail.
+- You want **AI that's optional, runs on your Mac or your own Claude, and never sends**.
+- You'd rather **no vendor server** sat between you and Google.
+
+### Margin isn't the right choice (yet) when
+
+- You need **iCloud, Microsoft 365 or IMAP** accounts.
+- You need **Windows, Android or a full iPhone app** today.
+- Your **team shares an inbox**.
+- You rely on **read receipts or open tracking** (Margin never offers them).
+
+## Margin vs Airmail: customizable vs calm (https://marginmail.ai/compare/airmail/)
+
+**Short answer:** Airmail is a long-running, highly customizable mail app for Apple devices that supports almost every provider, with Airmail Pro at $49.99 a year in the US. Margin is a calm, native Mac app for Gmail and Google Workspace that puts your calendar and the people you write to in the same window, notes what needs you, and keeps AI optional and on your Mac. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Airmail** |
+|---|---|---|
+| Price | Free during the beta | Free for one account; Pro $49.99/yr or $7.99/mo (US). Apple notified yearly subscribers of a change from $9.99 to $49.99 (Sept 2026) |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone, iPad, Apple Watch, Vision Pro |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Workspace, iCloud, Exchange (EWS), Office 365, Outlook, IMAP, POP3 |
+| Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | None built in; send mail to Fantastical or Calendar 5 |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests) and the Margins stack | Smart Inbox, rules and actions, snooze, custom swipes |
+| People | A page per person; companies by domain | Not a feature |
+| AI | Optional: Apple Intelligence on your Mac; your own Claude, on click (Write it) | Airmail MCP server: connect Claude, Codex or other MCP clients; runs locally on your Mac |
+| AI sends mail | Never | Per-capability permissions you choose |
+| Servers | No Margin server; Mac ↔ Google | Messages not stored on Airmail servers; push uses Airmail's push service |
+| Read receipts | Never offered | Mac plugin |
+| Customization | Deliberately few settings | Very deep |
+
+### Where Airmail is the better choice
+
+- You use **iCloud, Exchange, Outlook or IMAP** accounts. Margin is Google-only today.
+- You want **iPhone, iPad, Watch and Vision Pro** apps now.
+- You love **customizing everything**: swipes, toolbars, rules, actions.
+- You want an **agent to operate your mail through MCP** from Claude or Codex.
+
+### Where Margin is the better choice
+
+- You want the app to **sort for you**, not offer knobs: notes about what needs you, a short stack, Done.
+- You want a **calendar in the same window**, with invites you can answer with one key.
+- You want **people pages** built from your mail and meetings.
+- You want **AI inside the moment** (a draft in your voice, right in the composer, with anything new flagged) rather than through an outside agent.
+
+### Who should choose which
+
+**Airmail** for multi-provider power users who like to tune their tools. **Margin** for Gmail and Workspace users who want calm, a calendar and their people in one window.
+
+### FAQ
+
+**How much is Airmail Pro in 2026?**
+In the US, Airmail's help center lists Pro at $49.99 a year or $7.99 a month (checked Oct 16, 2026). In September 2026 Apple notified yearly subscribers of a change from $9.99 to $49.99 at renewal. Prices vary by country.
+
+**Does Airmail have a calendar?**
+No built-in calendar. You can share messages to Fantastical or Calendar 5. Margin has a calendar in the same window.
+
+**Does Airmail work with Claude?**
+Yes, through the Airmail MCP server, which runs on your Mac and lets Claude or other MCP clients work with your mail. Margin uses your own Claude inside the app, only when you click Write it, and AI never sends.
+
+**Which accounts does Margin support compared with Airmail?**
+Margin supports Gmail and Google Workspace today, with iCloud and others later. Airmail supports nearly every provider.
+
+**Is Margin free?**
+Yes, during the beta. Pricing will be shared before the beta ends.
+
+### Sources
+
+- Airmail Pro pricing (help center, updated Mar 28, 2026): https://help.airmailapp.com/en-us/article/airmail-pro-subscription-pricing-and-plans-1xqnlwe/ (read Oct 16, 2026)
+- Airmail FAQ (Jun 26, 2026): https://airmailnews.substack.com/p/airmail-faq
+- Airmail MCP announcement (Jun 26, 2026): https://airmailapp.substack.com/p/airmail-mcp
+- Michael Tsai, "Airmail 26.037" (price change), Sept 21, 2026: https://mjtsai.com/blog/2026/09/21/airmail-26-037/
+- Airmail homepage, features and providers: https://airmailapp.com (read Oct 16, 2026)
+
+## Margin vs Apple Mail: an Apple Mail alternative for Gmail users (https://marginmail.ai/compare/apple-mail/)
+
+**Short answer:** Apple Mail is free, built into every Mac, works with nearly every provider, and in macOS 27 adds relevance search and style-matched Smart Replies through Apple Intelligence. Margin is a native Mac app made for Gmail and Google Workspace that adds what Mail leaves to other apps: a calendar in the same window, a page for every person, and notes about what needs you. Both keep AI private; Margin is free during its beta.
+
+*Last checked: October 16, 2026.*
+
+### At a glance
+
+| | **Margin** | **Apple Mail (macOS 27)** |
+|---|---|---|
+| Price | Free during the beta | Free with macOS |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone, iPad |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | iCloud, Gmail, Exchange/Outlook, Yahoo, any IMAP |
+| Gmail specifics | Uses the Gmail API: real threads, labels, Done, aliases, signatures from Gmail | Uses IMAP for Gmail |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Categories, Priority Messages, summaries |
+| Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Separate Calendar app; suggestions can create an event from a message |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Contacts app |
+| AI | Optional. Apple Intelligence on your Mac (Requests); your own Claude on click (Write it, What's been decided) | Apple Intelligence: summaries, Smart Replies in your style, Write with Siri, relevance search |
+| Where AI runs | Your Mac, or your own Claude on your Mac | On device and Apple's Private Cloud Compute |
+| AI sends mail | Never | No |
+| Live words in compose | Yes: dates, people, files, promises become actions | No |
+| Tracking protection | Remote images blocked by default; no read receipts | Protect Mail Activity (hides IP, preloads remote content privately) |
+
+### Where Apple Mail is the better choice
+
+- You use **iCloud, Exchange or IMAP** accounts. Margin is Google-only today.
+- You want mail on **iPhone and iPad** in the same app now.
+- You want something **free forever** and already installed.
+- You're happy with a **simple list** and a separate Calendar app.
+
+### Where Margin is the better choice
+
+- You live in **Gmail or Google Workspace** and want an app built on the Gmail API, not IMAP.
+- You want your **calendar in the same window**, with invites answered by a single key.
+- You want **a page for every person** you write to, with their local time and open tasks.
+- You want **notes about what needs you**, like "You asked Ava on Oct 9. No reply in 6 days."
+- You want **AI drafts in your voice** (with your own Claude), with anything new flagged, that never send.
+
+### Who should choose which
+
+**Apple Mail** for people with mixed providers who want a free, simple client. **Margin** for Gmail and Workspace users on a Mac whose days are mail, meetings and people, and who want them together, privately.
+
+### FAQ
+
+**Is there a better Mac mail app than Apple Mail for Gmail?**
+If you use Gmail or Google Workspace, Margin is built on the Gmail API and adds a calendar, people pages and notes about what needs you, while staying private. Apple Mail is better if you also need iCloud or Exchange accounts.
+
+**Does Apple Mail have a calendar?**
+No. Calendar is a separate app on the Mac. Margin has a calendar in the same window as your mail.
+
+**What AI does Apple Mail have in macOS 27?**
+Relevance-ranked search, Smart Replies in your style, Write with Siri for drafting, plus categories, Priority Messages and summaries. It runs on device and in Apple's Private Cloud Compute.
+
+**Does Margin use Apple Intelligence too?**
+Yes. Margin uses Apple Intelligence on your Mac to find Requests (someone asked you for something). Nothing leaves the Mac. Margin also works fully with AI off.
+
+**Is Margin free like Apple Mail?**
+Margin is free during the beta. Pricing will be shared before the beta ends.
+
+**Which macOS do I need?**
+Margin needs macOS 26 or later.
+
+### Sources
+
+- Apple, "What's new in macOS 27": https://support.apple.com/guide/mac-help/whats-new-in-macos-27-apd07d671600/mac (read Oct 16, 2026)
+- MacRumors, "New features and changes in macOS 27," Sept 17, 2026: https://www.macrumors.com/2026/09/17/new-features-changes-macos-27/
+- Apple Mail privacy settings: https://support.apple.com/guide/mail/change-privacy-preferences-mlhlae4a4fe6/mac
+- 9to5Mac on Apple Mail in iOS 27, Oct 9, 2026: https://9to5mac.com/2026/10/09/heres-everything-new-for-apple-mail-in-ios-27/
+
+## Margin vs Canary Mail: two takes on private AI email (https://marginmail.ai/compare/canary/)
+
+**Short answer:** Canary Mail is a cross-platform mail app for every major provider, with on-device prioritization, cloud AI for writing and summaries, and PGP encryption on its top plan, from free to $100 a year. Margin is a native Mac app for Gmail and Google Workspace with no Margin server, AI on your Mac or through your own Claude, a calendar built in, and people pages. Margin never sends read receipts. It's free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Canary Mail** |
+|---|---|---|
+| Price | Free during the beta | Free; Growth $36/yr; Pro+ $100/yr; lifetime option; no monthly plans |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone/iPad, Windows, Android |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Outlook, iCloud, Exchange, IMAP |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | AI priority inbox, VIP and Flagged views, Mark as Done |
+| Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in: view events, accept invites, suggest times (Copilot Schedule); not on Android |
+| People | A page per person; companies by domain | Not a feature |
+| AI | Optional. Apple Intelligence on your Mac (Requests); your own Claude on click (Write it, What's been decided) | Prioritization on device (Free); AI Copilot for writing, summaries and search (Growth, Pro+) |
+| Where AI runs | Your Mac | Prioritization on device; writing and summaries with hosted models (OpenAI, Anthropic, Cohere, Google and others) |
+| AI sends mail | Never | Drafts for review |
+| Read receipts | Never | Canary sends its own read receipts (on by default on macOS); blocks incoming trackers |
+| Encryption | Gmail's standard TLS | PGP and SecureSend (Pro+) |
+| Vendor servers | No Margin server; Mac ↔ Google | Mail and credentials on device by default; optional push and Cloud Sync use Canary's servers |
+
+### Where Canary is the better choice
+
+- You need **iCloud, Outlook, Exchange or IMAP** accounts.
+- You need **Windows or Android** too.
+- You need **PGP or encrypted send** to clients (Pro+), or HIPAA support with a BAA.
+- You want a **low yearly price** with no subscription surprises.
+
+### Where Margin is the better choice
+
+- You want AI that **never leaves your Mac** unless it's your own Claude, with no hosted model of the vendor's choosing.
+- You **don't want read receipts** sent from your mail, ever.
+- You want a **calendar that does more**: unanswered invites marked, one-key answers, holds placed when you pick a time.
+- You want **people pages** and **notes about what needs you**.
+
+### Who should choose which
+
+**Canary** for people who need every provider and platform, or encryption. **Margin** for Gmail and Workspace users on a Mac who want calm, a calendar and their people together, with privacy you can explain in one sentence: no Margin server, no analytics, AI on your terms.
+
+### FAQ
+
+**Does Canary Mail's AI run on device?**
+Partly. Canary's privacy policy says prioritization models are created and stored on your device, while writing, summarizing and chat use hosted models from OpenAI, Anthropic, Cohere, Google and others. Margin's Request notes run on your Mac with Apple Intelligence; Write it uses your own Claude.
+
+**Does Canary Mail send read receipts?**
+Yes, Canary has its own read receipts, on by default on macOS, and it blocks incoming tracking pixels. Margin never sends read receipts.
+
+**Does Margin support encryption like Canary?**
+Margin uses Gmail's standard encrypted connections. It doesn't offer PGP; if you need PGP, Canary's Pro+ plan does.
+
+**Which accounts does Margin support?**
+Gmail and Google Workspace today; other providers come later.
+
+**Is Margin free?**
+Yes, during the beta. Pricing will be shared before the beta ends.
+
+### Sources
+
+- Canary pricing: https://canarymail.io/pricing (read Oct 16, 2026)
+- Canary privacy policy: https://canarymail.io/privacy (read Oct 16, 2026)
+- Canary calendar (updated Apr 30, 2026): https://canarymail.io/features/calendar
+- Canary security features: https://canarymail.io/features/security
+- Canary read receipts help: https://canarymail.io/help/how-does-canary-mail-implement-read-receipts
+
+## Margin vs Gmail on the web: a native Gmail app for Mac (https://marginmail.ai/compare/gmail/)
+
+**Short answer:** Google doesn't make a Gmail app for the Mac; Gmail runs in a browser tab, with free Gemini basics and more AI on Google AI Plus ($9.99/mo) and Pro ($19.99/mo). Margin is a native Mac app for the same Gmail and Google Workspace accounts. It keeps your calendar and people in one window, notes what needs you, and runs optional AI on your Mac. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Gmail on the web + Gemini** |
+|---|---|---|
+| Price | Free during the beta | Free; Gemini extras with Google AI Plus $9.99/mo, AI Pro $19.99/mo; Workspace from $7/user/mo |
+| Mac app | Native (SwiftUI), macOS 26+ | None; browser tab |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | One account per tab or account switcher |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Category tabs; AI Inbox with suggested to-dos (paid plans) |
+| Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Calendar side panel; "Help me schedule" for one-on-one meetings |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Google Contacts |
+| AI drafting | Write it: in your voice, on click, with your own Claude; flags anything new | Help Me Write and Suggested Replies (free) |
+| Ask your inbox | What's been decided on long threads | AI Overviews in search, Gemini side panel (paid plans) |
+| Where AI runs | Your Mac | Google's cloud |
+| Works with AI off | Yes, fully | Yes; smart features can be turned off |
+| Live words in compose | Yes: dates, people, files, promises | No |
+| Done, not Archive | Yes | Archive |
+
+### Where Gmail on the web is the better choice
+
+- You want **free**, forever, in **any browser** on any computer.
+- You want **Gemini answers across Gmail, Drive and Docs**.
+- You're on a **Chromebook, Windows or Linux** machine.
+- You rely on Gmail's **search operators** and web-only features every day (Margin passes Gmail search operators through too).
+
+### Where Margin is the better choice
+
+- You want a **real Mac app**: native windows, keyboard shortcuts, Dock badge, notifications, no tab to lose.
+- You have **several Google accounts** and want them in **one inbox**.
+- You want **notes about what needs you** and **people pages**, built from mail and calendar you already have.
+- You want **AI that stays on your Mac** or runs through your own Claude, not another cloud.
+
+### Who should choose which
+
+**Gmail on the web** if a browser tab suits you and Gemini is part of your Google plan. **Margin** if you spend your day in Gmail on a Mac and want it calmer, with your calendar and people beside it.
+
+### FAQ
+
+**Is there an official Gmail app for Mac?**
+No. Google offers Gmail on the web and on iPhone and Android, but not a Mac app. Margin is a native Mac app for Gmail and Google Workspace.
+
+**Is Gemini in Gmail free?**
+Help Me Write, thread summaries and Suggested Replies became free for all users in January 2026. AI Overviews in search, AI Inbox and the Gemini side panel need a Google AI or eligible Workspace plan.
+
+**Does Margin change anything in my Gmail account?**
+Margin uses the Gmail API from your Mac. What you do in Margin (Done, labels, replies) shows up in Gmail as usual. Margin keeps its own small state in your Google Drive's hidden app folder, not on a Margin server.
+
+**Can I use several Gmail accounts in Margin?**
+Yes. Add several Gmail and Workspace accounts; they share one unified inbox.
+
+**Does Google see what Margin does?**
+Your mail stays with Google as it always has. Margin adds no server of its own, and its optional AI runs on your Mac.
+
+**How much does Margin cost?**
+Margin is free during the beta. Pricing will be shared before the beta ends.
+
+### Sources
+
+- TechCrunch, "Gmail debuts a personalized AI Inbox…", Jan 8, 2026: https://techcrunch.com/2026/01/08/gmail-debuts-a-personalized-ai-inbox-ai-overviews-in-search-and-more
+- Google One AI plans: https://one.google.com/about/plans (read Oct 16, 2026)
+- Google Workspace pricing: https://workspace.google.com/pricing (read Oct 16, 2026)
+- Gemini in Gmail help: https://support.google.com/mail/answer/14199860 (read Oct 16, 2026)
+- 9to5Google, AI Inbox for AI Plus and Pro (I/O), May 19, 2026: https://9to5google.com/2026/05/19/gmail-live
+- 9to5Google, "Help me schedule", Oct 14, 2025: https://9to5google.com/2025/10/14/gmail-calendar-gemini-schedule/
+
+## Margin vs HEY: calm email without changing your address (https://marginmail.ai/compare/hey/)
+
+**Short answer:** HEY is an email service from 37signals with its own @hey.com addresses (or your domain hosted at HEY), the Screener, and HEY Calendar, for $99 a year. It isn't a Gmail client. Margin is a native Mac app that brings calm to the Gmail and Google Workspace accounts you already have: notes about what needs you, a Screener for new senders, a calendar and people pages. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **HEY** |
+|---|---|---|
+| What it is | A Mac app for your existing Google accounts | An email service with its own addresses and hosting |
+| Price | Free during the beta | HEY for You $99/yr (includes HEY Calendar); HEY for Domains $12/user/mo; no free plan, 30-day trial |
+| Your address | Keep your Gmail or Workspace address | @hey.com or your domain hosted at HEY; Gmail only by forwarding plus send-as; no import of old mail |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Web, Mac, Windows, Linux, iOS, Android |
+| Screening new senders | Screener: accept or block first-time senders | The Screener (HEY's signature feature) |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Imbox, The Feed, Paper Trail, Reply Later, Set Aside |
+| Calendar | Built in, two-way with Google Calendar: A / M / D, find a time with holds | HEY Calendar; Google/Apple/Outlook calendars only as read-only subscriptions |
+| People | A page per person; companies by domain | Contact Notes |
+| AI | Optional. Apple Intelligence on your Mac; your own Claude on click | No built-in AI; HEY CLI and MCP let your own agent (e.g. Claude Code) access your account |
+| AI sends mail | Never | Agents get the access you grant (a read-only mode exists) |
+| Tracking | Remote images blocked by default; no read receipts | Spy-pixel blocking; no read receipts |
+| Servers | No Margin server; Mac ↔ Google | HEY hosts your mail (37signals; not SOC 2) |
+
+### Where HEY is the better choice
+
+- You want **a fresh start** with a new address and a whole philosophy of email.
+- You want **Windows, Linux, Android or the web**.
+- You like **The Feed and Paper Trail** for newsletters and receipts.
+- You want **your own agent** working your account through a CLI or MCP.
+
+### Where Margin is the better choice
+
+- You want to **keep your Gmail or Workspace address**, history and Google Calendar.
+- You want a **calendar that syncs both ways** with Google, with invites answered by one key.
+- You want **people pages** and **notes about what needs you**.
+- You want **optional AI built in** that stays on your Mac and never sends.
+
+### Who should choose which
+
+**HEY** if you're ready to move your address and adopt HEY's way of doing email. **Margin** if you want HEY-like calm, including a Screener, on the Gmail you already have.
+
+### FAQ
+
+**Can I use HEY with my Gmail address?**
+Only by forwarding new Gmail mail into HEY and sending as your Gmail address. HEY says it isn't a Gmail client and can't import old mail. Margin works directly with your Gmail and Workspace accounts.
+
+**Does Margin have a Screener like HEY?**
+Yes. First-time senders go to Margin's Screener, where you accept or block them once for all their mail.
+
+**Does HEY Calendar sync with Google Calendar?**
+Not two-way. HEY can subscribe to Google, Apple or Outlook calendars read-only. Margin's calendar is your Google Calendar.
+
+**Does HEY have AI?**
+HEY has no built-in AI. You can connect your own agent through the HEY CLI or MCP server. Margin has optional AI inside the app: Apple Intelligence on your Mac and your own Claude on click.
+
+**How much does HEY cost compared with Margin?**
+HEY for You is $99 a year as of October 2026. Margin is free during its beta.
+
+### Sources
+
+- HEY pricing: https://www.hey.com/pricing/ (read Oct 16, 2026)
+- HEY features: https://www.hey.com/features/ and https://www.hey.com/calendar/ (read Oct 16, 2026)
+- HEY help, importing from Gmail: https://help.hey.com/article/717-can-i-import-my-gmail-outlook-apple-email-into-hey
+- HEY help, linking Google/Apple/Outlook calendars: https://help.hey.com/article/799-link-your-google-apple-or-outlook-calendar
+- HEY help, using AI agents with HEY (updated Sept 22, 2026): https://help.hey.com/article/1189-using-ai-agents-with-hey
+- 37signals privacy policy (updated Sept 16, 2026): https://37signals.com/policies/privacy · security: https://37signals.com/policies/security
+
+## Margin vs Mimestream: two native Gmail apps for Mac (https://marginmail.ai/compare/mimestream/)
+
+**Short answer:** Mimestream and Margin are both native Mac apps that talk straight to Gmail with no sync server in between. Mimestream is a fast, focused Gmail client at $49.99 a year, with no calendar view and no AI. Margin adds a calendar in the same window, a page for every person you write to, notes about what needs you, and optional AI on your Mac. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Mimestream** |
+|---|---|---|
+| Price | Free during the beta | $49.99/yr or $4.99/mo; 14-day trial; no free plan |
+| Mac app | Native (SwiftUI), macOS 26+ | Native, macOS 12+ |
+| iPhone | Companion app later | Limited TestFlight beta (iOS 26+) for subscribers |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail and Google Workspace; Outlook, IMAP and JMAP "planned" |
+| How it syncs | Directly with Google from your Mac; no Margin server | Directly with the Gmail API; data and tokens only on your device |
+| Calendar | Built in: split view, unanswered invites marked, A / M / D, find a time with holds | No calendar view; an availability banner beside invites, accept/decline, one-click join |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests) and the Margins stack | Gmail categories, labels, filters, snooze |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Contact photos; no people view |
+| AI | Optional: Apple Intelligence on your Mac; your own Claude on click | None |
+| AI sends mail | Never | n/a |
+| Live words in compose | Yes (dates, people, files, promises; rules) | Markdown, @mentions, templates |
+| Tracking | No read receipts; remote images blocked by default | Tracking Prevention for 75+ trackers |
+| Gmail settings in-app (filters, vacation responder) | Partly (aliases, signatures, filters for blocks) | Yes, edits Gmail filters and vacation responder |
+
+### Where Mimestream is the better choice
+
+- You want the **lightest, most Gmail-faithful client** and nothing else. Mimestream mirrors Gmail's labels and categories closely and edits Gmail-side filters and vacation replies.
+- You need an **iPhone app now** and you're an eligible subscriber (it's in a limited beta).
+- You run **an older macOS** (12 through 15). Margin needs macOS 26.
+- You want **no AI at all, by design**. (Margin also works fully with AI off, but offers it.)
+
+### Where Margin is the better choice
+
+- You want your **calendar in the same window**, not just a banner beside invites.
+- You want **notes about what needs you**: "You asked Ava on Oct 9. No reply in 6 days."
+- You want a **memory for people**: a page for everyone you write to, with their local time.
+- You'd like **optional AI that stays private**: on-device first, or your own Claude, never a vendor server.
+
+### Who should choose which
+
+Pick **Mimestream** for a pure, polished Gmail client. Pick **Margin** if your days are mail plus meetings plus people, and you want them in one calm window with the same no-server privacy.
+
+### FAQ
+
+**Does Mimestream have a calendar?**
+Not a calendar view. It shows your events in a banner beside an invitation so you can check availability, and lets you accept, decline and join. Margin has a full calendar in the same window.
+
+**Are Margin and Mimestream both private?**
+Both talk directly to Google from your Mac with no sync server in between. Margin also runs no analytics in the app. If you turn on AI in Margin, it runs on your Mac (Apple Intelligence) or through your own Claude.
+
+**Does Mimestream have AI?**
+No AI features are listed on Mimestream's site as of October 2026. Margin's AI is optional: Request notes on-device, and Write it with your own Claude.
+
+**Does Mimestream have an iPhone app?**
+It's in a limited TestFlight beta for subscribers, requiring iOS 26. Margin's iPhone companion comes later.
+
+**Which costs less?**
+Margin is free during its beta; pricing comes later. Mimestream is $49.99 a year or $4.99 a month.
+
+**Can I use both?**
+Yes. Both read the same Gmail account, so you can try Margin without leaving Mimestream.
+
+### Sources
+
+- Mimestream pricing: https://mimestream.com/pricing (read Oct 16, 2026)
+- Mimestream features and FAQ: https://mimestream.com, https://mimestream.com/faqs (read Oct 16, 2026)
+- Mimestream iOS beta: https://mimestream.com/ios-beta (read Oct 16, 2026)
+
+## Margin vs Missive: your own inbox, or your team’s? (https://marginmail.ai/compare/missive/)
+
+**Short answer:** Missive is a collaborative inbox for teams, with shared conversations, assignments, comments, multiple channels and bring-your-own-key AI, from $14 per user a month billed yearly. Margin is for one person: a native Mac app for your own Gmail and Google Workspace accounts, with notes about what needs you, a calendar, people pages and private, optional AI. If your team answers one address together, choose Missive. For your own inbox, try Margin.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Missive** |
+|---|---|---|
+| Built for | One person's mail, calendar and people | Teams sharing inboxes and channels |
+| Price | Free during the beta | Starter $14, Productive $24, Business $36 per user/mo billed yearly ($18 / $30 / $45 monthly); no free plan; 30-day trial |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Web, Mac, Windows, iOS, Android (desktop apps are web-based) |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Outlook/M365, IMAP, plus SMS, WhatsApp, Messenger, Instagram, live chat |
+| Collaboration | None by design | Shared inboxes, assignment, comments, tasks |
+| Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in, rebuilt Sept 2026 with teammate availability and time-zone columns |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Shared contact book; CRM sidebars (HubSpot, Pipedrive, Salesforce) |
+| AI | Optional. Apple Intelligence on your Mac; your own Claude on click | Bring your own OpenAI, Anthropic or Gemini key, or Missive credits; AI rules, assistant, drafted replies; MCP server |
+| Where AI runs | Your Mac | Your chosen AI provider, via Missive's service |
+| AI sends mail | Never | Approve-and-send drafted replies |
+| Vendor servers | No Margin server; Mac ↔ Google | Missive stores mail on its servers (AWS); SOC 2 Type II |
+
+### Where Missive is the better choice
+
+- **Several people answer the same address** (support@, hello@, sales@).
+- You need **assignment, internal comments and shared drafts**.
+- You manage **SMS, WhatsApp or social messages** alongside mail.
+- You use **Outlook** or Windows.
+
+### Where Margin is the better choice
+
+- It's **your inbox**, not a team queue.
+- You want **calm and privacy**: no vendor server, no analytics, AI on your Mac.
+- You want **people pages and notes about what needs you**, built for one person's memory.
+- You don't want to pay **per seat** for yourself.
+
+### Who should choose which
+
+**Missive** for teams who work an inbox together. **Margin** for the individual: founders, executives and advisors who want their own mail, calendar and people in one calm Mac window.
+
+### FAQ
+
+**Does Missive have a free plan?**
+Not anymore, as of October 2026. It offers a 30-day trial; paid plans start at $14 per user a month billed yearly. Margin is free during its beta.
+
+**Can I bring my own AI to Missive?**
+Yes. Missive supports your own OpenAI, Anthropic or Gemini key, or Missive-managed credits. Margin uses Apple Intelligence on your Mac or your own Claude on your Mac, with no API key.
+
+**Is Margin a shared inbox?**
+No. Margin is for one person's mail. For a shared team inbox, Missive is built for that.
+
+**Can I use Margin for personal mail and Missive for team mail?**
+Yes. Margin works with your Google accounts; your team inbox can stay in Missive.
+
+### Sources
+
+- Missive pricing: https://missiveapp.com/pricing (read Oct 16, 2026)
+- Missive AI setup (BYOK): https://missiveapp.com/docs/ai/setup
+- Missive changelog (calendar Sept 24, 2026; MCP Aug 28, 2026): https://missiveapp.com/changelog
+- Missive security: https://missiveapp.com/security
+- Missive review with monthly prices, Sept 28, 2026: https://www.usecarly.com/blog/missive-review/
+
+## A Notion Mail alternative for Mac: Margin (https://marginmail.ai/compare/notion-mail/)
+
+**Short answer:** Notion Mail closed on September 22, 2026, across web, Mac and iOS; your mail stayed in Gmail. If you want a Mac app for that same Gmail, Margin is a native macOS mail app with a calendar built in, a page for every person you write to, and optional AI that runs on your Mac or through your own Claude. It's free during the beta.
+
+*Last checked: October 16, 2026.*
+
+### What happened to Notion Mail
+
+- **Announced** June 25, 2026. **Closed** September 22, 2026, on web, desktop and iOS. It launched in April 2025.
+- **Why:** Notion said more than half its users handled email without opening the inbox, and that it was going "all in" on agents to run the inbox.
+- **Your mail is safe.** It always lived in Gmail. What lived only in Notion Mail (drafts, scheduled sends, snippets, auto-label instructions, custom views) had to be exported by September 21.
+- **Notion's suggestion:** Notion Custom Agents connected to Gmail or Outlook. Those work inside Notion; there's no mail inbox to read in.
+
+If you still want an inbox (a calm one), that's the gap Margin fills.
+
+### Notion Mail and Margin at a glance
+
+| | **Margin** | **Notion Mail** (at closing, Sept 2026) |
+|---|---|---|
+| Status | In beta, free during the beta | Closed Sept 22, 2026 |
+| Platforms | Native Mac app (macOS 26+); iPhone companion later | Was web, Mac and iOS |
+| Accounts | Gmail and Google Workspace, several accounts in one unified inbox | Was Gmail (Outlook not supported) |
+| Sorting | Margin notes for Follow-ups, Meetings and Requests; the Margins stack (Done / Later); "Why this?" on every card | AI auto-labels and custom views |
+| Calendar | Built in: unanswered invites marked, accept with A / M / D, find a time with holds | Separate (Notion Calendar) |
+| People | A page for everyone you write to; companies by domain | Not built in |
+| Writing help | Live words (rules); Write it with your own Claude, on click | Notion AI drafting |
+| Where AI runs | Apple Intelligence on your Mac, or your own Claude on your Mac (opt in) | Notion's cloud |
+| AI sends mail by itself | Never | No (drafts) |
+| Works with AI off | Yes, fully | AI was central |
+| Margin/Notion servers hold your mail | No Margin server; Mac ↔ Google only | Processed in Notion's service |
+| Analytics in the app | None | Standard product analytics |
+
+### Who should choose which
+
+- **Choose Notion Custom Agents** if you liked Notion Mail mostly because you never opened it, and you want an agent to label, archive and draft for you inside your Notion workspace.
+- **Choose Margin** if you want a real inbox again: one that shows only what needs you, puts your calendar and people beside it, and keeps your mail between you and Google.
+- **Neither** if you need Outlook or Windows today.
+
+### Moving from Notion Mail to Margin
+
+1. Your Gmail is already intact; there's nothing to import.
+2. Join the beta and sign in with Google. Add every Google account you use; they share one inbox.
+3. Notion Mail's auto-labels don't carry over. Margin doesn't need labels to sort: its notes find what needs you, and the rest can be marked Done.
+4. Recreate snippets as Margin templates (type `;` in the composer).
+
+### FAQ
+
+**When did Notion Mail shut down?**
+September 22, 2026, on web, Mac and iOS. Notion announced it on June 25, 2026.
+
+**Did I lose my email when Notion Mail closed?**
+No. Notion Mail was a client for Gmail, so your messages stayed in Gmail. Only data stored inside Notion Mail itself, like drafts, snippets and custom views, had to be exported.
+
+**What's the best Notion Mail alternative for Mac?**
+If you want a native Mac app for Gmail with a calendar and people built in, Margin is made for that. If you want an agent to work your inbox without an inbox app, Notion's own Custom Agents are the path Notion recommends.
+
+**Does Margin use AI like Notion Mail did?**
+Yes, but differently. Margin works fully with AI off. When you turn AI on, Request notes use Apple Intelligence on your Mac, and Write it uses your own Claude on your Mac. There's no Margin server, and AI never sends.
+
+**Does Margin work with Notion?**
+Not directly today. Margin focuses on mail, calendar and people on your Mac.
+
+**How much does Margin cost?**
+Margin is free during the beta. Pricing will be shared before the beta ends.
+
+### Sources
+
+- 9to5Mac, "Notion shutting down its AI-powered email client, including Mac and iOS apps," June 25, 2026: https://9to5mac.com/2026/06/25/notion-shutting-down-its-ai-powered-email-client-including-mac-and-ios-apps/ (read Oct 16, 2026)
+- Toolradar, "Notion Mail is shutting down: alternatives," updated Oct 16, 2026: https://toolradar.com/blog/notion-mail-shutting-down-alternatives
+- Crypto Briefing on the shutdown and Skiff history, June 25, 2026: https://cryptobriefing.com/notion-mail-shutdown-ai-agents/
+- Notion's help page about the shutdown now redirects to the help-centre home (checked Oct 16, 2026).
+
+## Margin vs Outlook for Mac: mail and calendar together, for Google accounts (https://marginmail.ai/compare/outlook-mac/)
+
+**Short answer:** The new Outlook for Mac is free, keeps mail and calendar in one app, supports almost every provider, and adds Copilot with Microsoft 365 plans from $9.99 a month. Margin is a native Mac app for Gmail and Google Workspace that also keeps mail and calendar together, adds people pages and notes about what needs you, and runs optional AI on your Mac. If you live in Microsoft 365, choose Outlook. If you live in Google, try Margin.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Outlook for Mac (new Outlook)** |
+|---|---|---|
+| Price | Free during the beta | App free (ad-supported without Microsoft 365); Copilot with M365 Personal $9.99/mo, Family $12.99/mo, Premium $19.99/mo; business Copilot licensing varies |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Outlook.com, Exchange/M365, Google, iCloud, Yahoo, IMAP |
+| Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Built in, as its own module |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Focused Inbox, rules, categories; Copilot can prioritize |
+| People | A page per person; companies by domain | People / contacts module |
+| AI | Optional. Apple Intelligence on your Mac; your own Claude on click (Write it, What's been decided) | Copilot: draft and edit conversationally, summarize, Copilot Chat window; agentic inbox and calendar features rolling out (Windows and web first) |
+| Where AI runs | Your Mac | Microsoft's cloud |
+| AI sends mail | Never | Reports differ on Copilot follow-ups; check your tenant's settings |
+| Vendor servers | No Margin server; Mac ↔ Google | Microsoft cloud (non-Microsoft accounts sync through Microsoft's service, per widespread reports) |
+
+### Where Outlook is the better choice
+
+- Your company runs on **Microsoft 365 or Exchange**. Margin doesn't support Microsoft accounts yet.
+- You need **Windows, web or Android** too.
+- You want **Copilot** across Word, Excel and Outlook under one subscription.
+- You're mixing **many providers** in one app.
+
+### Where Margin is the better choice
+
+- You live in **Gmail or Google Workspace** and want a Mac app built for it.
+- You want **AI that stays on your Mac** or runs through your own Claude, and **never sends**.
+- You want **people pages** and **notes about what needs you**, not just a focused list.
+- You want **live words**: type "Tuesday with Ava" and both calendars' free times appear.
+
+### Who should choose which
+
+**Outlook** for Microsoft 365 workplaces and mixed-provider power users. **Margin** for Google Workspace and Gmail people who want Outlook's mail-plus-calendar feel in a calm, private, native Mac app.
+
+### FAQ
+
+**Is Outlook for Mac free?**
+Yes. The new Outlook for Mac is free; without a Microsoft 365 subscription it's ad-supported. Copilot features come with Microsoft 365 plans (Personal is $9.99 a month as of October 2026).
+
+**Can I use Outlook for Mac with Gmail?**
+Yes, Outlook can add Google accounts. Margin is built only for Google accounts and uses the Gmail and Google Calendar APIs directly from your Mac.
+
+**What happened to legacy Outlook for Mac?**
+Microsoft retired Exchange Web Services in Exchange Online in October 2026, so legacy Outlook for Mac stops working with Exchange Online; Microsoft says most users have moved to new Outlook.
+
+**Does Margin support Microsoft 365?**
+Not yet. Margin supports Gmail and Google Workspace today; other providers come later.
+
+**Does Margin have Copilot-style AI?**
+Margin's AI is optional and private: Apple Intelligence on your Mac finds requests, and your own Claude writes drafts in your voice when you click Write it. It never sends.
+
+### Sources
+
+- Microsoft 365 plans compared: https://www.microsoft.com/en-us/microsoft-365/buy/compare-all-microsoft-365-products (read Oct 16, 2026)
+- Outlook for Mac support (accounts): https://support.microsoft.com/outlook/outlook-for-mac
+- Copilot Chat pop-out on Mac, Message Center MC1454996 (updated Sept 11, 2026): https://mc.merill.net/message/MC1454996
+- IT Brief, agentic Copilot in Outlook, Apr 30, 2026: https://itbrief.com.au/story/microsoft-adds-agentic-copilot-tools-to-outlook-inbox
+- End of support for legacy Outlook for Mac: https://support.microsoft.com/en-us/outlook/end-of-support-for-legacy-outlook-for-mac
+
+## Margin vs Shortwave: where should your mail’s AI run? (https://marginmail.ai/compare/shortwave/)
+
+**Short answer:** Shortwave is a Gmail-only mail app built around a powerful cloud AI agent (Claude models on paid plans) that searches, drafts, schedules and organizes, from $30 per seat a month. Margin is a native Mac app for Gmail and Workspace where AI is optional and local: Apple Intelligence on your Mac finds requests, and your own Claude writes drafts only when you click. There's no Margin server. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Shortwave** |
+|---|---|---|
+| Price | Free during the beta | Business $30, Premier $45, Max $120 per seat/mo; 14-day trial; a limited free individual plan is reported by third parties |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail and Google Workspace; Microsoft 365 not supported |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Bundles with delivery schedules, Splits, AI filters, todos from mail |
+| Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built-in Google Calendar; the AI can check availability and create events |
+| People | A page per person; companies by domain | HubSpot integration; no people view found |
+| AI | Optional. Apple Intelligence on your Mac; your own Claude on click (Write it, What's been decided) | Central. AI agent with search across up to 150 threads, drafts, AI filters, attachment analysis, web browsing, your own MCP servers |
+| Models | Apple on-device; your Claude plan | Claude Haiku 4.5 / Sonnet 4.6 / Opus 4.6 by plan; self-hosted open models for much of the work |
+| Where AI runs | Your Mac | Shortwave's cloud (Google Cloud); sub-processors include OpenAI, Anthropic, Pinecone |
+| AI sends mail | Never | Not documented either way |
+| Read receipts | Never | Read statuses and link tracking |
+| Security attestations | No server to attest; Mac ↔ Google | CASA Tier 2; SOC 2 not claimed |
+| Works with AI off | Yes, fully | AI is the core of the product |
+
+### Where Shortwave is the better choice
+
+- You want **the most capable AI agent** in an inbox today: answers across many threads, multi-step tasks, web browsing.
+- You want to **connect other tools** (HubSpot, Notion, Slack, Asana, Linear, your own MCP servers).
+- You need **Windows, web or Android**.
+- Your **team** works in shared threads with comments.
+
+### Where Margin is the better choice
+
+- You want AI that **runs on your Mac or through your own Claude plan**, not a vendor's cloud.
+- You want an app that's **calm and useful with AI off**, then better with it on.
+- You want **people pages** and **live words** that turn "Tuesday with Ava" into free times.
+- You want to **see every change AI made**: Write it flags anything new (recipient, link, number) and never sends.
+- You'd rather not pay **$30–120 per seat** to try something new.
+
+### Who should choose which
+
+**Shortwave** if you want an AI to do as much of your email as possible and you're comfortable with cloud processing. **Margin** if you want help at the right moment, on your terms, with your mail staying between you and Google.
+
+### FAQ
+
+**What AI does Shortwave use?**
+Shortwave's pricing page names Claude Haiku 4.5, Sonnet 4.6 and Opus 4.6 by plan, and its security page says much of its AI work runs on open-source models on its own hardware. Margin uses Apple Intelligence on your Mac and, if you opt in, your own Claude on your Mac.
+
+**Is there a Shortwave alternative that keeps AI private?**
+Margin is designed for that: AI is optional, runs on your Mac first, and never goes through a Margin server. It also works fully with AI off.
+
+**Does Shortwave support Outlook?**
+Shortwave says Microsoft 365 and Exchange aren't supported. Margin also supports Google accounts only today.
+
+**Can I use my own Claude with Margin?**
+Yes. Margin uses the Claude you already have on your Mac, under your own plan. It never sees your login and doesn't use an API key.
+
+**How much does Shortwave cost compared with Margin?**
+Shortwave's paid plans are $30, $45 and $120 per seat a month as of October 2026. Margin is free during its beta.
+
+### Sources
+
+- Shortwave pricing: https://shortwave.com/pricing (read Oct 16, 2026)
+- Shortwave security: https://shortwave.com/security (read Oct 16, 2026)
+- Shortwave AI assistant guide: https://shortwave.com/docs/guides/ai-assistant
+- Microsoft account support: https://shortwave.com/docs/how-tos/microsoft-outlook-exchange-other-sign-in-support/
+- Free-plan details (third-party, verified Jul 11, 2026): https://costbench.com/software/ai-productivity/shortwave/free-plan/
+
+## Margin vs Spark: the best Spark alternative for Mac if privacy matters (https://marginmail.ai/compare/spark/)
+
+**Short answer:** Spark is a popular, cross-platform mail app with a free plan, support for almost every provider, and AI that runs on device or with cloud providers. Margin is a native Mac app for Gmail and Google Workspace with no Margin server in the path, a calendar and people pages in the same window, and optional AI on your Mac or through your own Claude. If you need Windows, Android or iCloud today, choose Spark. If you want calm and privacy on a Mac, try Margin.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Spark** |
+|---|---|---|
+| Price | Free during the beta | Free; Plus $10/mo ($99/yr); Pro $20/mo ($199/yr); Enterprise on request |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, iPhone, iPad, Apple Watch, Android |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, iCloud, Yahoo, Exchange/M365, Outlook, any IMAP |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Smart Inbox (priority vs. the rest), bundles, Gatekeeper for new senders |
+| Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Built in, with Meeting Notes |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Priority Sender; no people pages |
+| AI | Optional. Apple Intelligence on your Mac (Requests); your own Claude on click (Write it, What's been decided) | Spark +AI (write, summarize), AI Assistant over your mail, Meeting Notes; Auto-Drafts in closed beta (Pro) |
+| Where AI runs | On your Mac, or your own Claude on your Mac | On-device models and/or Azure OpenAI, OpenAI, Anthropic and Google Vertex AI, per Spark's privacy policy |
+| Agents | No outside agent access; AI never sends | Spark CLI for Claude Code and Codex; "Send" permission lets an agent send without per-message approval (Pro) |
+| Vendor servers | No Margin server; Mac ↔ Google only | Spark's servers handle shared mail, Send Later and push; recent mail kept up to 4 hours; login stored as a token |
+| Send later with the laptop closed | Needs a Mac awake | Yes (server-side) |
+| Teams | Not a team product | Shared inbox, shared drafts, assignments, comments |
+| Analytics in the app | None | See Spark's privacy policy |
+
+### Where Spark is the better choice
+
+- You use **iCloud, Outlook, Yahoo or IMAP** accounts. Margin is Google-only today.
+- You need **Windows, Android or a mature iPhone app**.
+- You want a **free plan** that will stay free.
+- You want **Send Later and push that work with your laptop closed**.
+- Your **team shares an inbox** or drafts.
+
+### Where Margin is the better choice
+
+- You'd rather **no vendor server** sat between you and Google.
+- You want a **short stack of what needs you**, each card with a "Why this?", instead of a priority list.
+- You want **people pages** built from your mail and meetings, with their local time.
+- You want **live words**: type "Tuesday with Ava" and both calendars' free times appear.
+- You want AI that **never sends**, and that you can turn off without losing anything.
+
+### Who should choose which
+
+**Spark** for people who need every platform and provider, a free plan, or team features. **Margin** for Mac users on Gmail or Workspace who want their mail, calendar and people in one calm window, and want to keep their mail between themselves and Google.
+
+### Switching from Spark
+
+- Your mail stays in Gmail; nothing to import.
+- Spark's Gatekeeper → Margin's Screener for first-time senders.
+- Spark's "Done" → Margin's Done (same idea: handled mail leaves).
+- Templates: recreate them in Margin and use `;` in the composer.
+- You can run both side by side while you try Margin.
+
+### FAQ
+
+**Is Spark private?**
+Spark's privacy policy (Sept 10, 2026) says content is mostly processed on your device, while its servers handle shared mail, Send Later and recent mail for up to 4 hours, and AI can use cloud providers including OpenAI, Anthropic and Google. Margin has no server for your mail at all: it talks to Google directly from your Mac.
+
+**What's the best Spark alternative for Mac?**
+If you're on Gmail or Google Workspace and want privacy plus a calendar and people in one window, Margin is built for that. If you need iCloud or Outlook accounts, Spark is still the more complete choice today.
+
+**Does Margin have a free plan like Spark?**
+Margin is free during the beta. Pricing will be shared before the beta ends.
+
+**Does Margin have Spark's Gatekeeper?**
+Yes, in its own form: first-time senders go to a Screener, where you accept or block them once for all their mail.
+
+**Can Spark's AI send email on its own?**
+Spark's Auto-Drafts never send automatically. But Spark CLI's Send permission, added in July 2026, lets an outside agent send without approving each message. Margin's AI can never send.
+
+**Does Margin work on Windows or iPhone?**
+Margin is a Mac app. An iPhone companion comes later. There are no plans for Windows.
+
+### Sources
+
+- Spark pricing: https://sparkmailapp.com/pricing (read Oct 16, 2026)
+- Spark features: https://sparkmailapp.com/features (read Oct 16, 2026)
+- Spark privacy policy (dated Sept 10, 2026): https://sparkmailapp.com/privacy
+- "Spark agents that follow through" (Send permission), Jul 24, 2026: https://sparkmailapp.com/blog/spark-agents-that-follow-through
+- Spark Auto-Drafts help: https://sparkmailapp.com/help/spark-ai/auto-drafts-in-spark
+- Supported providers: https://sparkmailapp.com/help/add-manage-accounts/connect-to-your-email-account-in-spark
+
+## Margin vs Superhuman: a calm, private alternative for Mac (https://marginmail.ai/compare/superhuman/)
+
+**Short answer:** Superhuman Mail is a fast, keyboard-first mail app for Gmail and Microsoft 365 with cloud AI drafting, Ask AI and an MCP server, from $25 a month billed yearly. Margin is a native Mac app for Gmail and Google Workspace that notes what needs you, puts your calendar and people in the same window, and runs optional AI on your Mac or through your own Claude, with no Margin server. Margin is free during its beta.
+
+*Last checked: October 16, 2026. Prices in USD.*
+
+### At a glance
+
+| | **Margin** | **Superhuman Mail** |
+|---|---|---|
+| Price | Free during the beta | Starter $30/mo ($25 yearly); Business $40/mo ($33 yearly); Enterprise custom. No free Mail plan |
+| Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
+| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail/Workspace and Outlook/Microsoft 365 |
+| What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Split Inbox, Auto Labels, Snooze, reminders |
+| Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in, with scheduling |
+| People | A page per person (conversations, meetings, tasks, local time); companies by domain | Contact pane; HubSpot, Salesforce, Pipedrive on Business |
+| AI drafting | Write it: in your voice, on click, with your own Claude; flags anything the thread didn't have | Instant Reply (Starter); Auto Drafts in your tone with 2 alternatives (Business) |
+| Ask your inbox | What's been decided on long threads | Ask AI (Business) |
+| Where AI runs | Apple Intelligence on your Mac, or your own Claude on your Mac | Superhuman's cloud, with Anthropic and OpenAI models |
+| Agents | No outside agent access; AI never sends | Mail MCP (Business+): assistants can search, draft, schedule and send |
+| Read receipts | Never | Read Statuses on all plans; Recent Opens on Business |
+| Vendor servers | No Margin server; Mac ↔ Google | Superhuman keeps its own index of mail and calendar; SOC 2 Type 2 |
+| Works with AI off | Yes, fully | AI is part of every plan |
+
+### Where Superhuman is the better choice
+
+- You use **Microsoft 365** or need **Windows, web or Android**.
+- You want **Auto Drafts waiting** for you before you open a thread.
+- You want **outside agents** (Claude, ChatGPT, Codex) to work your mail through an MCP server.
+- Your team relies on **read statuses** or **CRM sync**.
+- You need a **mature phone app** today.
+
+### Where Margin is the better choice
+
+- You don't want your mail **indexed on a vendor's servers**, or opens tracked.
+- You want **AI that only runs when you click**, on your Mac or with your own Claude, and **never sends**.
+- You want **a page for every person** you write to, with their local time and open tasks.
+- You want **calm** more than speed-as-a-sport: a short stack, a "Why this?" on every card, a sunrise when you're done.
+- You'd rather not pay **$300+ a year** while you try something new.
+
+### Who should choose which
+
+**Superhuman** for teams and power users who want the most AI help, on every platform, and are comfortable with cloud processing and read statuses. **Margin** for Mac users on Gmail or Workspace who want calm, people and privacy, with AI as a choice rather than a requirement.
+
+### FAQ
+
+**How much does Superhuman cost in 2026?**
+Superhuman Mail Starter is $25 a month billed yearly ($30 monthly) and Business is $33 billed yearly ($40 monthly), as of October 2026. There's no free Mail plan. Margin is free during its beta.
+
+**What's a cheaper Superhuman alternative for Mac?**
+Margin is free during its beta and runs natively on the Mac with a calendar, people pages and optional private AI. It supports Gmail and Google Workspace today.
+
+**Does Superhuman read my email?**
+Superhuman processes mail in its cloud to power AI features and keeps its own index of mail and calendar; it says neither it nor its vendors train on your data. Margin has no server for your mail; optional AI runs on your Mac or through your own Claude.
+
+**Does Margin have read receipts like Superhuman?**
+No. Margin deliberately doesn't track whether people open your mail.
+
+**Can Superhuman's AI send email?**
+Superhuman's Mail MCP lets connected assistants send mail. Margin's AI can only draft; ⌘⏎ is always yours.
+
+**Does Margin support Outlook like Superhuman?**
+Not yet. Margin supports Gmail and Google Workspace today; other providers come later.
+
+### Sources
+
+- Superhuman Mail plans: https://superhuman.com/plans/mail and https://superhuman.com/plans (read Oct 16, 2026)
+- Monthly pricing (third-party, checked Sep 28, 2026): https://getinboxzero.com/superhuman-pricing
+- TechCrunch, "Superhuman's new auto-draft feature…", Jul 14, 2026: https://techcrunch.com/2026/07/14/superhumans-new-auto-draft-feature-almost-makes-me-like-ai-replies/
+- Superhuman Mail MCP announcement, Apr 29, 2026: https://blog.superhuman.com/superhuman-mail-mcp/
+- Superhuman release notes (Oct 14, 2026): https://releases.sh/superhuman
+
+## The best Gmail apps for Mac in 2026 (https://marginmail.ai/best/gmail-apps-for-mac/)
+
+**Short answer:** Google doesn't make a Gmail app for the Mac, so you choose between native clients and the browser. For a pure native Gmail client, Mimestream. For free and simple, Apple Mail. For every platform and provider, Spark. For the most AI, Superhuman or Shortwave. For mail, calendar and people in one private Mac window, Margin (our app, in beta).
+
+*Last checked October 16, 2026. Prices in USD. **Disclosure:** we make Margin. It's included, labeled, and held to the same questions as the others.*
+
+### How we judged
+
+Five questions that matter for Gmail on a Mac:
+1. **Native?** A real Mac app, or a web view or browser tab.
+2. **Gmail-aware?** Built on the Gmail API (labels, threads, aliases) or generic IMAP.
+3. **Calendar?** In the same window, or somewhere else.
+4. **Where does AI run?** Vendor cloud, Google's cloud, on-device, your own model, or none.
+5. **Price** for one person.
+
+### At a glance
+
+| App | Best for | Price (Oct 2026) | Gmail approach | Calendar | AI and where it runs |
+|---|---|---|---|---|---|
+| **Margin** (ours, beta) | Mail, calendar and people in one private window | Free during the beta | Native SwiftUI on the Gmail API; several Google accounts in one inbox | Built in: A / M / D answers, find a time with holds | Optional: Apple Intelligence on your Mac; your own Claude on click; never sends |
+| **Mimestream** | A pure, polished native Gmail client | $49.99/yr or $4.99/mo | Native, Gmail API, no sync server | Invite banner with availability; no calendar view | None |
+| **Apple Mail** | Free and simple, any provider | Free | Native, IMAP | Separate Calendar app | Apple Intelligence: summaries, Smart Replies in your style; on-device and Private Cloud Compute |
+| **Spark** | Every platform and provider, a free plan, teams | Free; Plus $10/mo; Pro $20/mo | Cross-platform app; Gmail and most providers | Built in | +AI writing and assistant; on-device and/or cloud providers; Auto-Drafts beta |
+| **Superhuman Mail** | Speed and the most AI help | From $25/mo yearly ($30 monthly) | Mac, Windows, web, mobile; Gmail and Microsoft 365 | Built in | Auto Drafts, Ask AI, Mail MCP; Superhuman's cloud |
+| **Shortwave** | The most capable AI agent for Gmail | From $30/seat/mo | Mac, Windows, web, mobile; Gmail only | Built in (Google Calendar) | AI agent with Claude models; Shortwave's cloud |
+| **Canary Mail** | Every provider, encryption, low price | Free; $36/yr; $100/yr | Mac, Windows, mobile; most providers | Built in (view, accept, suggest times) | Prioritization on-device; writing with hosted models |
+| **Outlook for Mac** | Microsoft 365 workplaces that also have Gmail | Free app; Copilot with M365 from $9.99/mo | Native; adds Google accounts | Built in | Copilot in Microsoft's cloud |
+| **Gmail in the browser** | Free, anywhere, with Gemini | Free; Google AI Plus $9.99/mo, Pro $19.99/mo | Browser tab | Side panel; Help me schedule | Gemini in Google's cloud |
+
+### The apps
+
+#### Margin: best for mail, calendar and people in one private window (ours)
+A native Mac email app for Gmail and Google Workspace. It writes short notes about what needs you (follow-ups, meeting invites, requests), turns them into a stack you swipe through beside your calendar, and gives everyone you write to a page. Live words turn "Tuesday with Ava" into both calendars' free times. There's no Margin server and no analytics; AI is optional, on your Mac or your own Claude, and never sends.
+**Choose it if** you live in Gmail on a Mac and want your day in one window. **Skip it if** you need iCloud or Microsoft accounts, Windows, or an iPhone app today. macOS 26+.
+
+#### Mimestream: best pure native Gmail client
+Fast, focused and faithful to Gmail's labels, filters and categories, talking straight to the Gmail API with data only on your device. No calendar view and no AI. iPhone app in a limited TestFlight beta.
+**Choose it if** you want Gmail, natively, and nothing else.
+
+#### Apple Mail: best free option
+Built into every Mac, works with nearly any provider, and macOS 27 adds relevance search and Smart Replies in your style. Gmail works over IMAP, so labels behave like folders. Calendar is a separate app.
+**Choose it if** you mix providers and want free and simple.
+
+#### Spark: best for every platform
+Mac, Windows, iPhone, Android; Gmail, iCloud, Outlook and IMAP; Smart Inbox, Gatekeeper and team features. Spark's servers handle Send Later, push and shared mail, and its AI can use cloud providers.
+**Choose it if** you need cross-platform and a free plan.
+
+#### Superhuman Mail: best for speed and AI help
+Keyboard-first speed with Auto Drafts, Ask AI and a Mail MCP for outside agents. Gmail and Microsoft 365. Cloud-processed, with read statuses.
+**Choose it if** maximum AI help is worth $25–40 a month.
+
+#### Shortwave: best AI agent for Gmail
+An AI agent that searches across many threads, drafts, schedules and organizes, with Claude models by plan. Gmail only; Microsoft 365 isn't supported.
+**Choose it if** you want AI to do as much of your email as possible.
+
+#### Canary Mail: best for encryption on a budget
+Every provider and platform, PGP and SecureSend on Pro+, low yearly pricing. Prioritization runs on-device; writing uses hosted models. Sends its own read receipts by default on macOS.
+**Choose it if** you need encryption or every provider.
+
+#### Outlook for Mac: best for Microsoft 365 people
+Free, mail and calendar together, adds Google accounts, Copilot with Microsoft 365.
+**Choose it if** your work runs on Microsoft 365.
+
+#### Gmail in the browser: best free, anywhere
+No install, Gemini basics free since January 2026, more with Google AI plans.
+**Choose it if** a tab works for you.
+
+### FAQ
+
+**Is there an official Gmail app for Mac?**
+No. Google offers Gmail on the web, iPhone and Android, but not as a Mac app. On a Mac you use a browser or a third-party client such as Mimestream, Margin, Apple Mail, Spark, Superhuman, Shortwave, Canary or Outlook, each with different trade-offs in price, privacy and features.
+
+**What is the best native Gmail client for Mac?**
+Mimestream is the most established native Gmail-only client, built on the Gmail API with no sync server. Margin is a newer native Gmail app that adds a calendar, people pages and optional on-device AI; it's in free beta. Apple Mail is native too but uses IMAP.
+
+**Which Mac email app has a built-in calendar for Gmail?**
+Margin, Spark, Superhuman, Shortwave, Canary and Outlook all include a calendar. Margin keeps it in the same window as your mail, with one-key invite answers and a find-a-time view. Mimestream shows only an availability banner on invites; Apple Mail uses the separate Calendar app.
+
+**Which Gmail app for Mac is the most private?**
+Apps that talk to Gmail directly from your Mac, with no server of their own, are the most private. Mimestream and Margin work this way. Margin also runs no analytics and keeps its optional AI on your Mac or your own Claude, and it never sends.
+
+**Is Apple Mail good for Gmail?**
+It works, and it's free. Because it uses IMAP, Gmail labels act like folders and some Gmail features don't carry over. If you live in Gmail all day, a Gmail API client such as Mimestream or Margin fits Gmail more naturally.
+
+### Sources
+
+- Mimestream: https://mimestream.com, https://mimestream.com/pricing, https://mimestream.com/ios-beta (read Oct 16, 2026)
+- Apple, What's new in macOS 27: https://support.apple.com/guide/mac-help/whats-new-in-macos-27-apd07d671600/mac
+- Spark: https://sparkmailapp.com/pricing, https://sparkmailapp.com/privacy (Sept 10, 2026)
+- Superhuman: https://superhuman.com/plans/mail; monthly prices via https://getinboxzero.com/superhuman-pricing (checked Sep 28, 2026)
+- Shortwave: https://shortwave.com/pricing, https://shortwave.com/security
+- Canary: https://canarymail.io/pricing, https://canarymail.io/privacy
+- Microsoft 365 plans: https://www.microsoft.com/en-us/microsoft-365/buy/compare-all-microsoft-365-products
+- Google One AI plans: https://one.google.com/about/plans; TechCrunch on free Gemini in Gmail (Jan 8, 2026): https://techcrunch.com/2026/01/08/gmail-debuts-a-personalized-ai-inbox-ai-overviews-in-search-and-more
+
+## Email follow-up reminders on Mac: see who hasn’t replied (https://marginmail.ai/guides/email-follow-up-reminders-mac/)
+
+**Short answer:** Gmail doesn't keep a list of sent emails nobody answered. Its Nudges feature brings some back automatically, and browser extensions add "remind me if no reply" to Gmail in Chrome. On a Mac, Margin, a native email app for Gmail, notices when you're waiting on someone and writes a note like "You asked Ava on Oct 9. No reply in 6 days," with no AI needed.
+
+*Last checked October 16, 2026.*
+
+### Three ways to track follow-ups
+
+| Approach | How it works | Good for | Watch out for |
+|---|---|---|---|
+| **Gmail Nudges** | Gmail can suggest older emails to follow up on or reply to, at the top of your inbox (Settings › General › Nudges) | Free, nothing to install | Gmail chooses which emails come back; there's no full "waiting on" list |
+| **A browser extension** (for example, Boomerang for Gmail) | Adds "remind me if no reply in N days" to Gmail in your browser | Precise reminders on chosen emails | Works in the browser only; the extension's service handles your mail |
+| **A mail app that tracks it for you** (Margin on Mac) | Notices who you're waiting on and brings it back as a note and a card | No setup per email; also works for what *others* asked you | Margin needs your Mac running to fire reminders on time |
+
+### How follow-ups work in Margin
+
+1. **Write and send as usual.** Margin keeps track of threads where you asked something and the other person hasn't answered.
+2. **A note appears when it's late.** The reply bar shows a Follow-up note in one line: "You asked Ava on Oct 9. No reply in 6 days." Hover for the why and the source message.
+3. **Work it from the stack.** Follow-ups join the Margins stack beside your calendar. Reply to nudge, drag right for Done, or left for Later.
+4. **Set a specific reminder when you want one.** From the composer or any thread, choose **Remind me if no reply** in a few days. If no one answers, the thread comes back to the top with "No reply yet."
+5. **See everyone you're waiting on.** In People, **Waiting on them** lists who owes you a reply, and **Waiting on your reply** lists who you owe. Tasks you add can close themselves when the reply or attachment arrives.
+
+**What it doesn't need:** AI, an extension, or a server. Follow-ups are rules that run on your Mac. With Apple Intelligence on, Margin also finds **Requests**, the sentences where someone asked *you* for something, and highlights them word for word.
+
+**Calm by default:** Margin shows a few notes a day (5 by default, adjustable from 3 to 7), only when it's sure, and respects quiet hours. "Not useful" teaches it to stop.
+
+### FAQ
+
+**How do I see which of my Gmail emails haven't been replied to?**
+Gmail doesn't keep a full list. Its Nudges setting brings back some older emails automatically. On a Mac, Margin tracks it for you: follow-up notes show who hasn't replied and for how long, and the People view lists everyone you're waiting on.
+
+**Does Gmail have follow-up reminders?**
+Gmail has Nudges, which can suggest emails to follow up on, but it picks them for you and doesn't let you set "remind me if no reply" on a specific email. Extensions and some mail apps add that. Margin offers both automatic follow-up notes and a per-thread "Remind me if no reply."
+
+**Is there a follow-up reminder app for Mac that isn't a browser extension?**
+Yes. Margin is a native Mac email app for Gmail and Google Workspace with follow-up notes and "Remind me if no reply" built in. It runs on your Mac with no extension and no Margin server.
+
+**Do follow-up reminders in Margin use AI?**
+No. Follow-up notes and reminders run on rules on your Mac. AI is optional in Margin and adds Request notes, found on-device by Apple Intelligence.
+
+**Does Margin track whether people opened my email?**
+No. Margin never adds read receipts or tracking pixels. It tracks replies, not opens.
+
+### Sources
+
+- Google, "Reply to messages in Gmail" (includes Nudges settings), Gmail Help: https://support.google.com/mail/answer/6585?hl=en&co=GENIE.Platform%3DDesktop (found Oct 16, 2026)
+- Boomerang for Gmail: https://www.boomeranggmail.com (read Oct 16, 2026)
+- Margin features: https://marginmail.ai
+
+## Private AI email: what stays on your Mac (https://marginmail.ai/guides/private-ai-email/)
+
+**Short answer:** An AI email app is only as private as the place its AI runs. Most AI mail apps send your messages to their own cloud or to a model provider. The most private setup keeps mail between you and your provider, runs AI on your Mac, and only uses a cloud model you chose, when you ask. Margin, a native Mac email app for Gmail, is built that way, and its AI never sends.
+
+*Last checked October 16, 2026. Sources at the end.*
+
+### Where your email goes when an app uses AI
+
+There are five common setups. Ask any mail app which one it uses.
+
+| Setup | Where your mail is processed | Examples (Oct 2026) |
+|---|---|---|
+| **Vendor cloud** | The app maker's servers, often with OpenAI or Anthropic models behind them | Superhuman (Superhuman's cloud, Anthropic and OpenAI models); Shortwave (its cloud on Google Cloud, Claude models by plan); Spark (on-device and/or Azure OpenAI, OpenAI, Anthropic, Google Vertex AI per its policy) |
+| **Your mail provider's cloud** | Google's or Microsoft's own AI | Gmail with Gemini; Outlook with Microsoft 365 Copilot |
+| **On-device, plus the platform's private cloud** | On your device, with heavier requests in Apple's Private Cloud Compute | Apple Mail with Apple Intelligence |
+| **Bring your own model or agent** | A model or agent you connect, under your own account | Missive (your own OpenAI, Anthropic or Gemini key); Airmail and HEY (your own agent through MCP or a CLI) |
+| **No AI** | Nowhere | Mimestream |
+
+None of these is wrong. They're trade-offs between capability, convenience and how many companies handle your mail.
+
+### Five questions to ask any AI email app
+
+1. **Does the app maker run a server that stores or processes my mail?** If yes, ask what's kept and for how long.
+2. **Which AI model reads my mail, and under whose account?** Yours, the app maker's, or your mail provider's?
+3. **Does AI run when I'm not asking?** Background triage means more of your mail is read by a model.
+4. **Can the AI send email, or change things, on its own?** Look for "drafts only" and an explicit send step.
+5. **Does the app work with AI off?** If not, privacy and usefulness are tied together.
+
+### How Margin answers them
+
+Margin uses three tiers. Each one says what it is when it appears.
+
+| Tier | What it does | Where it runs | What leaves your Mac |
+|---|---|---|---|
+| **1. Rules** | Follow-up and meeting notes, live words (dates, people, files, promises), the calendar, Find a time, People and Companies | Your Mac | Nothing beyond the normal Gmail and Google Calendar requests every mail app makes |
+| **2. Apple on-device** | Request notes: finds the sentence where someone asked you for something, highlights it word for word, and says what it's based on | Apple Intelligence on your Mac | Nothing. No account or key is involved |
+| **3. Your own Claude** (opt in) | **Write it** drafts a reply in your voice; **What's been decided** summarizes long threads | The Claude Code you installed on your Mac, signed in to your own Claude plan | Only the conversation you clicked on, sent by your Claude to Anthropic under your account's terms. Margin isn't in that path and never sees your login |
+
+**What's true in every tier:**
+- **No Margin server.** Margin talks to Google directly from your Mac. Its own small settings live in your Google Drive's hidden app folder.
+- **No analytics.** We can't see how you use Margin.
+- **AI never sends.** Write it fills the composer; you read it and press ⌘⏎. Anything the draft added that the thread didn't have (a new recipient, a link, a number or a code) is flagged.
+- **Tier 3 is click-only and read-only.** Your Claude runs with Margin's read-only tools; it can't send, delete, create filters or fetch the web.
+- **Off means off.** Turn AI off in Settings › Intelligence and every rules feature keeps working.
+
+### Who should choose what
+
+- **Want the most powerful AI and don't mind a vendor cloud?** A vendor-cloud app gives you more automation today.
+- **Already pay for Gemini or Copilot?** Your provider's AI keeps mail inside the company that already hosts it.
+- **Want AI with no third party at all?** Apple Mail's on-device features, or Margin's Tier 2, keep it on your device.
+- **Want strong AI drafting, but under your own account?** Bring-your-own-model setups like Margin's Tier 3 or Missive's API keys.
+- **Want no AI?** Mimestream, or Margin with AI off.
+
+### FAQ
+
+**What is the most private AI email app for Mac?**
+The most private setup has no app-maker server, runs AI on your Mac, and only uses a cloud model you chose, when you ask. Margin is built that way for Gmail: rules and Apple Intelligence on your Mac first, your own Claude only on click, and AI never sends.
+
+**Is there an email client that doesn't store my emails on its servers?**
+Yes. Some native clients connect directly to your mail provider from your device, with no sync server of their own. For Gmail on the Mac, Margin and Mimestream both work this way; Margin also runs no analytics and keeps its AI on your Mac or your own Claude.
+
+**Does on-device AI mean my email never leaves my Mac?**
+For the on-device part, yes: the model runs locally and nothing is uploaded. Margin's Request notes use Apple's on-device model. Apple Mail also uses Private Cloud Compute for some requests. If you opt into a cloud model, like your own Claude, the conversation you send goes to that provider.
+
+**Can I use my own Claude with Gmail?**
+Yes, with Margin on a Mac. Margin finds the Claude Code you installed and uses it, under your own plan, only when you click Write it or What's been decided. It never sees your Claude login and doesn't use an API key.
+
+**Can AI email apps send messages without asking?**
+Some can. Several apps let connected agents send mail, sometimes without approving each message. Margin's AI can only draft; sending is always your keystroke.
+
+### Sources
+
+- Superhuman Mail plans and AI: https://superhuman.com/plans/mail; TechCrunch on Auto Drafts (Jul 14, 2026): https://techcrunch.com/2026/07/14/superhumans-new-auto-draft-feature-almost-makes-me-like-ai-replies/
+- Shortwave security and pricing: https://shortwave.com/security, https://shortwave.com/pricing (read Oct 16, 2026)
+- Spark privacy policy (Sept 10, 2026): https://sparkmailapp.com/privacy
+- Gemini in Gmail: https://support.google.com/mail/answer/14199860 (read Oct 16, 2026)
+- Apple, What's new in macOS 27: https://support.apple.com/guide/mac-help/whats-new-in-macos-27-apd07d671600/mac
+- Missive AI setup (bring your own key): https://missiveapp.com/docs/ai/setup
+- Airmail MCP (Jun 26, 2026): https://airmailapp.substack.com/p/airmail-mcp; HEY AI agents help (Sept 22, 2026): https://help.hey.com/article/1189-using-ai-agents-with-hey
+- Mimestream: https://mimestream.com/faqs (read Oct 16, 2026)
+
+---
+Facts checked 2026-10-16. Source: https://marginmail.ai

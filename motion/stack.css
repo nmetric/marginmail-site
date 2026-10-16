@@ -1,0 +1,268 @@
+/* Margin motion: the Margins stack next to today's calendar (Ember light mood). Scoped under .mm-stack. */
+.mm-stack {
+  /* Ember light tokens (MarginKit Mood.swift / Semantic.swift) */
+  --mm-st-base: #ece5dc;
+  --mm-st-w1: #f0b58f;
+  --mm-st-w2: #a9bdeb;
+  --mm-st-w3: #e9cdb0;
+  --mm-st-panel: rgba(255, 255, 255, .72);
+  --mm-st-panel-edge: rgba(255, 255, 255, .8);
+  --mm-st-card: #ffffff;
+  --mm-st-edge: #ccc4b8;
+  --mm-st-hairline: #f0ece6;
+  --mm-st-inset: #f8f5f0;
+  --mm-st-text: #1d1b18;
+  --mm-st-secondary: #5c554b;
+  --mm-st-accent: #c2531f;
+  --mm-st-accent-text: #8f3610;
+  --mm-st-on-accent: #ffffff;
+  --mm-st-ink: #6f371b;
+  --mm-st-shadow: 60, 40, 20;
+  --mm-st-chip: rgba(0, 0, 0, .06);
+  --mm-st-highlight: rgba(246, 215, 122, .38);
+  --mm-st-success: #2f9e62;
+  --mm-st-ev-internal-bg: rgba(59, 91, 219, .12);
+  --mm-st-ev-internal-fg: #233c93;
+  --mm-st-ev-external-bg: rgba(47, 125, 91, .14);
+  --mm-st-ev-external-fg: #1f5c42;
+  --mm-st-ev-focus-bg: rgba(0, 0, 0, .05);
+  --mm-st-ev-focus-fg: #4a453d;
+  color-scheme: light;
+  container-type: inline-size;
+  display: block;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  color: var(--mm-st-text);
+  -webkit-font-smoothing: antialiased;
+}
+.mm-stack *, .mm-stack *::before, .mm-stack *::after { box-sizing: border-box; }
+.mm-stack p { margin: 0; }
+
+.mm-stack .mm-st__stage {
+  font-size: clamp(13px, calc(9px + .75cqw), 17px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  padding: 1.6em 1.4em 1.6em;
+  display: grid;
+  grid-template-columns: minmax(8.8em, 26%) 1fr;
+  gap: 1.2em;
+  background:
+    radial-gradient(60% 70% at 8% 0%, color-mix(in srgb, var(--mm-st-w1) 45%, transparent), transparent 70%),
+    radial-gradient(55% 65% at 100% 20%, color-mix(in srgb, var(--mm-st-w2) 40%, transparent), transparent 70%),
+    radial-gradient(70% 60% at 50% 110%, color-mix(in srgb, var(--mm-st-w3) 55%, transparent), transparent 70%),
+    var(--mm-st-base);
+}
+
+/* Today's calendar column */
+.mm-stack .mm-st__cal {
+  display: flex;
+  flex-direction: column;
+  padding: .9em .8em 1em;
+  border-radius: 14px;
+  background: var(--mm-st-panel);
+  box-shadow: inset 0 0 0 1px var(--mm-st-panel-edge), 0 1px 2px rgba(var(--mm-st-shadow), .05);
+}
+.mm-stack .mm-st__calhead { display: flex; flex-direction: column; margin-bottom: .8em; line-height: 1.25; }
+.mm-stack .mm-st__calhead b { font-size: .95em; }
+.mm-stack .mm-st__calhead span { font-size: .78em; color: var(--mm-st-secondary); }
+.mm-stack .mm-st__day { position: relative; flex: 1; min-height: 14em; margin-left: 1.5em; }
+.mm-stack .mm-st__hr {
+  position: absolute;
+  left: -1.6em;
+  width: 1.2em;
+  text-align: right;
+  transform: translateY(-50%);
+  font-size: .62em;
+  color: var(--mm-st-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.mm-stack .mm-st__events {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .06) 0 1px, transparent 1px 12.5%);
+}
+.mm-stack .mm-st__ev {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: .2em .45em;
+  border-radius: 5px;
+  font-size: .68em;
+  line-height: 1.25;
+  display: flex;
+  flex-direction: column;
+}
+.mm-stack .mm-st__ev b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mm-stack .mm-st__ev span { opacity: .8; white-space: nowrap; }
+.mm-stack .mm-st__ev--internal { background: var(--mm-st-ev-internal-bg); color: var(--mm-st-ev-internal-fg); }
+.mm-stack .mm-st__ev--external { background: var(--mm-st-ev-external-bg); color: var(--mm-st-ev-external-fg); }
+.mm-stack .mm-st__ev--focus {
+  color: var(--mm-st-ev-focus-fg);
+  background: repeating-linear-gradient(135deg, var(--mm-st-ev-focus-bg) 0 4px, transparent 4px 8px);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+.mm-stack .mm-st__now { position: absolute; left: -.3em; right: 0; height: 2px; margin-top: -1px; background: var(--mm-st-accent); border-radius: 1px; }
+.mm-stack .mm-st__now::before {
+  content: "";
+  position: absolute;
+  left: -.25em;
+  top: -.22em;
+  width: .55em;
+  height: .55em;
+  border-radius: 50%;
+  background: var(--mm-st-accent);
+}
+
+/* The stack */
+.mm-stack .mm-st__deck { position: relative; display: flex; justify-content: center; padding: 6.2em 0 .6em; }
+.mm-stack .mm-st__pile { position: relative; width: 100%; max-width: 30em; height: 17.6em; perspective: 1400px; }
+.mm-stack .mm-st__card {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+  perspective: 1400px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.mm-stack .mm-st__card[data-card="0"] { z-index: 4; transform-origin: 50% 100%; }
+.mm-stack .mm-st__card[data-card="1"] { z-index: 3; }
+.mm-stack .mm-st__card[data-card="2"] { z-index: 2; }
+.mm-stack .mm-st__card[data-card="3"] { z-index: 1; }
+.mm-stack .mm-st__flip { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.mm-stack .mm-st__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--mm-st-card);
+  border: 1px solid var(--mm-st-edge);
+  box-shadow: 0 .7em 1.8em rgba(var(--mm-st-shadow), .12), 0 1px 2px rgba(var(--mm-st-shadow), .08);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.mm-stack .mm-st__back { transform: rotateY(180deg); }
+.mm-stack .mm-st__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: rgb(var(--mm-st-shadow));
+  opacity: 0;
+  pointer-events: none;
+}
+.mm-stack .mm-st__content {
+  position: absolute;
+  inset: 0;
+  padding: 1.05em 1.4em 1em;
+  display: flex;
+  flex-direction: column;
+}
+.mm-stack .mm-st__head { display: flex; align-items: center; gap: .5em; font-size: .72em; }
+.mm-stack .mm-st__mark {
+  width: 1.45em;
+  height: 1.45em;
+  fill: none;
+  stroke: var(--mm-st-ink);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.mm-stack .mm-st__kind { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mm-st-ink); }
+.mm-stack .mm-st__due { margin-left: auto; color: var(--mm-st-secondary); font-weight: 500; font-size: 1.08em; }
+.mm-stack .mm-st__why { margin-top: .45em; font-size: .8em; color: var(--mm-st-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mm-stack .mm-st__whylink { color: var(--mm-st-accent-text); font-weight: 600; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--mm-st-accent-text) 35%, transparent); text-underline-offset: .18em; }
+.mm-stack .mm-st__who { display: flex; align-items: center; gap: .7em; margin-top: .85em; line-height: 1.25; }
+.mm-stack .mm-st__who b { display: block; font-size: .95em; }
+.mm-stack .mm-st__who span:not(.mm-st__av) { display: block; font-size: .78em; color: var(--mm-st-secondary); }
+.mm-stack .mm-st__av {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 2.25em;
+  height: 2.25em;
+  border-radius: 50%;
+  background: var(--av, #6b5e4f);
+  color: #fff;
+  font-size: .8em;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.mm-stack .mm-st__subj { display: flex; align-items: center; gap: .45em; margin-top: .7em; font-size: .8em; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mm-stack .mm-st__subj svg, .mm-stack .mm-st__done svg { flex: none; width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.mm-stack .mm-st__subj svg { color: var(--mm-st-secondary); }
+.mm-stack .mm-st__qlabel { margin-top: .7em; font-size: .76em; color: var(--mm-st-secondary); font-weight: 500; }
+.mm-stack .mm-st__quote {
+  margin-top: .25em;
+  font-family: ui-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-size: 1.04em;
+  line-height: 1.38;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mm-stack .mm-st__actions { margin-top: auto; display: flex; gap: .5em; padding-top: .7em; font-size: .78em; }
+.mm-stack .mm-st__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  height: 2.2em;
+  padding: 0 .9em;
+  border-radius: 8px;
+  background: var(--mm-st-chip);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.mm-stack .mm-st__btn--primary { background: var(--mm-st-accent); color: var(--mm-st-on-accent); }
+.mm-stack .mm-st__btn kbd { font: inherit; font-weight: 500; opacity: .75; }
+
+/* The back: the email */
+.mm-stack .mm-st__mailhead { display: flex; align-items: center; gap: .7em; line-height: 1.25; }
+.mm-stack .mm-st__mailhead b { display: block; font-size: .92em; }
+.mm-stack .mm-st__mailhead div span { display: block; font-size: .76em; color: var(--mm-st-secondary); }
+.mm-stack .mm-st__fold { margin-left: auto; align-self: flex-start; width: 1.3em; height: 1.3em; fill: var(--mm-st-inset); stroke: var(--mm-st-edge); stroke-width: 1; }
+.mm-stack .mm-st__mailsubj { margin-top: .75em; padding-bottom: .55em; border-bottom: 1px solid var(--mm-st-hairline); font-weight: 600; font-size: .9em; }
+.mm-stack .mm-st__mailbody { margin-top: .6em; font-size: .86em; line-height: 1.5; }
+.mm-stack .mm-st__mailbody p + p { margin-top: .3em; }
+.mm-stack .mm-st__hl {
+  --sweep: 0;
+  padding: .05em .1em;
+  margin: 0 -.1em;
+  border-radius: 3px;
+  background-image: linear-gradient(var(--mm-st-highlight), var(--mm-st-highlight));
+  background-repeat: no-repeat;
+  background-size: calc(var(--sweep) * 100%) 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Done: a wash and a badge on the dragged card */
+.mm-stack .mm-st__wash {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: var(--mm-st-success);
+  opacity: 0;
+  pointer-events: none;
+}
+.mm-stack .mm-st__done {
+  position: absolute;
+  left: 1.2em;
+  top: 1.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .35em .85em .35em .45em;
+  border-radius: 999px;
+  background: var(--mm-st-success);
+  color: #fff;
+  font-weight: 700;
+  font-size: .9em;
+  letter-spacing: .01em;
+  box-shadow: 0 .4em 1em rgba(47, 158, 98, .35);
+  opacity: 0;
+  transform-origin: 30% 50%;
+  will-change: transform, opacity;
+}
+.mm-stack .mm-st__done svg { stroke-width: 2.6; width: 1.25em; height: 1.25em; }

@@ -1,0 +1,13 @@
+# GitHub Pages (Jekyll) settings. The site is plain HTML built by _build/build.py; Jekyll only copies it.
+# Folders starting with "_" (like _build) are never published. These working folders aren't either:
+exclude:
+  - content
+  - docs
+  - waitlist
+  - tools
+  - brand
+  - assets
+  - README.md
+include:
+  - llms.txt
+  - llms-full.txt

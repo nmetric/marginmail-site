@@ -1,0 +1,255 @@
+/* Margin motion: Write it (a streamed draft with provenance and a diff flag, Ember light mood). Scoped under .mm-write-it. */
+.mm-write-it {
+  /* Ember light tokens (MarginKit Mood.swift, Semantic.swift, Actions.swift) */
+  --mm-wi-base: #ece5dc;
+  --mm-wi-w1: #f0b58f;
+  --mm-wi-w2: #a9bdeb;
+  --mm-wi-w3: #e9cdb0;
+  --mm-wi-card: #ffffff;
+  --mm-wi-edge: #ccc4b8;
+  --mm-wi-hairline: #f0ece6;
+  --mm-wi-text: #1d1b18;
+  --mm-wi-secondary: #5c554b;
+  --mm-wi-accent: #c2531f;
+  --mm-wi-accent-text: #8f3610;
+  --mm-wi-on-accent: #ffffff;
+  --mm-wi-ink: #6f371b;
+  --mm-wi-shadow: 60, 40, 20;
+  --mm-wi-chip: rgba(0, 0, 0, .06);
+  --mm-wi-quiet: rgba(0, 0, 0, .05);
+  --mm-wi-warning: #fbf0d9;       /* actions.warning */
+  --mm-wi-warning-text: #7a5410;  /* actions.warningText */
+  --mm-wi-draft-bg: #e3e9fb;      /* chip(.draftReady) */
+  --mm-wi-draft-fg: #2c47a8;
+  --mm-wi-marco: #5b6b2f;         /* AvatarPalette olive */
+  color-scheme: light;
+  container-type: inline-size;
+  display: block;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  color: var(--mm-wi-text);
+  -webkit-font-smoothing: antialiased;
+}
+.mm-write-it *, .mm-write-it *::before, .mm-write-it *::after { box-sizing: border-box; }
+
+.mm-write-it .mm-wi__stage {
+  font-size: clamp(13px, calc(9px + .75cqw), 17px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  padding: 2em 1.4em 2.2em;
+  background:
+    radial-gradient(60% 70% at 90% 0%, color-mix(in srgb, var(--mm-wi-w1) 45%, transparent), transparent 70%),
+    radial-gradient(55% 65% at 0% 35%, color-mix(in srgb, var(--mm-wi-w2) 40%, transparent), transparent 70%),
+    radial-gradient(70% 60% at 50% 110%, color-mix(in srgb, var(--mm-wi-w3) 55%, transparent), transparent 70%),
+    var(--mm-wi-base);
+}
+.mm-write-it .mm-wi__card {
+  position: relative;
+  max-width: 34em;
+  margin: 0 auto;
+  background: var(--mm-wi-card);
+  border: 1px solid var(--mm-wi-edge);
+  border-radius: 14px;
+  box-shadow: 0 .9em 2.2em rgba(var(--mm-wi-shadow), .14), 0 1px 2px rgba(var(--mm-wi-shadow), .08);
+}
+.mm-write-it .mm-wi__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: .7em .8em .55em 1.1em;
+}
+.mm-write-it .mm-wi__title { font-weight: 700; font-size: .95em; }
+
+/* The "Write it" chip and its progress */
+.mm-write-it .mm-wi__write {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  height: 2em;
+  padding: 0 .8em 0 .65em;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--mm-wi-draft-bg);
+  color: var(--mm-wi-draft-fg);
+  font-size: .8em;
+  font-weight: 600;
+  will-change: transform;
+}
+.mm-write-it .mm-wi__pencil, .mm-write-it .mm-wi__pen {
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.mm-write-it .mm-wi__wlabels { display: grid; }
+.mm-write-it .mm-wi__wl { grid-area: 1 / 1; white-space: nowrap; }
+.mm-write-it .mm-wi__wl--run, .mm-write-it .mm-wi__wl--done { opacity: 0; }
+.mm-write-it .mm-wi__bar {
+  position: absolute;
+  left: .9em;
+  right: .9em;
+  bottom: .28em;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--mm-wi-draft-fg) 18%, transparent);
+  overflow: hidden;
+  opacity: 0;
+}
+.mm-write-it .mm-wi__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 1px;
+  background: var(--mm-wi-draft-fg);
+  transform-origin: 0 50%;
+}
+
+.mm-write-it .mm-wi__row {
+  display: flex;
+  align-items: center;
+  gap: .6em;
+  min-height: 2.45em;
+  padding: 0 1.1em;
+  border-top: 1px solid var(--mm-wi-hairline);
+  font-size: .9em;
+}
+.mm-write-it .mm-wi__label { width: 4.4em; color: var(--mm-wi-secondary); }
+.mm-write-it .mm-wi__person {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  padding: .15em .65em .15em .2em;
+  border-radius: 999px;
+  background: var(--mm-wi-chip);
+  font-weight: 500;
+}
+.mm-write-it .mm-wi__org { color: var(--mm-wi-secondary); font-size: .92em; }
+.mm-write-it .mm-wi__subject { font-weight: 600; }
+.mm-write-it .mm-wi__avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--mm-wi-marco);
+  color: #fff;
+  font-size: .6em;
+  font-weight: 600;
+}
+
+/* The state line under the To line (height reserved: nothing jumps) */
+.mm-write-it .mm-wi__state {
+  position: relative;
+  height: 4.6em;
+  margin: 0 1.1em;
+  border-top: 1px solid var(--mm-wi-hairline);
+}
+.mm-write-it .mm-wi__running, .mm-write-it .mm-wi__written {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: .55em;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.mm-write-it .mm-wi__running { display: flex; align-items: center; gap: .55em; }
+.mm-write-it .mm-wi__pen { color: var(--mm-wi-ink); width: 1em; height: 1em; }
+.mm-write-it .mm-wi__status { display: grid; flex: 1; font-size: .8em; font-weight: 500; color: var(--mm-wi-secondary); }
+.mm-write-it .mm-wi__st { grid-area: 1 / 1; white-space: nowrap; }
+.mm-write-it .mm-wi__st--write { opacity: 0; }
+.mm-write-it .mm-wi__stop {
+  display: inline-flex;
+  align-items: center;
+  height: 1.9em;
+  padding: 0 .75em;
+  border-radius: 7px;
+  background: var(--mm-wi-quiet);
+  font-size: .76em;
+  font-weight: 600;
+}
+.mm-write-it .mm-wi__prov { display: flex; align-items: center; gap: .45em; }
+.mm-write-it .mm-wi__provtext { flex: 1; font-size: .8em; font-weight: 500; color: var(--mm-wi-secondary); }
+.mm-write-it .mm-wi__x { color: var(--mm-wi-secondary); font-size: .9em; line-height: 1; padding: 0 .3em; }
+.mm-write-it .mm-wi__flags { display: flex; flex-wrap: wrap; gap: .4em; margin-top: .45em; }
+/* DiffFlagChip: icon, title semibold, text regular, warning tint, capsule, height 24 */
+.mm-write-it .mm-wi__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: .42em;
+  height: 2.09em;
+  padding: 0 .78em;
+  border-radius: 999px;
+  background: var(--mm-wi-warning);
+  color: var(--mm-wi-warning-text);
+  font-size: .74em;
+  white-space: nowrap;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.mm-write-it .mm-wi__flag b { font-weight: 600; }
+.mm-write-it .mm-wi__flagicon { font-size: .92em; }
+
+/* The draft */
+.mm-write-it .mm-wi__body {
+  position: relative;
+  padding: .3em 1.1em .9em;
+  font-size: 1em;
+  line-height: 1.6;
+}
+.mm-write-it .mm-wi__body p { margin: 0 0 .55em; }
+.mm-write-it .mm-wi__w { visibility: hidden; }
+.mm-write-it .mm-wi__w.is-on { visibility: visible; }
+.mm-write-it .mm-wi__flagged {
+  --tint: 0;
+  padding: .06em .14em;
+  margin: 0 -.14em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--mm-wi-warning) calc(var(--tint) * 100%), transparent);
+  color: color-mix(in srgb, var(--mm-wi-warning-text) calc(var(--tint) * 100%), var(--mm-wi-text));
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--mm-wi-warning-text) calc(var(--tint) * 45%), transparent);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.mm-write-it .mm-wi__shimmer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6em;
+  height: 1.05em;
+  border-radius: .3em;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--mm-wi-draft-fg) 38%, transparent), color-mix(in srgb, var(--mm-wi-draft-fg) 0%, transparent));
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.mm-write-it .mm-wi__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: .65em .8em .65em 1.1em;
+  border-top: 1px solid var(--mm-wi-hairline);
+  font-size: .82em;
+}
+.mm-write-it .mm-wi__hint { color: var(--mm-wi-secondary); }
+.mm-write-it .mm-wi__send {
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  height: 2.1em;
+  padding: 0 1em;
+  border-radius: 8px;
+  background: var(--mm-wi-accent);
+  color: var(--mm-wi-on-accent);
+  font-weight: 600;
+}
+.mm-write-it .mm-wi__send kbd { font: inherit; font-weight: 500; opacity: .75; }

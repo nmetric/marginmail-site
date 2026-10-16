@@ -1,14 +1,35 @@
 # marginmail.ai
 
-The public "coming soon" site for Margin, with its Privacy Policy and Terms. It's static HTML served free by GitHub Pages.
+The public site for Margin: the homepage with the beta signup, comparison pages, guides, and the Privacy Policy and Terms. Static HTML served free by GitHub Pages. No frameworks, no npm, no analytics, no cookies, no third-party requests.
 
-## Pages
-- `/` (`index.html`): logo, one-line blurb, "Coming soon", and links.
-- `/privacy` (`privacy/index.html`): Privacy Policy. Google's OAuth consent screen links here.
-- `/terms` (`terms/index.html`): Terms of Service. Also linked from the consent screen.
-- `logo.png` and `favicon.png` are rendered from the app icon (`margin/Apps/Shared/Assets.xcassets/AppIcon.appiconset`).
+## Build
 
-To edit, change the HTML, commit and push to `main`. Pages redeploys within a minute or two.
+```sh
+python3 _build/build.py     # writes the pages, images, sitemap.xml, robots.txt, llms.txt, llms-full.txt
+python3 _build/check.py     # offline checks: HTML structure, links and anchors, headings, alt text, meta, JSON-LD, sitemap
+python3 -m http.server 8000 # preview at http://localhost:8000 (the signup endpoint allows localhost)
+```
+Python standard library plus macOS `sips` (images). Commit the built files; Pages serves the repo root as is.
+
+| Source | Becomes |
+|---|---|
+| `content/homepage.md` (copy lives in `_build/copy_home.py`) | `index.html` |
+| `content/comparisons/*.md` | `compare/` and `compare/<slug>/` |
+| `content/seo/pages/*.md` | `best/…/`, `guides/…/` (from each file's `url`) |
+| `_build/legal/privacy.html`, `terms.html` (legal text, edit by hand) | `privacy/`, `terms/` |
+| `assets/shots/` | `img/*.jpg` (resized; hero ≤ 250 KB) |
+| `assets/motion/{stack,live-words,write-it}.*`, `brand/final/lockup/` | `motion/`, `img/brand/` |
+
+Hand-written, not generated: `css/site.css`, `js/site.js` (forms, marks drawing on view, sticky Join bar, star easter egg, scroll-sky fallback), `fonts/` (Newsreader and Caveat, latin subset, OFL), favicons, `og/margin-og.png`.
+
+Links to pages that don't exist yet (for example `/answers/`) are rendered as plain text and listed as warnings by the build. Add the page and rebuild, and the links appear.
+
+`_config.yml` keeps `content/`, `docs/`, `waitlist/`, `tools/`, `brand/` and `assets/` from being published.
+
+## Signup
+Forms post to the waitlist endpoint (`waitlist/README.md`). `?r=` (or `?ref=`) is sent as the referral code; `?utm_source=`, `?src=` or `?s=` as the source. Search pages tag their own form with a source (for example `compare-spark`, `seo-follow-ups`). Referral links are `https://marginmail.ai/?r=<code>`. Without JavaScript the endpoint answers a form post with a 303 back to `/?joined=1&p=…&r=…#joined` (or `#already`, `#join-error`), and the page shows that state with `:target`.
+
+Social cards: `python3 _build/og.py` renders `og/compare-*.png`, `og/guides-*.png` and `og/best-*.png` with headless Chrome; run it before `build.py` when titles change.
 
 ## Hosting
 - GitHub Pages on repo `nmetric/marginmail-site`, branch `main`, root `/`. The custom domain is set by the `CNAME` file and in repo Settings → Pages.
