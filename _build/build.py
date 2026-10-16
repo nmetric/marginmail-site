@@ -27,7 +27,7 @@ import md  # noqa: E402
 import abv  # noqa: E402
 
 SITE = 'https://marginmail.ai'
-ENDPOINT = 'https://waitlist-869207349396.us-central1.run.app/join'
+ENDPOINT = 'https://join.marginmail.ai/join'
 BUILT = '2026-10-16'
 DEFINITION = 'Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE

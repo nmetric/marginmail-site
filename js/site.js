@@ -1,7 +1,7 @@
 /* marginmail.ai — the little JavaScript the site uses. No cookies, no tracking, nothing stored in the browser. */
 (function () {
   'use strict';
-  var ENDPOINT = 'https://waitlist-869207349396.us-central1.run.app/join';
+  var ENDPOINT = 'https://join.marginmail.ai/join';
   var doc = document, root = doc.documentElement;
   var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var hasIO = 'IntersectionObserver' in window;
