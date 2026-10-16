@@ -29,6 +29,11 @@ Links to pages that don't exist yet (for example `/answers/`) are rendered as pl
 ## Signup
 Forms post to the waitlist endpoint (`waitlist/README.md`). `?r=` (or `?ref=`) is sent as the referral code; `?utm_source=`, `?src=` or `?s=` as the source. Search pages tag their own form with a source (for example `compare-spark`, `seo-follow-ups`). Referral links are `https://marginmail.ai/?r=<code>`. Without JavaScript the endpoint answers a form post with a 303 back to `/?joined=1&p=…&r=…#joined` (or `#already`, `#join-error`), and the page shows that state with `:target`.
 
+## Page versions and A/B tests
+Every page carries `<meta name="page-version">`: a short hash of its visible copy (text in `<main>`; not CSS, JS or markup). Visit counts and signups are counted per version, so `waitlist/stats.sh --versions` shows conversion per version over time. When a hash changes, the build appends a line to `content/versions.md` (date, page, version, what changed in the headline or subhead).
+
+A/B tests (homepage hero only): the page as written is variant A, and it's what the HTML contains, so crawlers and no-JS visitors always see A. To **start** a test, add rows to the ```variants block at the end of `content/homepage.md` (`id | weight | headline | subhead | cta | note`, empty field = keep A's text), rebuild, check the hero at 1440/1024/390, push. Each page view picks a variant by weight in a tiny inline script before the hero paints; nothing is stored (no cookie, no localStorage), so each view stands alone. Views and signups carry the variant id. Read results with `waitlist/stats.sh --ab` (conversion per variant and a two-proportion z-test against A; it says when there's too little data). To **stop**, delete the rows (keep the block), rebuild and push. Ideas waiting for approval: `content/seo/ab-ideas.md`.
+
 Social cards: `python3 _build/og.py` renders `og/compare-*.png`, `og/guides-*.png` and `og/best-*.png` with headless Chrome; run it before `build.py` when titles change.
 
 ## Hosting

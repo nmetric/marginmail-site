@@ -24,6 +24,7 @@ sys.path.insert(0, HERE)
 import copy_home as C  # noqa: E402
 import marks as M  # noqa: E402
 import md  # noqa: E402
+import abv  # noqa: E402
 
 SITE = 'https://marginmail.ai'
 ENDPOINT = 'https://waitlist-869207349396.us-central1.run.app/join'
@@ -154,9 +155,11 @@ def joinform(fid, source='', center=False, facts=False, label='Join the beta'):
             f'<div class="join-row"><label class="vh" for="{fid}-email">Email address</label>'
             f'<input class="field" id="{fid}-email" type="email" name="email" autocomplete="email" inputmode="email" '
             f'placeholder="you@example.com" required aria-describedby="{msg} {fid}-priv">'
-            f'<button class="btn" type="submit">{label}</button></div>'
+            f'<button class="btn" type="submit" data-ab="cta">{label}</button></div>'
             f'<div class="hp" aria-hidden="true"><label for="{fid}-hp">Leave this empty</label><input id="{fid}-hp" name="hp" tabindex="-1" autocomplete="off"></div>'
-            + (f'<input type="hidden" name="source" value="{esc(source)}">' if source else '') +
+            + (f'<input type="hidden" name="source" value="{esc(source)}">' if source else '')
+            + '<input type="hidden" name="page" value="__PATH__"><input type="hidden" name="v" value="__PV__">'
+            + '<input type="hidden" name="x" value="__AB_DEFAULT__">' +
             f'<p class="join-msg" id="{msg}" role="status" aria-live="polite"></p>'
             f'<p class="priv" id="{fid}-priv">{LOCK}{C.PRIV_LINE}</p>'
             + (f'<p class="facts">{C.SMALL_LINE}</p>' if facts else '') +
@@ -237,13 +240,14 @@ def sky():
 
 # One anonymous page-view count per load (see the privacy policy, "Site visit counts"). No cookies, no IDs, nothing stored
 # in the browser. Skipped for automation, Do Not Track / GPC, and localhost (unless ?debug).
-BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search);'
+BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search),d=document;'
           'if(n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
-          'var r="";try{r=document.referrer?new URL(document.referrer).hostname:""}catch(e){}'
-          'var w=innerWidth,j=q.has("joined"),b=JSON.stringify({p:document.querySelector("meta[name=page-path]")?document.querySelector("meta[name=page-path]").content:l.pathname,r:r,'
+          'function M(k){var e=d.querySelector("meta[name="+k+"]");return e?e.content:""}'
+          'addEventListener("load",function(){var r="";try{r=d.referrer?new URL(d.referrer).hostname:""}catch(e){}'
+          'var w=innerWidth,b=JSON.stringify({p:M("page-path")||l.pathname,r:r,v:M("page-version"),x:window.__ab||"",'
           'us:q.get("utm_source")||q.get("s")||q.get("src")||"",um:q.get("utm_medium")||"",uc:q.get("utm_campaign")||"",'
-          'rc:j?"":q.get("r")||q.get("ref")||"",d:w<768?"phone":w<1200?"tablet":"desktop"});'
-          'addEventListener("load",function(){n.sendBeacon("' + ENDPOINT.replace("/join", "/hit") + '",new Blob([b],{type:"text/plain"}))})}catch(e){}})();')
+          'rc:q.has("joined")?"":q.get("r")||q.get("ref")||"",d:w<768?"phone":w<1200?"tablet":"desktop"});'
+          'n.sendBeacon("' + ENDPOINT.replace("/join", "/hit") + '",new Blob([b],{type:"text/plain"}))})}catch(e){}})();')
 
 
 def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, extra='', motion=(), og_image='/og/margin-og.png'):
@@ -263,6 +267,7 @@ def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, e
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
 <meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="page-version" content="__PV__">
 <meta name="theme-color" content="#FAF7F2">
 <meta name="color-scheme" content="light">
 <meta name="application-name" content="Margin">
@@ -296,6 +301,14 @@ def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, e
 
 
 def page(headhtml, body, home=False, motion=(), stickybar=False):
+    m = re.search(r'<link rel="canonical" href="https://marginmail\.ai([^"]*)"', headhtml)
+    path = m.group(1) if m else '/404'
+    pv = versions.record(path, body)
+    ab_on = home and AB.active()
+    headhtml = headhtml.replace('__PV__', pv).replace('<script>document.documentElement', (AB.head_script() if ab_on else '') + '<script>document.documentElement', 1)
+    body = body.replace('__PV__', pv).replace('__PATH__', path).replace('__AB_DEFAULT__', 'A' if ab_on else '')
+    if ab_on:
+        body = body.replace('<!--ab-apply-->', AB.apply_script(), 1)
     mjs = ''.join(f'<script src="{v(f"/motion/{m}.js")}" defer></script>' for m in motion)
     sb = ('<div class="stickybar" aria-hidden="true"><a class="btn" href="#join" tabindex="-1">Join the beta</a>'
           f'<p>{C.PRIV_LINE}</p></div>') if stickybar else ''
@@ -327,6 +340,18 @@ def sec_head(d, width=600, hid=None):
 def underline_svg(width, sw=2.6, delay=900):
     return (f'<svg viewBox="0 0 {width + 8} 24" preserveAspectRatio="none" aria-hidden="true">'
             f'{M.underline(4, width, 10, sw=sw, delay=delay)}</svg>')
+
+
+def render_headline(text):
+    """A variant headline in the hero's style: the last words carry the Clay underline."""
+    words = text.split()
+    k = min(3, max(1, len(words) // 2))
+    return (f'{esc(" ".join(words[:-k]))} <span class="ul">{esc(" ".join(words[-k:]))}'
+            f'{underline_svg(462, sw=3, delay=900)}</span>')
+
+
+versions = abv.Versions()
+AB = abv.Variants(render_headline)
 
 
 def responsive_svg(svg):
@@ -362,13 +387,13 @@ def home():
     marker = svg_box(W, IH, M.marker(.352 * W, .621 * W, .729 * IH, .019 * IH, delay=2200, op=.42), cls='ov t-up')
     P.append('<section class="sec hero" id="top"><div class="in">' + hero_sun + hero_sun_m +
              '<p class="lbl" style="margin-bottom:22px">Free during the beta · For Mac</p>'
-             '<div class="h1wrap" data-seen><h1 class="h1">Mail that knows <span class="ul">what needs you.' + underline_svg(462, sw=3, delay=900) + '</span></h1>'
-             f'<p class="hero-note write" style="animation-delay:1300ms">{C.HERO_NOTE}</p>{hero_arrow}{hero_up}</div>'
-             f'<p class="lead">{C.HERO_SUB}</p>' + joinform('join', facts=True) +
+             '<div class="h1wrap" data-seen><h1 class="h1" data-ab="headline">Mail that knows <span class="ul">what needs you.' + underline_svg(462, sw=3, delay=900) + '</span></h1>'
+             f'<p class="hero-note write" data-ab="note" style="animation-delay:1300ms">{C.HERO_NOTE}</p>{hero_arrow}{hero_up}</div>'
+             f'<p class="lead" data-ab="subhead">{C.HERO_SUB}</p>' + joinform('join', facts=True) +
              '<figure class="hero-shot" data-seen style="margin-left:0;margin-right:0"><div class="win"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="pic">'
              + pic('margin-mac-email-app-gmail-calendar', 'margin-message-reply-bar-note', hero_alt,
                    '(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)', 'calc(100vw - 32px)', eager=True)
-             + marker + '</div></div></figure></div></section>')
+             + marker + '</div></div></figure></div></section><!--ab-apply-->')
 
     # ---- What is Margin?
     wi = C.WHAT_IS
@@ -987,6 +1012,9 @@ def main():
     not_found()
     sitemap()
     llms()
+    versions.save()
+    if AB.active():
+        print('A/B test running on /: ' + ', '.join(f"{r['id']} (weight {r['weight']:g})" for r in AB.rows))
     for w in md.WARNINGS:
         print('warning:', w)
     print(f'built {len(PAGES) + 1} pages')
