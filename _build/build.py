@@ -29,9 +29,9 @@ import abv  # noqa: E402
 SITE = 'https://marginmail.ai'
 ENDPOINT = 'https://join.marginmail.ai/join'
 BUILT = '2026-10-17'
-DEFINITION = 'Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
+DEFINITION = 'MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
-FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
+FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 MarginMail'
 _HASH = {}
 
 
@@ -131,10 +131,10 @@ def build_images():
 LOCK = ('<svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rect x="2.5" y="5.6" width="8" height="6" rx="1.6" fill="none" stroke="#5C554B" stroke-width="1.3"/>'
         '<path d="M4.4 5.6V4.2a2.1 2.1 0 0 1 4.2 0v1.4" fill="none" stroke="#5C554B" stroke-width="1.3"/></svg>')
 
-ORG = {"@type": "Organization", "@id": f"{SITE}/#org", "name": "Margin", "url": f"{SITE}/", "logo": f"{SITE}/logo.png",
+ORG = {"@type": "Organization", "@id": f"{SITE}/#org", "name": "MarginMail", "url": f"{SITE}/", "logo": f"{SITE}/logo.png",
        "email": "hello@marginmail.ai",
-       "description": "Margin makes a native Mac email app for Gmail with a calendar and personal CRM built in."}
-WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name": "Margin", "publisher": {"@id": f"{SITE}/#org"}, "inLanguage": "en"}
+       "description": "MarginMail makes a native Mac email app for Gmail with a calendar and personal CRM built in."}
+WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name": "MarginMail", "publisher": {"@id": f"{SITE}/#org"}, "inLanguage": "en"}
 
 
 # Without JavaScript the endpoint redirects back to /?joined=1…#joined (or #already, #join-error); :target shows these.
@@ -170,7 +170,7 @@ def joinform(fid, source='', center=False, facts=False, label='Join the beta'):
 def header(home=False):
     pre = '' if home else '/'
     return (f'<a class="skip" href="#main">Skip to content</a>'
-            f'<header class="nav"><a class="brand" href="/" aria-label="Margin, home">{nav_lockup()}</a>'
+            f'<header class="nav"><a class="brand" href="/" aria-label="MarginMail, home">{nav_lockup()}</a>'
             f'<nav class="nav-links" aria-label="Main"><a class="tl" href="{pre}#how">How it works</a><a class="tl" href="{pre}#privacy">Privacy</a>'
             f'<a class="tl" href="{pre}#faq">FAQ</a><a class="btn sm" href="{pre}#join">Join the beta</a>'
             f'<details class="nav-menu"><summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 7H19M3 15H19" stroke="#1D1B18" stroke-width="1.6" stroke-linecap="round"/></svg></summary>'
@@ -203,8 +203,8 @@ def moon():
 
 
 def footer():
-    links = [('Compare Margin', '/compare/'), ('Privacy', '/privacy/'), ('Terms', '/terms/'), ('Contact', 'mailto:hello@marginmail.ai')]
-    return (f'<footer class="foot" data-seen>{moon()}<div class="in"><div><a class="brand" href="/" aria-label="Margin, home"><img src="{v("/img/brand/lockup-footer.svg")}" width="138" height="48" alt="Margin" loading="lazy"></a>'
+    links = [('Compare MarginMail', '/compare/'), ('Privacy', '/privacy/'), ('Terms', '/terms/'), ('Contact', 'mailto:hello@marginmail.ai')]
+    return (f'<footer class="foot" data-seen>{moon()}<div class="in"><div><a class="brand" href="/" aria-label="MarginMail, home"><img src="{v("/img/brand/lockup-footer.svg")}" width="189" height="48" alt="MarginMail" loading="lazy"></a>'
             f'<p class="line">{FOOT_LINE}</p></div>'
             f'<div><nav aria-label="Footer"><ul>' + ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in links) + '</ul></nav>'
             f'<p class="fine">{FOOT_SMALL}</p></div></div></footer>')
@@ -252,7 +252,7 @@ BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.se
 
 def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, extra='', motion=(), og_image='/og/margin-og.png'):
     url = SITE + path
-    og_alt = og_alt or "Margin: Mail that knows what needs you. A native Mac email app for Gmail, with the handwritten note 'give your inbox some margin'."
+    og_alt = og_alt or "MarginMail: Mail that knows what needs you. A native Mac email app for Gmail, with the handwritten note 'give your inbox some margin'."
     ldj = ''
     if ld:
         ldj = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + '</script>'
@@ -270,15 +270,15 @@ def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, e
 <meta name="page-version" content="__PV__">
 <meta name="theme-color" content="#FAF7F2">
 <meta name="color-scheme" content="light">
-<meta name="application-name" content="Margin">
-<meta name="apple-mobile-web-app-title" content="Margin">
+<meta name="application-name" content="MarginMail">
+<meta name="apple-mobile-web-app-title" content="MarginMail">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="{v('/favicon.svg')}" type="image/svg+xml">
 <link rel="icon" href="{v('/favicon-32.png')}" sizes="32x32" type="image/png">
 <link rel="icon" href="{v('/favicon-16.png')}" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="{v('/apple-touch-icon.png')}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Margin">
+<meta property="og:site_name" content="MarginMail">
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{esc(og_title or title)}">
 <meta property="og:description" content="{esc(og_desc or desc)}">
@@ -382,7 +382,7 @@ def home():
     shot = IMG['margin-mac-email-app-gmail-calendar']
     W = 1140
     IH = round(W * shot['h'] / shot['w'])
-    hero_alt = ('Margin on a Mac: the inbox, Imogen Hale’s message from Kiln & Co. with the asked sentence, “Could we find 30 minutes '
+    hero_alt = ('MarginMail on a Mac: the inbox, Imogen Hale’s message from Kiln & Co. with the asked sentence, “Could we find 30 minutes '
                 'next week to talk through scope?”, highlighted, the reply bar note “Wants 30 min next week on scope”, and today’s calendar.')
     marker = svg_box(W, IH, M.marker(.352 * W, .621 * W, .729 * IH, .019 * IH, delay=2200, op=.42), cls='ov t-up')
     P.append('<section class="sec hero" id="top"><div class="in">' + hero_sun + hero_sun_m +
@@ -395,7 +395,7 @@ def home():
                    '(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)', 'calc(100vw - 32px)', eager=True)
              + marker + '</div></div></figure></div></section><!--ab-apply-->')
 
-    # ---- What is Margin?
+    # ---- What is MarginMail?
     wi = C.WHAT_IS
     P.append(f'<section class="sec whatis" id="how"><div class="in"><h2 class="lbl">{wi["lbl"]}</h2>'
              f'<p class="lead"><b>{wi["lead"]}</b>{wi["rest"]}</p></div></section>')
@@ -430,7 +430,7 @@ def home():
     # her page opens over the reader; then A accepts Lena's invitation and its row leaves the list. One Clay mark (the
     # bracket over the three panes), one margin note. Reduce Motion: the end state, still. Coordinates are the 2880 px render's.
     d = C.S_SPLIT
-    split_alt = ('Margin’s Split view on a Mac: the inbox, Imogen Hale’s message from Kiln & Co. and today’s calendar side by side. '
+    split_alt = ('MarginMail’s Split view on a Mac: the inbox, Imogen Hale’s message from Kiln & Co. and today’s calendar side by side. '
                  'Clicking her name opens her person page, with her local time and what she’s waiting on, and an unanswered '
                  'invitation in the inbox is accepted with the A key and files itself.')
     big = v(IMG['margin-mac-email-app-gmail-calendar']['srcs'][-1][2])
@@ -477,7 +477,7 @@ def home():
     IW = 720
     IH = round(IW * pp['h'] / pp['w'])
     sx, sy = .536 * IW, .222 * IH
-    people_alt = ('Ava Lindqvist’s person page in Margin: Head of Brand at Saltmarsh Coffee, her local time (12:41 PM), how you met, '
+    people_alt = ('Ava Lindqvist’s person page in MarginMail: Head of Brand at Saltmarsh Coffee, her local time (12:41 PM), how you met, '
                   'notes, a timeline of recent mail and meetings, and her tasks.')
     P.append('<section class="sec alt"><div class="in"><div class="row" style="gap:20px">'
              f'<div class="col" style="flex:0 1 400px">{sec_head(d, 390)}</div>'
@@ -489,7 +489,7 @@ def home():
 
     # ---- Find time
     d = C.S_TIME
-    cal_alt = ('Margin’s calendar beside your mail: unanswered meeting invitations are marked, and Needs your answer gathers them, '
+    cal_alt = ('MarginMail’s calendar beside your mail: unanswered meeting invitations are marked, and Needs your answer gathers them, '
                'each with Accept, Maybe and Decline.')
     # The moment: A is pressed on the dashed (unanswered) Saltmarsh walkthrough, it turns solid, and a pencil note says so.
     accept = ('<div class="accept t-up" aria-hidden="true"><div class="ev">Saltmarsh shoot walkthrough<span>11:00 – 11:45 AM</span></div>'
@@ -522,7 +522,7 @@ def home():
     sw = .036 * IH
     marks = M.marker(.738 * IW, .937 * IW, .376 * IH, sw, delay=900) + M.marker(.07 * IW, .853 * IW, .421 * IH, sw, delay=1300)
     arr = M.arrow(-40, .421 * IH + 40, .05 * IW, .421 * IH + 8, bend=-.25, delay=1600)
-    skim_alt = ('A Request card in Margin: Marco Reyes’s sentence, “Could you send the signed proof before Thursday so we can hold the press slot?”, '
+    skim_alt = ('A Request card in MarginMail: Marco Reyes’s sentence, “Could you send the signed proof before Thursday so we can hold the press slot?”, '
                 'is highlighted, and Why this? explains the card.')
     rows = [('Decided', 'Copper foil on the front only. 4,000 units on the uncoated stock.'),
             ('Still open', 'Which press slot, if the proof is late.'),
@@ -551,7 +551,7 @@ def home():
     thumbs = ''.join(f'<figure>{fr}<figcaption>{nm}</figcaption></figure>' for nm, fr in M.composer_modes(.31))
     it = dd['items']
     P.append(f'<section class="sec details"><div class="in"><h2 class="lbl">{dd["lbl"]}</h2><div class="dgrid">'
-             f'<div><div class="thumbs" role="img" aria-label="Margin’s reply composer docked under a message, floating in a corner, and expanded over the reader, with the inbox list visible in each.">{thumbs}</div>'
+             f'<div><div class="thumbs" role="img" aria-label="MarginMail’s reply composer docked under a message, floating in a corner, and expanded over the reader, with the inbox list visible in each.">{thumbs}</div>'
              f'<h3>{it[0][0]}</h3><p>{it[0][1]}</p></div>'
              + ''.join(f'<div><h3>{x}</h3><p>{y}</p></div>' for x, y in it[1:]) + '</div></div></section>')
 
@@ -559,7 +559,7 @@ def home():
     d = C.S_MACPRIV
     diag_d, _ = M.privacy_diagram(1140, 310)
     diag_m, _ = M.privacy_diagram(358, 470, vertical=True)
-    diag_alt = ('Diagram: your Mac connects directly to Google, with an optional dotted line to your own Claude; a “Margin server” box is crossed out '
+    diag_alt = ('Diagram: your Mac connects directly to Google, with an optional dotted line to your own Claude; a “MarginMail server” box is crossed out '
                 'because there isn’t one, and a tracking pixel bounces off before it reaches the Mac.')
     fix = lambda s: responsive_svg(s).replace(re.search(r'aria-label="[^"]*"', s).group(0), f'aria-label="{esc(diag_alt)}"')
     points = ''
@@ -612,11 +612,11 @@ def home():
     plain = lambda s: re.sub(r'<[^>]+>', '', s)
     ld = {"@context": "https://schema.org", "@graph": [
         ORG, WEBSITE,
-        {"@type": "SoftwareApplication", "@id": f"{SITE}/#app", "name": "Margin", "alternateName": "Margin Mail",
+        {"@type": "SoftwareApplication", "@id": f"{SITE}/#app", "name": "MarginMail", "alternateName": "Margin Mail",
          "applicationCategory": "BusinessApplication", "applicationSubCategory": "Email client", "operatingSystem": "macOS 26 or later",
          "url": f"{SITE}/", "image": f"{SITE}/og/margin-og.png",
          "description": DEFINITION + ' It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. '
-                        'Its optional AI uses Apple Intelligence on your Mac or your own Claude when you click, never a Margin server, and never sends email.',
+                        'Its optional AI uses Apple Intelligence on your Mac or your own Claude when you click, never a MarginMail server, and never sends email.',
          "publisher": {"@id": f"{SITE}/#org"},
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during the beta", "availability": "https://schema.org/PreOrder"},
          "featureList": ["Follow-up, meeting and request notes in the reply bar",
@@ -631,8 +631,8 @@ def home():
                          "Request notes found on-device with Apple Intelligence",
                          "Multiple Gmail and Google Workspace accounts in one unified inbox",
                          "Menu bar agenda with Join",
-                         "No Margin server, no analytics, no read receipts"]},
-        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "Margin — Mail that knows what needs you · Gmail app for Mac",
+                         "No MarginMail server, no analytics, no read receipts"]},
+        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail — Mail that knows what needs you · Gmail app for Mac",
          "isPartOf": {"@id": f"{SITE}/#site"}, "about": {"@id": f"{SITE}/#app"}, "dateModified": BUILT, "inLanguage": "en",
          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + shot['srcs'][0][2]}},
         {"@type": "FAQPage", "@id": f"{SITE}/#faq", "mainEntity": [
@@ -643,9 +643,9 @@ def home():
     preload = (f'<link rel="preload" as="image" imagesrcset="{srcset("margin-mac-email-app-gmail-calendar")}" '
                f'imagesizes="(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)" media="(min-width: 768px)" fetchpriority="high">\n'
                f'<link rel="preload" as="image" imagesrcset="{srcset("margin-message-reply-bar-note")}" imagesizes="calc(100vw - 32px)" media="(max-width: 767px)" fetchpriority="high">\n')
-    hh = head('Margin — Mail that knows what needs you · Gmail app for Mac',
-              'Margin is a native Mac email app for Gmail with your calendar and a page for everyone you write to. Optional private AI that never sends. Free in beta.',
-              '/', og_title='Margin — Mail that knows what needs you',
+    hh = head('MarginMail — Mail that knows what needs you · Gmail app for Mac',
+              'MarginMail is a native Mac email app for Gmail with your calendar and a page for everyone you write to. Optional private AI that never sends. Free in beta.',
+              '/', og_title='MarginMail — Mail that knows what needs you',
               og_desc='Give your inbox some margin. A native Mac email app for Gmail with your calendar and people built in. Private AI that never sends. Free during the beta.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
     write('index.html', page(hh, ''.join(P), home=True, motion=('stack', 'live-words', 'write-it'), stickybar=True))
@@ -677,11 +677,11 @@ def cta_from(blocks_list):
             if m:
                 del sec_blocks[i]
                 return split_cta(m.group(1)) + (m.group(2),)
-    return ('Join the Margin beta.', 'Free during the beta.', '/#join')
+    return ('Join the MarginMail beta.', 'Free during the beta.', '/#join')
 
 
 def split_cta(t):
-    i = t.find('Join the Margin beta')
+    i = t.find('Join the MarginMail beta')
     if i <= 0:
         return (t, '')
     return (t[:i].strip(), t[i:].strip())
@@ -758,7 +758,7 @@ def article(src, path, section_name, section_path, img_side=True):
     if pair:
         out.append(''.join(pair))
 
-    crumbs = [('Margin', '/')]
+    crumbs = [('MarginMail', '/')]
     if section_path and section_path in known:
         crumbs.append((section_name, section_path))
     crumbs.append((md.plain(meta.get('h1') or h1).split(':')[0] if False else short_name(meta, h1), path))
@@ -769,14 +769,14 @@ def article(src, path, section_name, section_path, img_side=True):
     side = ''
     if img_side:
         side = ('<figure class="side" style="margin:0">' + pic('margin-message-reply-bar-note', None,
-                'Margin on the Mac: Imogen Hale’s message with the asked sentence highlighted, and a note in the reply bar that reads “Wants 30 min next week on scope.”',
-                '(min-width: 1024px) 420px, calc(100vw - 32px)', '', cls='shot') + '<figcaption>Margin, light mood. Names are fictional.</figcaption></figure>')
+                'MarginMail on the Mac: Imogen Hale’s message with the asked sentence highlighted, and a note in the reply bar that reads “Wants 30 min next week on scope.”',
+                '(min-width: 1024px) 420px, calc(100vw - 32px)', '', cls='shot') + '<figcaption>MarginMail, light mood. Names are fictional.</figcaption></figure>')
     answer_note = (svg_box(660, 160, M.arrow(-60, 150, -8, 156, bend=-.3, delay=1300), cls='ov d-only')
                    + note('checked, sources below', 'left:-214px;top:120px;width:170px;white-space:normal', rot=-4, size=23, delay=1600))
     slug = meta.get('slug', path.strip('/').split('/')[-1])
     source_tag = re.search(r'[?&]s=([a-z0-9._-]+)', cta[2])
     source_tag = source_tag.group(1) if source_tag else f'{section_path.strip("/") or "page"}-{slug}'
-    cta_h = cta[0] or 'Join the Margin beta.'
+    cta_h = cta[0] or 'Join the MarginMail beta.'
     words = cta_h.rsplit(' ', 1)
     cta_title = (f'{esc(words[0])} <span class="ul">{esc(words[1])}{underline_svg(max(60, 14 * len(words[1])), sw=2.6, delay=700)}</span>'
                  if len(words) == 2 else esc(cta_h))
@@ -807,8 +807,8 @@ def article(src, path, section_name, section_path, img_side=True):
     if os.path.exists(os.path.join(ROOT, 'og', f'{og_key}.png')):
         name = short_name(meta, h1)
         og_kw = dict(og_image=f'/og/{og_key}.png',
-                     og_alt=(f'Margin and {name}: an honest comparison for the Mac.' if path.startswith('/compare/')
-                             else f'{md.plain(meta.get("og_image_text") or h1)}. Margin, a native Mac email app for Gmail.'))
+                     og_alt=(f'MarginMail and {name}: an honest comparison for the Mac.' if path.startswith('/compare/')
+                             else f'{md.plain(meta.get("og_image_text") or h1)}. MarginMail, a native Mac email app for Gmail.'))
     hh = head(meta['title'], meta['meta_description'], path, og_title=md.plain(meta.get('og_image_text') or h1), ld=ld, **og_kw)
     write(path.strip('/') + '/index.html', page(hh, body_html))
     PAGES.append(dict(path=path, title=md.plain(h1), lastmod=meta.get('last_checked', BUILT), meta=meta, h1=h1, intro=intro, secs=secs, faqs=faqs, src=src))
@@ -816,7 +816,7 @@ def article(src, path, section_name, section_path, img_side=True):
 
 def short_name(meta, h1):
     if meta.get('slug') and '/compare/' in meta.get('url', ''):
-        name = re.sub(r'^Margin vs (.+?)[:,].*$', r'\1', md.plain(h1))
+        name = re.sub(r'^MarginMail vs (.+?)[:,].*$', r'\1', md.plain(h1))
         if name == md.plain(h1):
             name = re.sub(r'^(?:An? )?(.+?) alternative.*$', r'\1', md.plain(h1))
         return name
@@ -838,17 +838,17 @@ def compare_hub():
     if guides:
         out.append('<section class="blk prose"><h2 id="guides">Guides and roundups</h2><ul>'
                    + ''.join(f'<li><a href="{g["path"]}">{esc(g["name"])}</a>: {esc(g["desc"])}</li>' for g in guides) + '</ul></section>')
-    body_html = (f'<div class="sec art"><div class="in"><div class="art-top"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Margin</a></li><li aria-current="page">Compare</li></ol></nav>'
+    body_html = (f'<div class="sec art"><div class="in"><div class="art-top"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">MarginMail</a></li><li aria-current="page">Compare</li></ol></nav>'
                  f'<div class="art-hero"><div class="main"><h1 class="h1 art">{inline(h1)}</h1><div class="answer">{md.render(intro, inline)}</div></div></div></div>'
                  + ''.join(out) +
-                 f'<section class="ctabox" aria-label="Join the beta"><div><h2 data-seen>Join the Margin <span class="ul">beta.{underline_svg(70, delay=700)}</span></h2><p class="body sub">Free while it’s in beta.</p></div>'
+                 f'<section class="ctabox" aria-label="Join the beta"><div><h2 data-seen>Join the MarginMail <span class="ul">beta.{underline_svg(70, delay=700)}</span></h2><p class="body sub">Free while it’s in beta.</p></div>'
                  f'{joinform("join", source="compare-hub")}</section></div></div>')
     m = re.search(r'## JSON-LD\s*```json\s*(\{.*?\})\s*```', body, re.S)
     node = json.loads(m.group(1))
     node.pop('@context', None)
     node['breadcrumb'] = {"@id": f"{SITE}/compare/#breadcrumb"}
     bc = {"@type": "BreadcrumbList", "@id": f"{SITE}/compare/#breadcrumb", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Margin", "item": f"{SITE}/"},
+        {"@type": "ListItem", "position": 1, "name": "MarginMail", "item": f"{SITE}/"},
         {"@type": "ListItem", "position": 2, "name": "Compare", "item": f"{SITE}/compare/"}]}
     hh = head(meta['title'], meta['meta_description'], '/compare/', og_title=md.plain(h1),
               ld={"@context": "https://schema.org", "@graph": [node, bc]})
@@ -859,9 +859,9 @@ def compare_hub():
 # =============================================================== legal, 404
 def legal(slug, title, desc):
     raw = open(os.path.join(HERE, 'legal', f'{slug}.html'), encoding='utf-8').read()
-    body = (f'<div class="sec legal"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Margin</a></li>'
+    body = (f'<div class="sec legal"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">MarginMail</a></li>'
             f'<li aria-current="page">{esc(title)}</li></ol></nav><article class="doc" style="margin-top:22px">{raw}</article></div></div>')
-    hh = head(f'{title} · Margin', desc, f'/{slug}/')
+    hh = head(f'{title} · MarginMail', desc, f'/{slug}/')
     write(f'{slug}/index.html', page(hh, body))
     m = re.search(r'Last updated ([A-Z][a-z]+ \d+, \d{4})', raw)
     PAGES.append(dict(path=f'/{slug}/', title=title, lastmod=LEGAL_DATES[slug], meta={}, h1=title, intro=[], secs=[], faqs=[], src=None))
@@ -891,9 +891,9 @@ def extract_legal():
 def not_found():
     body = ('<div class="sec nf"><div class="in"><p class="lbl">404</p><h1 class="h1" style="margin-top:12px">This page is in the margin.</h1>'
             '<p class="lead" style="max-width:560px">We couldn’t find it. It may have moved, or the link may have a typo.</p>'
-            '<ul><li><a class="btn" href="/">Go to the homepage</a></li><li><a class="btn ghost" href="/compare/">Compare Margin</a></li>'
+            '<ul><li><a class="btn" href="/">Go to the homepage</a></li><li><a class="btn ghost" href="/compare/">Compare MarginMail</a></li>'
             '<li><a class="btn ghost" href="/#join">Join the beta</a></li></ul></div></div>')
-    hh = head('Page not found · Margin', 'This page doesn’t exist. Go to the Margin homepage or compare Margin with other Mac mail apps.', '/404.html')
+    hh = head('Page not found · MarginMail', 'This page doesn’t exist. Go to the MarginMail homepage or compare MarginMail with other Mac mail apps.', '/404.html')
     hh = hh.replace('<meta name="robots" content="index,follow,max-image-preview:large">', '<meta name="robots" content="noindex">')
     hh = re.sub(r'<link rel="canonical"[^>]*>\n', '', hh)
     hh = hh.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex">\n<meta name="page-path" content="/404">')
@@ -965,7 +965,7 @@ LLMS_FACTS = """Key facts:
 - Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
 - Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
-- Privacy: Margin talks directly to Google from the Mac. No Margin server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
+- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
 - Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive; typing under 16 ms per key.
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
@@ -979,19 +979,19 @@ def strip_html(s):
 
 def llms():
     summary = (f'> {DEFINITION} It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. '
-               'AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no Margin server for your mail, '
+               'AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no MarginMail server for your mail, '
                'no analytics, and AI never sends. It is in beta and free during the beta.')
-    pages = ['- [Home](https://marginmail.ai/): what Margin is and how to join the beta']
+    pages = ['- [Home](https://marginmail.ai/): what MarginMail is and how to join the beta']
     for p in sorted(PAGES, key=lambda p: (not p['path'].startswith('/compare/'), p['path'] != '/compare/', p['path'])):
         label = 'Compare' if p['path'] == '/compare/' else p['title']
         desc = p['meta'].get('meta_description', '')
         pages.append(f'- [{label}]({SITE}{p["path"]})' + (f': {desc}' if desc and p['path'] == '/compare/' else ''))
-    head_txt = f'# Margin\n\n{summary}\n\n{LLMS_FACTS}\n## Pages\n' + '\n'.join(pages) + '\n'
+    head_txt = f'# MarginMail\n\n{summary}\n\n{LLMS_FACTS}\n## Pages\n' + '\n'.join(pages) + '\n'
     write('llms.txt', head_txt)
 
-    out = [f'# Margin\n\n{summary}\n\n{LLMS_FACTS}']
+    out = [f'# MarginMail\n\n{summary}\n\n{LLMS_FACTS}']
     out.append('## Home (https://marginmail.ai/)\n')
-    out.append(f'### What is Margin?\n\n{strip_html(C.WHAT_IS["lead"] + C.WHAT_IS["rest"])}\n')
+    out.append(f'### What is MarginMail?\n\n{strip_html(C.WHAT_IS["lead"] + C.WHAT_IS["rest"])}\n')
     out.append(f'### {C.MANIFESTO["lbl"]}\n\n{strip_html(C.MANIFESTO["text"])}\n')
     for d in (C.S_STACK, C.S_SPLIT, C.S_PEOPLE, C.S_TIME, C.S_LIVE, C.S_SKIM, C.S_WRITE, C.S_MACPRIV, C.S_JOY):
         txt = f'### {strip_html(d["lbl"])}: {strip_html(d["h"])}\n\n{strip_html(d["body"])}\n'
@@ -1054,8 +1054,8 @@ def main():
         p = meta['url'].replace(SITE, '')
         sec = meta.get('section', '')
         article(os.path.join(ROOT, 'content/seo/pages', f), p, {'best': 'Best of', 'guides': 'Guides'}.get(sec, sec), f'/{sec}/')
-    legal('privacy', 'Privacy Policy', 'How Margin handles your data: no Margin server for your mail, no tracking, anonymous site visit counts, optional AI on your terms, and the waitlist.')
-    legal('terms', 'Terms of Service', 'The terms for using Margin, the native Mac mail and calendar app, during its beta.')
+    legal('privacy', 'Privacy Policy', 'How MarginMail handles your data: no MarginMail server for your mail, no tracking, anonymous site visit counts, optional AI on your terms, and the waitlist.')
+    legal('terms', 'Terms of Service', 'The terms for using MarginMail, the native Mac mail and calendar app, during its beta.')
     not_found()
     sitemap()
     llms()

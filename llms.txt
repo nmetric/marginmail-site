@@ -1,32 +1,32 @@
-# Margin
+# MarginMail
 
-> Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no Margin server for your mail, no analytics, and AI never sends. It is in beta and free during the beta.
+> MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no MarginMail server for your mail, no analytics, and AI never sends. It is in beta and free during the beta.
 
 Key facts:
 - Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
 - Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
-- Privacy: Margin talks directly to Google from the Mac. No Margin server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
+- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
 - Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive; typing under 16 ms per key.
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 
 ## Pages
-- [Home](https://marginmail.ai/): what Margin is and how to join the beta
-- [Compare](https://marginmail.ai/compare/): Honest, dated comparisons of Margin with Spark, Superhuman, Apple Mail, Outlook, Gmail, Airmail, Mimestream, Shortwave, HEY, Canary, Missive and Notion Mail.
-- [Margin vs Airmail: customizable vs calm](https://marginmail.ai/compare/airmail/)
-- [Margin vs Apple Mail: an Apple Mail alternative for Gmail users](https://marginmail.ai/compare/apple-mail/)
-- [Margin vs Canary Mail: two takes on private AI email](https://marginmail.ai/compare/canary/)
-- [Margin vs Gmail on the web: a native Gmail app for Mac](https://marginmail.ai/compare/gmail/)
-- [Margin vs HEY: calm email without changing your address](https://marginmail.ai/compare/hey/)
-- [Margin vs Mimestream: two native Gmail apps for Mac](https://marginmail.ai/compare/mimestream/)
-- [Margin vs Missive: your own inbox, or your team’s?](https://marginmail.ai/compare/missive/)
-- [A Notion Mail alternative for Mac: Margin](https://marginmail.ai/compare/notion-mail/)
-- [Margin vs Outlook for Mac: mail and calendar together, for Google accounts](https://marginmail.ai/compare/outlook-mac/)
-- [Margin vs Shortwave: where should your mail’s AI run?](https://marginmail.ai/compare/shortwave/)
-- [Margin vs Spark: a private Spark alternative for Mac](https://marginmail.ai/compare/spark/)
-- [Margin vs Superhuman: a calm, private alternative for Mac](https://marginmail.ai/compare/superhuman/)
+- [Home](https://marginmail.ai/): what MarginMail is and how to join the beta
+- [Compare](https://marginmail.ai/compare/): Honest, dated comparisons: MarginMail vs Spark, Superhuman, Apple Mail, Outlook, Gmail, Airmail, Mimestream, Shortwave, HEY, Canary, Missive and Notion Mail.
+- [MarginMail vs Airmail: customizable vs calm](https://marginmail.ai/compare/airmail/)
+- [MarginMail vs Apple Mail: an Apple Mail alternative for Gmail users](https://marginmail.ai/compare/apple-mail/)
+- [MarginMail vs Canary Mail: two takes on private AI email](https://marginmail.ai/compare/canary/)
+- [MarginMail vs Gmail on the web: a native Gmail app for Mac](https://marginmail.ai/compare/gmail/)
+- [MarginMail vs HEY: calm email without changing your address](https://marginmail.ai/compare/hey/)
+- [MarginMail vs Mimestream: two native Gmail apps for Mac](https://marginmail.ai/compare/mimestream/)
+- [MarginMail vs Missive: your own inbox, or your team’s?](https://marginmail.ai/compare/missive/)
+- [A Notion Mail alternative for Mac: MarginMail](https://marginmail.ai/compare/notion-mail/)
+- [MarginMail vs Outlook for Mac: mail and calendar together, for Google accounts](https://marginmail.ai/compare/outlook-mac/)
+- [MarginMail vs Shortwave: where should your mail’s AI run?](https://marginmail.ai/compare/shortwave/)
+- [MarginMail vs Spark: a private Spark alternative for Mac](https://marginmail.ai/compare/spark/)
+- [MarginMail vs Superhuman: a calm, private alternative for Mac](https://marginmail.ai/compare/superhuman/)
 - [The best Gmail apps for Mac in 2026](https://marginmail.ai/best/gmail-apps-for-mac/)
 - [Email follow-up reminders on Mac: see who hasn’t replied](https://marginmail.ai/guides/email-follow-up-reminders-mac/)
 - [Private AI email: what stays on your Mac](https://marginmail.ai/guides/private-ai-email/)

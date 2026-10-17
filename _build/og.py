@@ -75,10 +75,10 @@ def cards():
             continue
         meta, body = md.front_matter(open(os.path.join(ROOT, 'content/comparisons', f), encoding='utf-8').read())
         h1 = re.search(r'^# (.+)$', body, re.M).group(1)
-        name = re.sub(r'^Margin vs (.+?)[:,].*$', r'\1', md.plain(h1))
+        name = re.sub(r'^MarginMail vs (.+?)[:,].*$', r'\1', md.plain(h1))
         if name == md.plain(h1):
             name = re.sub(r'^(?:An? )?(.+?) alternative.*$', r'\1', md.plain(h1))
-        out.append((f'compare-{f[:-3]}', f'Margin and <span class="u">{html.escape(name)}{underline(300)}</span>',
+        out.append((f'compare-{f[:-3]}', f'MarginMail and <span class="u">{html.escape(name)}{underline(300)}</span>',
                     'An honest comparison for the Mac: features, privacy, AI and price.', 'checked Oct 16, sources inside'))
     for f in sorted(os.listdir(os.path.join(ROOT, 'content/seo/pages'))):
         if not f.endswith('.md'):
@@ -89,7 +89,7 @@ def cards():
         last = words.pop()
         title = f'{html.escape(" ".join(words))} <span class="u">{html.escape(last)}{underline(220)}</span>'
         note = 'fair, dated, sourced' if meta.get('section') == 'best' else 'a plain guide'
-        out.append((f'{meta.get("section", "page")}-{meta["slug"]}', title, 'Margin: a native Mac email app for Gmail, with your calendar and people built in.', note))
+        out.append((f'{meta.get("section", "page")}-{meta["slug"]}', title, 'MarginMail: a native Mac email app for Gmail, with your calendar and people built in.', note))
     return out
 
 
