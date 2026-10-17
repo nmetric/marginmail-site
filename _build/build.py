@@ -350,8 +350,20 @@ def render_headline(text):
             f'{underline_svg(462, sw=3, delay=900)}</span>')
 
 
+def hero_config(name):
+    """What a hero-swap variant's page script needs (abv.Variants.apply_script). 'tour': the product tour in the hero window."""
+    if name == 'tour':
+        wk = 'margin-calendar-week-unanswered-invites'
+        return {'css': v('/motion/tour.css'), 'js': v('/motion/tour.js'), 'label': C.TOUR['label'], 'replay': C.TOUR['replay'],
+                'beats': [{'id': i, 'label': lbl, 'aria': aria} for i, lbl, aria in C.TOUR['beats']],
+                'video': C.VIDEO_TOUR,  # None keeps the 'See MarginMail in action' button hidden (copy_home.VIDEO_TOUR)
+                # The week render the Find time section already uses, same candidates and sizes, so the browser reuses it.
+                'week': {'src': v(IMG[wk]['srcs'][0][2]), 'srcset': srcset(wk), 'sizes': '(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)'}}
+    raise SystemExit(f'unknown hero visual {name!r}')
+
+
 versions = abv.Versions()
-AB = abv.Variants(render_headline)
+AB = abv.Variants(render_headline, hero_config)
 
 
 def responsive_svg(svg):
@@ -1016,7 +1028,7 @@ def brand_files():
     os.makedirs(os.path.join(ROOT, 'img/brand'), exist_ok=True)
     shutil.copyfile(os.path.join(ROOT, 'brand/final/lockup/lockup-horizontal-nav-28.svg'), os.path.join(ROOT, 'img/brand/lockup-nav.svg'))
     shutil.copyfile(os.path.join(ROOT, 'brand/final/lockup/lockup-horizontal-footer-40.svg'), os.path.join(ROOT, 'img/brand/lockup-footer.svg'))
-    for n in ('stack', 'live-words', 'write-it'):
+    for n in ('stack', 'live-words', 'write-it', 'tour'):
         for ext in ('css', 'js'):
             shutil.copyfile(os.path.join(ROOT, f'assets/motion/{n}.{ext}'), os.path.join(ROOT, f'motion/{n}.{ext}'))
 

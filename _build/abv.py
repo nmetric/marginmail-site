@@ -10,11 +10,19 @@ stored, so there's no cookie or localStorage, and a reload can show a different 
 counted with its variant id.
 
     ```variants
-    # id | weight | headline | subhead | cta | note        (empty field = keep A's text)
+    # id | weight | headline | subhead | cta | note | hero        (empty field = keep A's text / A's hero)
     A | 1
     B | 1 | Find time in the margins of your day. | | |
+    TOUR | 0 | | | | | tour
     ```
 Delete the rows (or the block) to stop a test.
+
+Weight 0 keeps a variant out of the random draw (no visitor gets it), but `/?ab=ID` still previews it. Previews show a
+badge and are never counted (window.__abPreview: the beacon and the signup form send no variant).
+
+hero: swaps the hero visual. Empty keeps A's static window. `tour` keeps A's markup in the HTML (the first paint, LCP,
+crawlers and no-JS visitors), then loads /motion/tour.css and /motion/tour.js for that view only and plays the product
+tour inside the same window box (assets/motion/tour.*; chapter copy in copy_home.TOUR). Known values: HEROES.
 """
 import datetime
 import hashlib
@@ -27,7 +35,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 LOG = os.path.join(ROOT, 'content', 'versions.md')
 STATE = os.path.join(ROOT, 'content', '.versions.json')
-FIELDS = ('headline', 'subhead', 'cta', 'note')
+FIELDS = ('headline', 'subhead', 'cta', 'note', 'hero')
+HEROES = ('tour',)
 
 
 def visible_text(body_html):
@@ -87,9 +96,10 @@ class Versions:
 class Variants:
     """Reads the ```variants block from content/homepage.md and renders the swap scripts."""
 
-    def __init__(self, render_headline):
+    def __init__(self, render_headline, hero_config=None):
         self.rows = []
         self.render_headline = render_headline
+        self.hero_config = hero_config  # hero_config(name) -> dict for the page script (css, js, copy); called at render time
         src = os.path.join(ROOT, 'content', 'homepage.md')
         text = open(src, encoding='utf-8').read() if os.path.exists(src) else ''
         m = re.search(r'```variants\n(.*?)```', text, re.S)
@@ -108,6 +118,11 @@ class Variants:
             except ValueError:
                 raise SystemExit(f'homepage.md variants: bad weight in {line!r}')
             fields = {f: (cells[i + 2] if len(cells) > i + 2 else '') for i, f in enumerate(FIELDS)}
+            fields['hero'] = fields['hero'].lower()
+            if fields['hero'] and fields['hero'] not in HEROES:
+                raise SystemExit(f'homepage.md variants: unknown hero {fields["hero"]!r} in {line!r} (known: {", ".join(HEROES)})')
+            if weight < 0:
+                raise SystemExit(f'homepage.md variants: negative weight in {line!r}')
             self.rows.append({'id': vid.upper(), 'weight': weight, **fields})
         if self.rows and not any(r['id'] == 'A' for r in self.rows):
             self.rows.insert(0, {'id': 'A', 'weight': 1.0, **{f: '' for f in FIELDS}})
@@ -119,14 +134,15 @@ class Variants:
         """Pick a variant before anything paints; hide the swappable nodes until the swap (only if not A)."""
         w = [[r['id'], r['weight']] for r in self.rows]
         return ('<style>.ab-pending [data-ab]{visibility:hidden}</style><script>(function(){var w=' + json.dumps(w) +
-                ',t=0,i,r;for(i=0;i<w.length;i++)t+=w[i][1];r=Math.random()*t;for(i=0;i<w.length;i++){r-=w[i][1];if(r<0)break}'
-                'var v=w[Math.min(i,w.length-1)][0],f=(new URLSearchParams(location.search).get("ab")||"").toUpperCase();'
+                # Weight-0 rows are listed (so ?ab= can preview them) but never drawn: v starts at A and only rows with weight > 0 can win.
+                ',t=0,i,r,v="A";for(i=0;i<w.length;i++)t+=w[i][1];r=Math.random()*t;for(i=0;i<w.length;i++)if(w[i][1]>0){v=w[i][0];r-=w[i][1];if(r<0)break}'
+                'var f=(new URLSearchParams(location.search).get("ab")||"").toUpperCase();'
                 'for(i=0;i<w.length;i++)if(w[i][0]===f){v=f;window.__abPreview=1}'
                 'window.__ab=v;if(v!=="A")document.documentElement.classList.add("ab-pending");'
                 'setTimeout(function(){document.documentElement.classList.remove("ab-pending")},1500)})()</script>\n')
 
     def apply_script(self):
-        """Runs right after the hero is parsed: swap its text, then the CTA buttons further down once the DOM is ready."""
+        """Runs right after the hero is parsed: swap its text (and start loading a hero visual), then the CTA buttons further down once the DOM is ready."""
         m = {}
         for r in self.rows:
             if r['id'] == 'A':
@@ -140,10 +156,15 @@ class Variants:
                 d['cta'] = html.escape(r['cta'], quote=False)
             if r['note']:
                 d['note'] = html.escape(r['note'], quote=False)
+            if r['hero'] and self.hero_config:
+                d['hero'] = self.hero_config(r['hero'])
             m[r['id']] = d
         return ('<script>(function(){var m=' + json.dumps(m, ensure_ascii=False).replace('</', '<\\/') + ',v=m[window.__ab];'
                 'function s(){if(!v)return;document.querySelectorAll("[data-ab]").forEach(function(e){var k=e.getAttribute("data-ab");'
                 'if(v[k]!=null)e.innerHTML=v[k]});document.querySelectorAll("input[name=x]").forEach(function(e){e.value=window.__abPreview?"":window.__ab})}'
                 'function b(){if(!window.__abPreview)return;var d=document.createElement("div");d.textContent="Previewing variant "+window.__ab+" \\u00b7 not counted";'
                 'd.style.cssText="position:fixed;right:12px;top:76px;z-index:9999;padding:6px 10px;border-radius:8px;background:#1f1d1a;color:#fff;font:12px/1.3 system-ui,sans-serif;opacity:.85;pointer-events:none";document.body.appendChild(d)}'
-                's();document.documentElement.classList.remove("ab-pending");document.addEventListener("DOMContentLoaded",function(){s();b()})})()</script>')
+                # A hero swap: A's window stays as the first paint; the variant's stylesheet loads, then its script (once).
+                'function h(){var x=v&&v.hero;if(!x||!x.css)return;window.__abHero=x;var l=document.createElement("link");l.rel="stylesheet";l.href=x.css;'
+                'l.onload=function(){var j=document.createElement("script");j.src=x.js;document.body.appendChild(j)};document.head.appendChild(l)}'
+                's();h();document.documentElement.classList.remove("ab-pending");document.addEventListener("DOMContentLoaded",function(){s();b()})})()</script>')

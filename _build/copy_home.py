@@ -138,6 +138,30 @@ FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT
  ('When can I join the MarginMail beta?', 'Join the list on this page and we’ll email you when your invite is ready. We’re letting people in a few at a time so we can listen closely to each wave. Your email address is all we ask for. This site sets no cookies and doesn’t track you; we only count visits anonymously on our own server.'),
 ]
 
+TOUR = dict(  # Oct 17: the hero product tour, A/B variant TOUR (chapter labels under the window; aria is the window's label per beat)
+    label='MarginMail product tour', replay='Replay',
+    beats=[
+        ('words', 'Live words', 'MarginMail’s floating composer over the inbox. As Nora writes to Marco, “Tuesday with Ava”, “the pricing deck” and '
+         '“I’ll send the signed quote by Friday” get a pencil underline, and the margin shows when she and Ava are both free on Tuesday, '
+         'the attached pricing deck and the promise.'),
+        ('invite', 'Invites', 'An invitation from Lena Brandt arrives and the calendar opens on the week. The unanswered invite, Saltmarsh shoot '
+         'walkthrough on Thursday at 11, looks different; pressing A accepts it.'),
+        ('time', 'Find a time', 'Finding a time for Saltmarsh label review: your calendar, Ava’s and Marco’s side by side for Thursday. The hour '
+         'everyone is free, 12 to 1, is circled and a hold is placed.'),
+        ('wide', 'Wider calendar', 'The calendar beside the inbox is dragged wider and changes from one day to three: Tuesday, Wednesday and Thursday.'),
+        ('stack', 'The stack', 'The Margins stack beside the calendar. The top card, a follow-up to Ava with no reply in 6 days, turns over to show '
+         'its email, then is dragged right to Done.'),
+        ('people', 'People', 'Ava Lindqvist’s page: Head of Brand at Saltmarsh Coffee, grouped with everyone at saltmarshcoffee.com, with her local '
+         'time, recent conversations, meetings and tasks.'),
+    ])
+
+# Video tour hook (Ben, Oct 17): a longer video tour will open in a pop-up from a "See MarginMail in action" button beside the
+# hero tour's chapter labels. None = no button (it stays hidden; variant A never has it). To turn it on later, set e.g.
+# VIDEO_TOUR = dict(label='See MarginMail in action', src='/video/marginmail-tour.mp4') and rebuild: the button appears in the TOUR
+# variant and, when pressed, pauses the tour and fires `marginmail:video-tour` on document (detail = this dict) for the pop-up to
+# handle; the pop-up fires `marginmail:video-tour-closed` to resume. The pop-up and the video are not built yet.
+VIDEO_TOUR = None
+
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare MarginMail', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3
 FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 MarginMail'
