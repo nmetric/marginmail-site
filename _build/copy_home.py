@@ -6,45 +6,43 @@ Oct 17: the positioning review's quick wins (content/positioning-review-2026-10.
 People moved to third and rewritten (R3), two new FAQs (R7). content/homepage.md mirrors this file."""
 
 HERO_H = 'Mail that knows what needs you.'
-HERO_NOTE = 'Give your inbox some margin.'
+HERO_NOTE = 'Give your inbox some margin'
 HERO_SUB = ('A native Mac email app for Gmail, with your calendar and the people you work with in one window. '
-            'MarginMail finds time in your day, keeps what matters and marks what needs you, privately.')  # v3
+            'MarginMail notes what needs you and helps you find a meeting time as you type. It works fully with AI off, and AI never sends.')  # v3
 PRIV_LINE = 'Just your email. No tracking.'
 SMALL_LINE = 'Free during the beta · macOS 26 or later · Gmail and Google Workspace'  # v3
 
 WHAT_IS = dict(lbl='What is MarginMail?',  # v3, new block after the hero (id="how")
     lead='MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.',
     rest=(' It notes what needs you (follow-ups, meeting invites and requests), helps you find a meeting time as you type, and gives '
-          'everyone you write to a page. Its AI is optional: Apple Intelligence on your Mac, or your own Claude when you click, never a MarginMail server, '
-          'and it never sends email for you.'))
+          'everyone you write to a page. Its AI is optional: Apple Intelligence on your Mac, or your own Claude when you click. There’s no MarginMail server, '
+          'and the AI never sends email for you.'))
 
 MANIFESTO = dict(
     lbl='What the margin is for',
-    text=('The margin is where the work gets clear. Every good page of notes has one. It’s where you find time in a full day. '
-          'Where you keep the facts worth remembering. Where you skim to see what was decided and what still needs you. '
-          'Where you underline what matters, circle the ask, and make the call. MarginMail brings that to your mail. It finds the '
-          'time, keeps your people close, marks what needs you, and turns a chaotic day into a short, ordered stack. '
-          'Then it gets out of the way.'),
-    note='this is the whole idea',
+    text=('When you read something carefully, you write in the margin: a time that works, a fact worth keeping, the line that '
+          'needs an answer. MarginMail does that for your mail. It notes what needs you, finds time on your calendar, and keeps a '
+          'page for everyone you write to.'),
+    note='start here',
     # (mark, title, line, features, note)
     cards=[
         ('circle', 'Find time', 'Type “Tuesday with Ava” and both calendars’ free times appear.',              # EDIT name
          'Find a time · Live words · Calendar built in', 'found 30 minutes'),
         ('star', 'Keep what matters', 'Everyone you write to has a page: what you promised, what they’re waiting on, and the time where they are.',  # Oct 17, R8
          'People pages · Companies · Notes', 'remember: she’s on Eastern time'),                                 # EDIT (Ava is in Maine)
-        ('underline', 'Skim, then know', 'See why something’s here, what’s been decided, and the exact sentence that asks.',
+        ('underline', 'Skim for context', 'See why something’s here, what’s been decided, and the exact sentence that asks.',
          '“Why this?” · What’s been decided · Highlighted asks', 'decided: ship Thursday'),
-        ('arrow', 'Make the call', 'What needs you is a stack. Right for Done, left to come back to it, or reply.',
-         'The Margins stack · Done · Back of the stack · Write it', 'Done. Next.'),
+        ('arrow', 'Make the call', 'What needs you waits in a stack. Drag right for Done, left for the back of the stack, or reply.',
+         'The Margins stack · Done · Back of the stack · Write it', 'done, next one'),
         ('bracket', 'Bring order', 'A messy day becomes a short stack, and an empty one ends in a sunrise.',
-         'The Margins stack · All clear scenes', 'from 35 to 5'),
+         'The Margins stack · All clear scenes', 'one card at a time'),
         ('highlight', 'Mark what matters', 'MarginMail highlights the ask in the message and marks the row in the margin.',
          'Highlighted ask · The margin mark', 'this is the ask'),
     ])
 
 S_STACK = dict(lbl='Follow-up reminders, requests and meeting invites', h='Only what needs you.',
           body=("MarginMail writes a short note in the margin when someone's waiting on you, when you're waiting on a reply, "
-                "or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left to send it to the back of the stack."),
+                "or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left for the back of the stack."),
           chips=[('Follow-ups', '“You asked Ava on Oct 9. No reply in 6 days.”'),                     # EDIT name
                  ('Meetings', '“Unanswered invite: Saltmarsh shoot walkthrough, Thursday.”'),          # EDIT name
                  ('Requests', '“Marco asked for the signed proof by Thursday.”')],                    # EDIT name + item (matches the shot)
@@ -55,22 +53,22 @@ S_STACK = dict(lbl='Follow-up reminders, requests and meeting invites', h='Only 
 S_SPLIT = dict(lbl='Email, calendar and contacts in one Mac window', h='Your mail, your calendar and your people, side by side.',
           body=('Open Split view and your whole day is in one window. Read Imogen’s message, and her page is a click away: what you '
                 'last talked about and the time where she is. Today’s calendar sits beside it. An invite you haven’t answered looks '
-                'different. Press A, M or D, and its email files itself. No tab to keep open, no app to switch to.'),
+                'different. Press A, M or D, and its email files itself.'),
           note='no tab to keep open')
 
 S_TIME = dict(lbl='Google Calendar built in, with Find a time', h='Find time in the margins of your day.',
           body=('The full calendar is one click away. Meeting invites you haven’t answered look different, and a '
-                '<b>Needs your answer</b> list keeps them together, each answered with one key. Need to schedule a meeting? '
-                'See both calendars side by side, pick a time, and the hold is placed for you.'),
+                '<b>Needs your answer</b> list keeps them together, each answered with one key. When you schedule a meeting, '
+                '<b>Find a time</b> shows both calendars side by side when Google shares theirs with you. Pick a time and the hold is placed.'),
           note='there’s your hour')
 
-S_LIVE = dict(lbl='Schedule meetings and attach files as you type', h='Type the plan. MarginMail does the rest.',
-          body=('As you write, dates, people, files and promises become actions. Type “Tuesday with Ava” and both calendars’ '
-                'free times appear. Type “the pricing deck” and the file is attached. It’s all rules, so it’s instant, private and works with AI off.'),   # EDIT name
+S_LIVE = dict(lbl='Schedule meetings and attach files as you type', h='Type a day and a name, and see when you’re both free.',
+          body=('As you write, MarginMail underlines days, people, files and promises and turns them into actions. Type “Tuesday with Ava” and both calendars’ '
+                'free times appear. Type “the pricing deck” and the file is attached. It runs on rules, so it works with AI off.'),   # EDIT name
           sample=('Tuesday with Ava', ' works, I’ll send the pricing deck by Friday.'),                            # EDIT name (the shot's sentence)
           note='just type it')
 
-S_SKIM = dict(lbl='Email summaries and highlighted asks', h='Skim it. Know what matters.',
+S_SKIM = dict(lbl='Email summaries and highlighted asks', h='What was asked, and what was decided.',
           body=('When someone asks you for something, MarginMail highlights the exact sentence and marks the row in the margin. '
                 'Every card says why it’s there. On a long thread, <b>What’s been decided</b> sums it up: what’s settled, what’s still '
                 'open and who’s waiting on whom.'),
@@ -78,7 +76,7 @@ S_SKIM = dict(lbl='Email summaries and highlighted asks', h='Skim it. Know what 
 
 S_WRITE = dict(lbl='Private AI email replies you send yourself', h='A draft from your notes. Sent by you.',  # Oct 17, O1
           body=('Jot a few notes and press <b>Write it</b>. MarginMail drafts the reply from your notes and the thread, right in front of you, '
-                'and flags anything it added that the thread didn’t have. You read it. You send it.'),
+                'and flags anything it added that the thread didn’t have. You read the draft and send it yourself.'),
           priv=('Write it uses your own Claude, signed in on this Mac, only when you click. Only that conversation goes to Anthropic, '
                 'under your plan. Request notes use Apple Intelligence, on-device. MarginMail works fully with AI off.'),  # Oct 17, O2
           note='new: check this')
@@ -87,35 +85,34 @@ S_PEOPLE = dict(lbl='A private personal CRM, built from your Gmail and calendar'
           body=('Before a meeting, open their page: what you last talked about, what you promised, who’s waiting on whom, and the '
                 'time where they are. Tasks close themselves when the reply, the file or the yes arrives. Companies group themselves '
                 'by email domain. It’s all built from the mail and calendar you already have, and it stays in your own Google account. '
-                'Nothing to import. Nothing uploaded.'),
+                'There’s nothing to import, and nothing is uploaded.'),
           note='remember: she’s on Eastern time')                                                      # EDIT (was: she's in London)
 
 DETAILS = dict(lbl='The details',
           items=[('In-window composer.', 'Docked, floating anywhere or expanded over the reader. Your inbox never disappears.'),
-                 ('Done, not Archive.', 'Handled mail leaves. That’s the whole idea.'),
+                 ('Done, not Archive.', 'Done moves a conversation out of your inbox. It stays in Gmail.'),
                  ('Multiple Gmail accounts.', 'Several Google accounts, one unified inbox.'),
                  ('Your day in the menu bar.', 'Today’s agenda one click away, with Join for the next call.'),            # Oct 17, R6
                  ('Notifications for what needs you.', 'Per account: everything, only what needs you and your VIPs, or nothing. Quiet hours and Focus filters too.'),
                  ('Made to fit you.', 'A signature for each account, a Dock badge, and View › Zoom for the text size you like.')])            # Oct 17: six items, 3 + 3
 
 # Speed & craft + Privacy promise merged (Ben, Oct 16: "Made for the Mac, made for privacy"; no engineering stats)
-S_MACPRIV = dict(lbl='Private email: no servers, no tracking', h='Made for the Mac. Made for privacy.',
-          body=('MarginMail is a native Mac app, built from the start to keep your mail yours. There’s no MarginMail server in the '
-                'middle: we can’t read your mail, and we can’t see how you use the app.'),
+S_MACPRIV = dict(lbl='Private email with no MarginMail server and no tracking', h='Made for the Mac. Made for privacy.',
+          body=('MarginMail is a native Mac app with no MarginMail server in the middle, so we can’t read your mail. The app has no '
+                'analytics, so we can’t see how you use it.'),
           points=[('No usage tracking.', 'No analytics or telemetry in the app, so we can’t see how you use it. This site sets no cookies and doesn’t track you: we count visits anonymously on our own server, with no ads or third parties, and we honor Do Not Track.'),
                   ('Tracking pixels blocked.', 'Remote images are blocked by default. Load them for one message, or always for a sender you trust. Hidden 1×1 tracking pixels are stripped even when you load images, and the images MarginMail does load are fetched without cookies or referrer.'),
                   ('No read receipts.', 'MarginMail never adds read receipts or open tracking to the mail you send.'),
                   ('No MarginMail server.', 'Your mail goes between your Mac and Google, and nowhere else.'),
-                  ('AI that stays with you.', 'Apple Intelligence on your Mac first. Your own Claude only if you opt in, and only when you click. AI never sends.'),  # Oct 17, R8
+                  ('AI only if you want it.', 'Apple Intelligence on your Mac first. Your own Claude only if you opt in, and only when you click. AI never sends.'),  # Oct 17, R8
                   ('Your data, your account.', 'MarginMail’s own data lives in your Google account’s private app folder.')],
           note='pixels stay out')
 
-S_JOY = dict(lbl='Inbox zero, with a sunrise', h='Done feels good here.',
-          body=('Clear the stack and MarginMail shows a calm scene for a moment: a sunrise over the horizon, still water, a beam '
-                'of light, chosen by the time of day. Small things like that are on purpose.'),
-          note='all clear, see?')
+S_JOY = dict(lbl='When the Margins stack is empty', h='An empty stack ends with a sunrise.',
+          body=('Clear the stack and you’ll see a sunrise, or another quiet scene that suits the time of day.'),
+          note='all clear')
 
-CTA = dict(h='Come try it early.',
+CTA = dict(h='Join the MarginMail beta.',
            body='MarginMail is in beta for Mac with Gmail and Google Workspace accounts. We’re letting people in a few at a time so we can listen closely.')
 
 FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT name); Oct 17: 16, with R7's two and O4/O5
@@ -126,7 +123,7 @@ FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT
  ('Is MarginMail’s AI private?', 'Yes. Request notes use Apple Intelligence on your Mac, so nothing leaves it. If you choose, Write it and What’s been decided use your own Claude, signed in on your Mac, only when you click. Only that one conversation goes to Anthropic, under your own plan. MarginMail never sees your Claude login, uses no API key, and runs no AI server.'),
  ('Can I use MarginMail without AI?', 'Yes. MarginMail works fully with AI off. Follow-up and meeting notes, live words, the calendar, Find a time, People and Companies all run on plain rules. Turning AI on adds Request notes, which are found on your Mac, and Write it, which drafts replies with your own Claude.'),
  ('Can MarginMail’s AI send emails for me?', 'No, never. MarginMail’s AI can draft a reply, but only you can send it. Before you do, MarginMail flags anything the draft added that the thread didn’t have, such as a new recipient, a link, a number or a code, and labels which AI wrote it.'),
- ('Does MarginMail work with multiple Gmail accounts?', 'Yes. You can add several Gmail and Google Workspace accounts and see them in one unified inbox, with your calendars together beside it. MarginMail supports Google accounts today. iCloud and other providers are planned for later, and MarginMail will say so clearly when they arrive.'),
+ ('Does MarginMail work with multiple Gmail accounts?', 'Yes. You can add several Gmail and Google Workspace accounts and see them in one unified inbox, with your calendars together beside it. MarginMail supports Google accounts today. iCloud and other providers come later.'),
  ('Does MarginMail have a calendar?', 'Yes. Your Google Calendar sits beside your inbox. Invitations you haven’t answered look different and gather in a Needs your answer list. Press A, M or D to accept, maybe or decline, and the invite’s email files itself. Find a time shows both calendars side by side when Google shares theirs with you, and places the hold.'),
  ('Can I see my email and calendar in one window on Mac?', 'Yes. MarginMail’s Split view shows your inbox, the message and today’s calendar side by side. Click a name to see that person’s page. Answer invites with A, M or D, and their email files itself. It works with several Google accounts and calendars at once.'),
  ('How do follow-up reminders work in MarginMail?', 'When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or send it to the back of the stack. It works on rules, with AI off.'),
@@ -164,4 +161,4 @@ VIDEO_TOUR = None
 
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare MarginMail', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3
-FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 MarginMail'
+FOOT_SMALL = 'Made with love for the Mac. This site sets no cookies and doesn’t track you. We count visits anonymously on our own server, with no ads or third parties, and we honor Do Not Track. · © 2026 MarginMail™'

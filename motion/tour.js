@@ -235,9 +235,9 @@
       '<p style="margin-top:.8em;font:1.05em/1.5 var(--serif)">Hi Ava,<br><span class="tr-mark" style="--d:' + (m ? 1200 : 1400) + 'ms">Could you confirm the shot list by Friday</span> so Lena can plan the light?<br>Thanks, Nora</p>';
     var cards = card(2, front('Request', 'Thursday', 'Marco asked for the signed proof', 'MR', 'Marco Reyes', 'Tidewater Print', 'Could you send the signed proof before Thursday so we can hold the press slot?', '<span class="tr-btn k">Reply</span>'), null, 100) +
       card(1, front('Meeting', 'Next week', 'Imogen asked for 30 minutes', 'IH', 'Imogen Hale', 'Kiln &amp; Co.', 'Could we find 30 minutes next week to talk through scope?', '<span class="tr-btn k">Find a time</span>'), null, 200) +
-      card(0, front('Follow-up', '6 days', 'You asked Ava on Oct 9, no reply in 6 days', 'AL', 'Ava Lindqvist', 'Saltmarsh Coffee', 'Could you confirm the shot list by Friday so Lena can plan the light?', '<span class="tr-btn k">Nudge</span><span class="tr-btn">Later</span>'), back, 300);
+      card(0, front('Follow-up', '6 days', 'You asked Ava on Oct 9, no reply in 6 days', 'AL', 'Ava Lindqvist', 'Saltmarsh Coffee', 'Could you confirm the shot list by Friday so Lena can plan the light?', '<span class="tr-btn k">Nudge</span><span class="tr-btn">Not useful</span>'), back, 300);
     var head = m ? '<div class="ab" style="left:12px;top:10px"><b>Margins</b> <span class="tr-sub">· 3 need you</span></div>'
-      : '<div class="ab" style="left:24px;top:22px"><div style="font:400 24px/1.2 var(--serif)">Margins</div><div class="tr-sub">3 need you · drag right for Done, left for Later</div></div>';
+      : '<div class="ab" style="left:24px;top:22px"><div style="font:400 24px/1.2 var(--serif)">Margins</div><div class="tr-sub">3 need you · drag right for Done, left for the back of the stack</div></div>';
     var panel = E('tr-panel a-fade', 0, box(G.x, G.y, G.w, G.h) + 'background:#F7F4EF;font-size:' + G.fs + 'px;' + (m ? 'border-radius:0' : ''), head + cards);
     return { html: panel + (m ? hand('drag right: Done', 222, 196, 21, -4, 3100) : hand('drag right: Done', 620, 560, 30, -4, 3300)), dur: m ? 4200 : 4400 };
   }

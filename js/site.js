@@ -75,14 +75,14 @@
     var html;
     if (data.status === 'already') {
       html = '<div class="result" tabindex="-1"><p class="rt">You’re already on the list.</p>' +
-        '<p class="sub" style="font-size:14.5px;line-height:22px;margin-top:6px">Good news: nothing else to do. We’ll email you when your invite is ready.</p></div>';
+        '<p class="sub" style="font-size:14.5px;line-height:22px;margin-top:6px">There’s nothing else to do. We’ll email you when your invite is ready.</p></div>';
     } else {
       var pos = typeof data.position === 'number' ? '<p class="pos">You’re number <b>' + data.position.toLocaleString('en-US') + '</b> in line.</p>' : '';
       var share = '';
       if (data.referral_url) {
         var shown = String(data.referral_url).replace(/^https?:\/\//, '');
         share = '<hr><p class="share">Share your link to move up</p>' +
-          '<p class="sub" style="margin-top:2px">Want in sooner? Share your link. Each friend who joins moves you up.</p>' +
+          '<p class="sub" style="margin-top:2px">Each friend who joins with your link moves you up the list.</p>' +
           '<div class="share-row"><label class="vh" for="' + form.id + '-link">Your referral link</label>' +
           '<input class="field" id="' + form.id + '-link" readonly value="' + esc(shown) + '" data-url="' + esc(data.referral_url) + '">' +
           '<button type="button" class="btn ghost copy">Copy</button></div><p class="vh copied-msg" aria-live="polite"></p>';

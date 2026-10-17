@@ -31,7 +31,7 @@ ENDPOINT = 'https://join.marginmail.ai/join'
 BUILT = '2026-10-17'
 DEFINITION = 'MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
-FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 MarginMail'
+FOOT_SMALL = C.FOOT_SMALL
 _HASH = {}
 
 
@@ -141,7 +141,7 @@ WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name"
 NOJS_STATES = ('<div class="nojs-state result" id="joined" tabindex="-1"><p class="rt">You’re on the list.</p>'
                '<p class="sub">We’ll email you when your invite is ready. Until then, that’s the only email you’ll get from us.</p></div>'
                '<div class="nojs-state result" id="already" tabindex="-1"><p class="rt">You’re already on the list.</p>'
-               '<p class="sub">Good news: nothing else to do. We’ll email you when your invite is ready.</p></div>'
+               '<p class="sub">There’s nothing else to do. We’ll email you when your invite is ready.</p></div>'
                '<div class="nojs-state result" id="join-error" tabindex="-1"><p class="rt">That didn’t go through.</p>'
                '<p class="sub">Check your email address and try again. If it keeps happening, write to '
                '<a href="mailto:hello@marginmail.ai">hello@marginmail.ai</a>.</p></div>')
@@ -610,7 +610,7 @@ def home():
 
     # ---- Second CTA
     P.append('<section class="sec alt cta"><div class="in center">'
-             f'<h2 class="h2" data-seen>Come try it <span class="ul">early.{underline_svg(124, sw=3, delay=700)}</span></h2>'
+             f'<h2 class="h2" data-seen>{esc(C.CTA["h"].rsplit(" ", 1)[0])} <span class="ul">{esc(C.CTA["h"].rsplit(" ", 1)[1])}{underline_svg(70, sw=3, delay=700)}</span></h2>'
              f'<p class="lead">{C.CTA["body"]}</p>' + joinform('join-end') + '</div></section>')
 
     # ---- FAQ
@@ -624,7 +624,7 @@ def home():
          "applicationCategory": "BusinessApplication", "applicationSubCategory": "Email client", "operatingSystem": "macOS 26 or later",
          "url": f"{SITE}/", "image": f"{SITE}/og/margin-og.png",
          "description": DEFINITION + ' It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. '
-                        'Its optional AI uses Apple Intelligence on your Mac or your own Claude when you click, never a MarginMail server, and never sends email.',
+                        'Its optional AI uses Apple Intelligence on your Mac or your own Claude when you click. There’s no MarginMail server, and the AI never sends email.',
          "publisher": {"@id": f"{SITE}/#org"},
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during the beta", "availability": "https://schema.org/PreOrder"},
          "featureList": ["Follow-up, meeting and request notes in the reply bar",
@@ -640,7 +640,7 @@ def home():
                          "Multiple Gmail and Google Workspace accounts in one unified inbox",
                          "Menu bar agenda with Join",
                          "No MarginMail server, no analytics, no read receipts"]},
-        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail — Mail that knows what needs you · Gmail app for Mac",
+        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail: Mail that knows what needs you · Gmail app for Mac",
          "isPartOf": {"@id": f"{SITE}/#site"}, "about": {"@id": f"{SITE}/#app"}, "dateModified": BUILT, "inLanguage": "en",
          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + shot['srcs'][0][2]}},
         {"@type": "FAQPage", "@id": f"{SITE}/#faq", "mainEntity": [
@@ -651,9 +651,9 @@ def home():
     preload = (f'<link rel="preload" as="image" imagesrcset="{srcset("margin-mac-email-app-gmail-calendar")}" '
                f'imagesizes="(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)" media="(min-width: 768px)" fetchpriority="high">\n'
                f'<link rel="preload" as="image" imagesrcset="{srcset("margin-message-reply-bar-note")}" imagesizes="calc(100vw - 32px)" media="(max-width: 767px)" fetchpriority="high">\n')
-    hh = head('MarginMail — Mail that knows what needs you · Gmail app for Mac',
+    hh = head('MarginMail: Mail that knows what needs you · Gmail app for Mac',
               'MarginMail is a native Mac email app for Gmail with your calendar and a page for everyone you write to. Optional private AI that never sends. Free in beta.',
-              '/', og_title='MarginMail — Mail that knows what needs you',
+              '/', og_title='MarginMail: Mail that knows what needs you',
               og_desc='Give your inbox some margin. A native Mac email app for Gmail with your calendar and people built in. Private AI that never sends. Free during the beta.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
     write('index.html', page(hh, ''.join(P), home=True, motion=('stack', 'live-words', 'write-it'), stickybar=True))
@@ -778,7 +778,7 @@ def article(src, path, section_name, section_path, img_side=True):
     if img_side:
         side = ('<figure class="side" style="margin:0">' + pic('margin-message-reply-bar-note', None,
                 'MarginMail on the Mac: Imogen Hale’s message with the asked sentence highlighted, and a note in the reply bar that reads “Wants 30 min next week on scope.”',
-                '(min-width: 1024px) 420px, calc(100vw - 32px)', '', cls='shot') + '<figcaption>MarginMail, light mood. Names are fictional.</figcaption></figure>')
+                '(min-width: 1024px) 420px, calc(100vw - 32px)', '', cls='shot') + '<figcaption>MarginMail on the Mac. Names are fictional.</figcaption></figure>')
     answer_note = (svg_box(660, 160, M.arrow(-60, 150, -8, 156, bend=-.3, delay=1300), cls='ov d-only')
                    + note('checked, sources below', 'left:-214px;top:120px;width:170px;white-space:normal', rot=-4, size=23, delay=1600))
     slug = meta.get('slug', path.strip('/').split('/')[-1])
@@ -815,7 +815,7 @@ def article(src, path, section_name, section_path, img_side=True):
     if os.path.exists(os.path.join(ROOT, 'og', f'{og_key}.png')):
         name = short_name(meta, h1)
         og_kw = dict(og_image=f'/og/{og_key}.png',
-                     og_alt=(f'MarginMail and {name}: an honest comparison for the Mac.' if path.startswith('/compare/')
+                     og_alt=(f'MarginMail and {name} compared, for the Mac, with dated sources.' if path.startswith('/compare/')
                              else f'{md.plain(meta.get("og_image_text") or h1)}. MarginMail, a native Mac email app for Gmail.'))
     hh = head(meta['title'], meta['meta_description'], path, og_title=md.plain(meta.get('og_image_text') or h1), ld=ld, **og_kw)
     write(path.strip('/') + '/index.html', page(hh, body_html))
@@ -849,7 +849,7 @@ def compare_hub():
     body_html = (f'<div class="sec art"><div class="in"><div class="art-top"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">MarginMail</a></li><li aria-current="page">Compare</li></ol></nav>'
                  f'<div class="art-hero"><div class="main"><h1 class="h1 art">{inline(h1)}</h1><div class="answer">{md.render(intro, inline)}</div></div></div></div>'
                  + ''.join(out) +
-                 f'<section class="ctabox" aria-label="Join the beta"><div><h2 data-seen>Join the MarginMail <span class="ul">beta.{underline_svg(70, delay=700)}</span></h2><p class="body sub">Free while it’s in beta.</p></div>'
+                 f'<section class="ctabox" aria-label="Join the beta"><div><h2 data-seen>Join the MarginMail <span class="ul">beta.{underline_svg(70, delay=700)}</span></h2><p class="body sub">Free during the beta.</p></div>'
                  f'{joinform("join", source="compare-hub")}</section></div></div>')
     m = re.search(r'## JSON-LD\s*```json\s*(\{.*?\})\s*```', body, re.S)
     node = json.loads(m.group(1))
@@ -897,8 +897,8 @@ def extract_legal():
 
 
 def not_found():
-    body = ('<div class="sec nf"><div class="in"><p class="lbl">404</p><h1 class="h1" style="margin-top:12px">This page is in the margin.</h1>'
-            '<p class="lead" style="max-width:560px">We couldn’t find it. It may have moved, or the link may have a typo.</p>'
+    body = ('<div class="sec nf"><div class="in"><p class="lbl">404</p><h1 class="h1" style="margin-top:12px">We couldn’t find that page.</h1>'
+            '<p class="lead" style="max-width:560px">It may have moved, or the link may have a typo.</p>'
             '<ul><li><a class="btn" href="/">Go to the homepage</a></li><li><a class="btn ghost" href="/compare/">Compare MarginMail</a></li>'
             '<li><a class="btn ghost" href="/#join">Join the beta</a></li></ul></div></div>')
     hh = head('Page not found · MarginMail', 'This page doesn’t exist. Go to the MarginMail homepage or compare MarginMail with other Mac mail apps.', '/404.html')
@@ -973,9 +973,9 @@ LLMS_FACTS = """Key facts:
 - Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
 - Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
-- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
+- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics in the app. No read receipts or open tracking.
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
-- Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive; typing under 16 ms per key.
+- Shipped features: margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; a sunrise or another quiet scene when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive.
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 """
@@ -988,7 +988,7 @@ def strip_html(s):
 def llms():
     summary = (f'> {DEFINITION} It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. '
                'AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no MarginMail server for your mail, '
-               'no analytics, and AI never sends. It is in beta and free during the beta.')
+               'no analytics in the app, and AI never sends. It is in beta and free during the beta.')
     pages = ['- [Home](https://marginmail.ai/): what MarginMail is and how to join the beta']
     for p in sorted(PAGES, key=lambda p: (not p['path'].startswith('/compare/'), p['path'] != '/compare/', p['path'])):
         label = 'Compare' if p['path'] == '/compare/' else p['title']
