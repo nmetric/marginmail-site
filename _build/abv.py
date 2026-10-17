@@ -120,7 +120,9 @@ class Variants:
         w = [[r['id'], r['weight']] for r in self.rows]
         return ('<style>.ab-pending [data-ab]{visibility:hidden}</style><script>(function(){var w=' + json.dumps(w) +
                 ',t=0,i,r;for(i=0;i<w.length;i++)t+=w[i][1];r=Math.random()*t;for(i=0;i<w.length;i++){r-=w[i][1];if(r<0)break}'
-                'var v=w[Math.min(i,w.length-1)][0];window.__ab=v;if(v!=="A")document.documentElement.classList.add("ab-pending");'
+                'var v=w[Math.min(i,w.length-1)][0],f=(new URLSearchParams(location.search).get("ab")||"").toUpperCase();'
+                'for(i=0;i<w.length;i++)if(w[i][0]===f){v=f;window.__abPreview=1}'
+                'window.__ab=v;if(v!=="A")document.documentElement.classList.add("ab-pending");'
                 'setTimeout(function(){document.documentElement.classList.remove("ab-pending")},1500)})()</script>\n')
 
     def apply_script(self):
@@ -141,5 +143,7 @@ class Variants:
             m[r['id']] = d
         return ('<script>(function(){var m=' + json.dumps(m, ensure_ascii=False).replace('</', '<\\/') + ',v=m[window.__ab];'
                 'function s(){if(!v)return;document.querySelectorAll("[data-ab]").forEach(function(e){var k=e.getAttribute("data-ab");'
-                'if(v[k]!=null)e.innerHTML=v[k]});document.querySelectorAll("input[name=x]").forEach(function(e){e.value=window.__ab})}'
-                's();document.documentElement.classList.remove("ab-pending");document.addEventListener("DOMContentLoaded",s)})()</script>')
+                'if(v[k]!=null)e.innerHTML=v[k]});document.querySelectorAll("input[name=x]").forEach(function(e){e.value=window.__abPreview?"":window.__ab})}'
+                'function b(){if(!window.__abPreview)return;var d=document.createElement("div");d.textContent="Previewing variant "+window.__ab+" \\u00b7 not counted";'
+                'd.style.cssText="position:fixed;left:12px;bottom:12px;z-index:9999;padding:6px 10px;border-radius:8px;background:#1f1d1a;color:#fff;font:12px/1.3 system-ui,sans-serif;opacity:.85;pointer-events:none";document.body.appendChild(d)}'
+                's();document.documentElement.classList.remove("ab-pending");document.addEventListener("DOMContentLoaded",function(){s();b()})})()</script>')

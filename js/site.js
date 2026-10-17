@@ -150,7 +150,7 @@
         hp: form.querySelector('input[name=hp]').value,
         page: location.pathname,
         v: (form.querySelector('input[name=v]') || {}).value || '',
-        x: window.__ab || (form.querySelector('input[name=x]') || {}).value || ''
+        x: window.__abPreview ? '' : (window.__ab || (form.querySelector('input[name=x]') || {}).value || '')
       };
       var ctrl = 'AbortController' in window ? new AbortController() : null;
       var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : 0;

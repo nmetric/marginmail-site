@@ -241,7 +241,7 @@ def sky():
 # One anonymous page-view count per load (see the privacy policy, "Site visit counts"). No cookies, no IDs, nothing stored
 # in the browser. Skipped for automation, Do Not Track / GPC, and localhost (unless ?debug).
 BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search),d=document;'
-          'if(n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
+          'if(window.__abPreview||n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
           'function M(k){var e=d.querySelector("meta[name="+k+"]");return e?e.content:""}'
           'addEventListener("load",function(){var r="";try{r=d.referrer?new URL(d.referrer).hostname:""}catch(e){}'
           'var w=innerWidth,b=JSON.stringify({p:M("page-path")||l.pathname,r:r,v:M("page-version"),x:window.__ab||"",'
