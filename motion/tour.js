@@ -343,7 +343,12 @@
     last = now;
     if (t >= dur) {
       if (cur < list.length - 1) show(cur + 1);
-      else { ended = true; rp.hidden = false; bars(); return sync(); }
+      else {
+        ended = true; rp.hidden = false; bars();
+        // js/site.js counts this (hero_tour_complete, anonymous, once per page load); the tour itself sends nothing.
+        document.dispatchEvent(new CustomEvent('marginmail:hero-tour-ended'));
+        return sync();
+      }
     }
     bars();
     sync();

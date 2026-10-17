@@ -239,15 +239,17 @@ def sky():
 
 
 # One anonymous page-view count per load (see the privacy policy, "Site visit counts"). No cookies, no IDs, nothing stored
-# in the browser. Skipped for automation, Do Not Track / GPC, and localhost (unless ?debug).
-BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search),d=document;'
-          'if(window.__abPreview||n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
+# in the browser. Skipped for automation, Do Not Track / GPC, ?ab= previews and localhost (unless ?debug). ?mmtest=1 marks
+# the count as a test (t=1): the server files it under traffic_test, which no stats view reads (previews count there too).
+HIT_URL = ENDPOINT.rsplit('/', 1)[0] + '/hit'  # https://join.marginmail.ai/hit (not str.replace: "//join" matches too)
+BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.search),d=document,T=q.has("mmtest");'
+          'if((window.__abPreview&&!T)||n.webdriver||n.doNotTrack=="1"||n.globalPrivacyControl||!n.sendBeacon||(/^(localhost|127\\.)/.test(l.hostname)&&!q.has("debug")))return;'
           'function M(k){var e=d.querySelector("meta[name="+k+"]");return e?e.content:""}'
           'addEventListener("load",function(){var r="";try{r=d.referrer?new URL(d.referrer).hostname:""}catch(e){}'
           'var w=innerWidth,b=JSON.stringify({p:M("page-path")||l.pathname,r:r,v:M("page-version"),x:window.__ab||"",'
           'us:q.get("utm_source")||q.get("s")||q.get("src")||"",um:q.get("utm_medium")||"",uc:q.get("utm_campaign")||"",'
-          'rc:q.has("joined")?"":q.get("r")||q.get("ref")||"",d:w<768?"phone":w<1200?"tablet":"desktop"});'
-          'n.sendBeacon("' + ENDPOINT.replace("/join", "/hit") + '",new Blob([b],{type:"text/plain"}))})}catch(e){}})();')
+          'rc:q.has("joined")?"":q.get("r")||q.get("ref")||"",d:w<768?"phone":w<1200?"tablet":"desktop",t:T?"1":""});'
+          'n.sendBeacon("' + HIT_URL + '",new Blob([b],{type:"text/plain"}))})}catch(e){}})();')
 
 
 def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, extra='', motion=(), og_image='/og/margin-og.png'):

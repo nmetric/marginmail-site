@@ -1,4 +1,5 @@
-/* marginmail.ai — the little JavaScript the site uses. No cookies, no tracking, nothing stored in the browser. */
+/* marginmail.ai — the little JavaScript the site uses. No cookies, no tracking, nothing stored in the browser.
+   The only counts are anonymous daily totals (a page view, and video tour engagement below), never per person. */
 (function () {
   'use strict';
   var ENDPOINT = 'https://join.marginmail.ai/join';
@@ -49,6 +50,33 @@
   var srcParam = (params.get('utm_source') || params.get('src') || params.get('s') || params.get('source') || '').trim().toLowerCase();
   if (!/^[a-z2-9]{8}$/.test(refParam)) refParam = '';
   srcParam = srcParam.replace(/[^a-z0-9._-]/g, '').slice(0, 64);
+
+  /* ---- Engagement counts (video tour): one anonymous sendBeacon per event, added to that day's totals on our server.
+     The same gates as the page-view beacon: nothing for automation, Do Not Track, Global Privacy Control, ?ab= previews
+     or localhost (unless ?debug). No ID of any kind is sent; the server keeps counts per event, variant and device class.
+     ?mmtest=1 marks events as tests (filed apart, never in the stats), and lets a ?ab= preview send them. ---- */
+  var EVENT_URL = ENDPOINT.replace(/\/join$/, '/event');
+  var testMode = params.has('mmtest');
+  function meta(k) { var e = doc.querySelector('meta[name="' + k + '"]'); return e ? e.content : ''; }
+  function countEvent(name, source) {
+    try {
+      var n = navigator;
+      if ((window.__abPreview && !testMode) || n.webdriver || n.doNotTrack == '1' || n.globalPrivacyControl || !n.sendBeacon) return;
+      if (/^(localhost|127\.)/.test(location.hostname) && !params.has('debug')) return;
+      var w = innerWidth;
+      n.sendBeacon(EVENT_URL, new Blob([JSON.stringify({
+        e: name, s: source || '', p: meta('page-path') || location.pathname, v: meta('page-version'), x: window.__ab || '',
+        d: w < 768 ? 'phone' : w < 1200 ? 'tablet' : 'desktop', t: testMode ? '1' : ''
+      })], { type: 'text/plain' }));
+    } catch (e) { /* counting never gets in the way */ }
+  }
+  // The animated hero tour (variant TOUR) reaching its last frame: once per page load, however often it's replayed.
+  var heroTourDone = false;
+  doc.addEventListener('marginmail:hero-tour-ended', function () {
+    if (heroTourDone) return;
+    heroTourDone = true;
+    countEvent('hero_tour_complete');
+  });
 
   /* ---- Signup forms ---- */
   var EMAIL = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)*\.[a-z]{2,63}$/i;
@@ -277,6 +305,20 @@
   // The TOUR variant has its own button in the chapter row, so the link under A's window steps aside.
   if (vtLink && window.__abHero && window.__abHero.video) vtLink.parentNode.hidden = true;
   var vtDlg = null, vtVid = null, vtOpener = null, vtOpen = false;
+  // Per open: the first play, and each quarter milestone crossed while playing (sent at most once per open). A reopen
+  // resumes where it left off, so milestones already behind the playhead at open time aren't counted again.
+  var VT_MARKS = [[0.25, 'tour_25'], [0.5, 'tour_50'], [0.75, 'tour_75']];
+  var vtRun = null;
+  function vtProgress(ended) {
+    if (!vtOpen || !vtRun || !vtRun.played) return;
+    var d = vtVid.duration;
+    if (!(d > 0) || !isFinite(d)) return;
+    var p = ended ? 1 : vtVid.currentTime / d;
+    VT_MARKS.forEach(function (m) {
+      if (p >= m[0] && m[0] > vtRun.from && !vtRun.sent[m[1]]) { vtRun.sent[m[1]] = 1; countEvent(m[1]); }
+    });
+    if (ended && !vtRun.sent.tour_complete) { vtRun.sent.tour_complete = 1; countEvent('tour_complete'); }
+  }
   function vtFocusables() {
     return Array.prototype.filter.call(vtDlg.querySelectorAll('button,video[controls],a[href]'), function (el) { return !el.hidden && el.offsetParent !== null; });
   }
@@ -297,6 +339,13 @@
     var showCaptions = function () { for (var i = 0; i < vtVid.textTracks.length; i++) if (vtVid.textTracks[i].kind === 'captions') vtVid.textTracks[i].mode = 'showing'; };
     vtVid.addEventListener('loadedmetadata', showCaptions);
     showCaptions();
+    vtVid.addEventListener('playing', function () {
+      if (!vtOpen || !vtRun || vtRun.played) return;
+      vtRun.played = true;
+      countEvent('tour_play');
+    });
+    vtVid.addEventListener('timeupdate', function () { vtProgress(false); });
+    vtVid.addEventListener('ended', function () { vtProgress(true); });
     vtDlg.querySelector('.vm-close').addEventListener('click', vtClose);
     // Esc: the dialog's own cancel, routed through vtClose so focus and the tour come back.
     vtDlg.addEventListener('cancel', function (e) { e.preventDefault(); vtClose(); });
@@ -312,12 +361,16 @@
       else if (!e.shiftKey && (a === last || !vtDlg.contains(a))) { e.preventDefault(); first.focus(); }
     });
   }
-  function vtOpenPlayer(c, opener) {
+  function vtOpenPlayer(c, opener, source) {
     c = c && c.src ? c : vtCfg;
     if (!c || !c.src || vtOpen) return;
     if (!vtDlg) vtBuild(c);
     vtOpener = opener || doc.activeElement;
+    // Where this open starts (a finished video restarts from 0 when played again).
+    var d = vtVid.duration, at = d > 0 && isFinite(d) && !vtVid.ended ? vtVid.currentTime / d : 0;
+    vtRun = { played: false, sent: {}, from: at >= 0.98 ? 0 : at };
     vtOpen = true;
+    countEvent('tour_open', source);
     root.classList.add('vm-on');
     if (vtDlg.showModal) vtDlg.showModal(); else vtDlg.setAttribute('open', '');
     vtDlg.classList.toggle('still', reduce.matches);
@@ -341,11 +394,11 @@
   if (vtLink) vtLink.addEventListener('click', function (e) {
     if (!vtCfg || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // new tab / download still work
     e.preventDefault();
-    vtOpenPlayer(vtCfg, vtLink);
+    vtOpenPlayer(vtCfg, vtLink, 'hero_link');
   });
   doc.addEventListener('marginmail:video-tour', function (e) {
     var t = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.vt') : null;
-    vtOpenPlayer(e.detail, t || doc.querySelector('.tour-ch .vt'));
+    vtOpenPlayer(e.detail, t || doc.querySelector('.tour-ch .vt'), 'tour_button');
   });
 
   /* ---- The scroll sky: CSS scroll-driven animations where supported; otherwise a light rAF fallback ---- */
