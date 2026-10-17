@@ -24,7 +24,7 @@ The margin is where the work gets clear. Every good page of notes has one. It’
 
 ### Follow-up reminders, requests and meeting invites: Only what needs you.
 
-MarginMail writes a short note in the margin when someone's waiting on you, when you're waiting on a reply, or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left for Later.
+MarginMail writes a short note in the margin when someone's waiting on you, when you're waiting on a reply, or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left to send it to the back of the stack.
 
 ### Email, calendar and contacts in one Mac window: Your mail, your calendar and your people, side by side.
 
@@ -100,7 +100,7 @@ Yes. Your Google Calendar sits beside your inbox. Invitations you haven’t answ
 Yes. MarginMail’s Split view shows your inbox, the message and today’s calendar side by side. Click a name to see that person’s page. Answer invites with A, M or D, and their email files itself. It works with several Google accounts and calendars at once.
 
 **How do follow-up reminders work in MarginMail?**
-When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or move it to Later. It works on rules, with AI off.
+When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or send it to the back of the stack. It works on rules, with AI off.
 
 **Does MarginMail use read receipts or tracking pixels?**
 No. MarginMail never adds read receipts or open tracking to the mail you send. It also blocks remote images in mail you receive by default, so senders’ tracking pixels don’t load unless you allow images for that sender.

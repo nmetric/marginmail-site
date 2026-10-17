@@ -15,7 +15,7 @@
 @keyframes tIn{from{opacity:0;transform:translateY(8px)}}
 @keyframes tPop{from{opacity:0;transform:scale(.94)}}
 @keyframes tOut{to{opacity:0}}
-@keyframes tCh{from{opacity:0}to{opacity:1}}
+@keyframes tCh{from,to{opacity:0}}
 @keyframes tCar{0%,100%{opacity:1}}
 @keyframes tSlide{from{opacity:0;transform:translateX(40px)}}
 @keyframes tDrop{from{opacity:0;transform:translateY(-30px)}}
@@ -33,7 +33,8 @@
 .a-slide{animation:tSlide .5s cubic-bezier(.2,.7,.2,1) var(--d,0ms) both}
 .a-drop{animation:tDrop .5s cubic-bezier(.2,.7,.2,1) var(--d,0ms) both}
 .a-dw{stroke-dasharray:1;stroke-dashoffset:1;animation:dw var(--t,600ms) cubic-bezier(.65,0,.35,1) var(--d,0ms) forwards}
-.a-ch{animation:tCh 1ms steps(1) var(--d) both;position:relative}
+/* Hidden for exactly --d, then the animation ends and the character shows at its natural opacity (no end state to hold). */
+.a-ch{animation:tCh var(--d) linear 0s 1;position:relative}
 .a-ch::after{content:"";position:absolute;right:-1px;top:.05em;width:1.5px;height:1.15em;background:var(--clay);opacity:0;animation:tCar var(--c,40ms) step-end var(--d) 1}
 .a-flip{animation:tFlip 2s cubic-bezier(.45,.05,.3,1) var(--d) both}
 .a-done{animation:tDone 1.1s cubic-bezier(.5,.05,.45,1) var(--d) both}
@@ -63,8 +64,8 @@
 .tr-ph{position:relative;white-space:nowrap;border-radius:3px}
 .tr-ph>i{position:absolute;inset:-.06em -.12em;border-radius:3px;background:var(--bg);animation:tEnter .3s ease var(--d) both;z-index:-1}
 .tr-ph>svg{left:0;bottom:-.42em;width:100%;height:.6em}
-.tr-mrg{position:absolute;top:0;bottom:0;border-left:1.5px solid rgba(111,55,27,.28);background:#FCFAF7}
-.tr-note{position:absolute;left:.8em;right:.8em;padding:.6em .7em;border-radius:8px;background:#fff;box-shadow:0 0 0 1px #ECE5DB,0 6px 16px -10px rgba(60,40,20,.35);font-size:.86em;line-height:1.3}
+.tr-mrg{position:absolute;top:0;bottom:0;border-left:1.5px solid rgba(111,55,27,.28);background:#FCFAF7;display:flex;flex-direction:column;gap:.7em;padding-top:.8em}
+.tr-note{position:relative;top:auto!important;margin:0 .8em;padding:.6em .7em;border-radius:8px;background:#fff;box-shadow:0 0 0 1px #ECE5DB,0 6px 16px -10px rgba(60,40,20,.35);font-size:.86em;line-height:1.3}
 .tr-note .k{display:inline-block;padding:.1em .45em;border-radius:4px;font-size:.78em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--bg);color:var(--fg);margin-bottom:.35em}
 .tr-note .sl{display:flex;gap:.3em;margin-top:.4em}
 .tr-note .sl span{padding:.15em .45em;border-radius:5px;background:#DDF1E7;color:#1F5C42;font-weight:600;font-size:.92em}

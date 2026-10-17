@@ -34,8 +34,8 @@ MANIFESTO = dict(
          'People pages · Companies · Notes', 'remember: she’s on Eastern time'),                                 # EDIT (Ava is in Maine)
         ('underline', 'Skim, then know', 'See why something’s here, what’s been decided, and the exact sentence that asks.',
          '“Why this?” · What’s been decided · Highlighted asks', 'decided: ship Thursday'),
-        ('arrow', 'Make the call', 'What needs you is a stack. Right for Done, left for Later, or reply.',
-         'The Margins stack · Done · Later · Write it', 'Done. Next.'),
+        ('arrow', 'Make the call', 'What needs you is a stack. Right for Done, left to come back to it, or reply.',
+         'The Margins stack · Done · Back of the stack · Write it', 'Done. Next.'),
         ('bracket', 'Bring order', 'A messy day becomes a short stack, and an empty one ends in a sunrise.',
          'The Margins stack · All clear scenes', 'from 35 to 5'),
         ('highlight', 'Mark what matters', 'MarginMail highlights the ask in the message and marks the row in the margin.',
@@ -44,7 +44,7 @@ MANIFESTO = dict(
 
 S_STACK = dict(lbl='Follow-up reminders, requests and meeting invites', h='Only what needs you.',
           body=("MarginMail writes a short note in the margin when someone's waiting on you, when you're waiting on a reply, "
-                "or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left for Later."),
+                "or when a meeting invite needs an answer. Open the stack and work through them like cards: drag right for Done, left to send it to the back of the stack."),
           chips=[('Follow-ups', '“You asked Ava on Oct 9. No reply in 6 days.”'),                     # EDIT name
                  ('Meetings', '“Unanswered invite: Saltmarsh shoot walkthrough, Thursday.”'),          # EDIT name
                  ('Requests', '“Marco asked for the signed proof by Thursday.”')],                    # EDIT name + item (matches the shot)
@@ -129,7 +129,7 @@ FAQ = [  # v3: 14 questions as people ask them (follow-up example uses Ava, EDIT
  ('Does MarginMail work with multiple Gmail accounts?', 'Yes. You can add several Gmail and Google Workspace accounts and see them in one unified inbox, with your calendars together beside it. MarginMail supports Google accounts today. iCloud and other providers are planned for later, and MarginMail will say so clearly when they arrive.'),
  ('Does MarginMail have a calendar?', 'Yes. Your Google Calendar sits beside your inbox. Invitations you haven’t answered look different and gather in a Needs your answer list. Press A, M or D to accept, maybe or decline, and the invite’s email files itself. Find a time shows both calendars side by side when Google shares theirs with you, and places the hold.'),
  ('Can I see my email and calendar in one window on Mac?', 'Yes. MarginMail’s Split view shows your inbox, the message and today’s calendar side by side. Click a name to see that person’s page. Answer invites with A, M or D, and their email files itself. It works with several Google accounts and calendars at once.'),
- ('How do follow-up reminders work in MarginMail?', 'When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or move it to Later. It works on rules, with AI off.'),
+ ('How do follow-up reminders work in MarginMail?', 'When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or send it to the back of the stack. It works on rules, with AI off.'),
  ('Does MarginMail use read receipts or tracking pixels?', 'No. MarginMail never adds read receipts or open tracking to the mail you send. It also blocks remote images in mail you receive by default, so senders’ tracking pixels don’t load unless you allow images for that sender.'),
  ('How much does MarginMail cost?', 'MarginMail is free during the beta. Pricing will be announced before the beta ends, well before anything changes for you. Joining the beta only needs your email address, and the only email we’ll send is your invite.'),
  ('Is there a MarginMail app for iPhone?', 'Not yet. MarginMail starts on the Mac, where your mail, calendar and people share one window. An iPhone companion app is planned for later. Until then, your mail stays in Gmail as usual, so you can keep using Gmail on your phone.'),
