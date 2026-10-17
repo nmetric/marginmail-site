@@ -28,7 +28,7 @@ import abv  # noqa: E402
 
 SITE = 'https://marginmail.ai'
 ENDPOINT = 'https://join.marginmail.ai/join'
-BUILT = '2026-10-16'
+BUILT = '2026-10-17'
 DEFINITION = 'Margin is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
 FOOT_SMALL = 'Made with love for the Mac. No cookies, no tracking. We count visits anonymously on our own server — no ads, no third parties, and we honor Do Not Track. · © 2026 Margin'
@@ -426,6 +426,67 @@ def home():
              + note(d['note'], 'right:calc(44% + 14px);top:calc(100% + 18px);text-align:right;transform-origin:right top', rot=-3) + '</div>'
              f'<div class="chips">{chips}</div><p class="body after">{d["below"]}</p></div></section>')
 
+    # ---- One window: Split view (Oct 17, R2). The real render, plus a play-once moment: the cursor clicks Imogen's name and
+    # her page opens over the reader; then A accepts Lena's invitation and its row leaves the list. One Clay mark (the
+    # bracket over the three panes), one margin note. Reduce Motion: the end state, still. Coordinates are the 2880 px render's.
+    d = C.S_SPLIT
+    split_alt = ('Margin’s Split view on a Mac: the inbox, Imogen Hale’s message from Kiln & Co. and today’s calendar side by side. '
+                 'Clicking her name opens her person page, with her local time and what she’s waiting on, and an unanswered '
+                 'invitation in the inbox is accepted with the A key and files itself.')
+    big = v(IMG['margin-mac-email-app-gmail-calendar']['srcs'][-1][2])
+    av = f"background-image:url({big})"
+    page_html = (
+        '<div class="sv-page" aria-hidden="true"><p class="sv-crumb"><span>‹</span> Kiln &amp; Co. identity <span>›</span> <b>Imogen Hale</b></p>'
+        f'<div class="sv-top"><i class="sv-av" style="{av}"></i><div><p class="sv-name">Imogen Hale</p>'
+        '<p class="sv-role">Founder, <b>Kiln &amp; Co.</b></p><p class="sv-met">Introduced by Sofia Marin · Hudson, NY</p>'
+        '<p class="sv-time"><i></i>Last contact today · 12:41 PM for Imogen</p></div>'
+        '<p class="sv-btns"><span class="k">Email</span><span>Find a time</span></p></div>'
+        '<div class="sv-cards"><div class="sv-card"><p class="sv-h">Timeline</p>'
+        '<div class="sv-li"><b>Kiln &amp; Co. identity</b><span>Today 8:49 AM</span><em>Could we find 30 minutes next week to talk through scope?</em></div>'
+        '<div class="sv-li"><b>Sofia Marin introduced you</b><span>Sun</span><em>Imogen, meet Nora. Fernhill did our boxes…</em></div>'
+        '<p class="sv-h sv-h2">Notes</p><div class="sv-li"><em>Opening a second studio in the spring.</em></div></div>'
+        '<div class="sv-side"><div class="sv-card"><p class="sv-h">Tasks</p><p class="sv-sub">Waiting on you</p>'
+        '<div class="sv-task"><i></i><div><b>30 minutes next week on scope</b><span>Re: Kiln &amp; Co. identity</span></div></div></div>'
+        '<div class="sv-card"><p class="sv-h">Contact</p><div class="sv-li"><span class="sv-k">Work email</span><b>imogen@kilnandco.com</b></div>'
+        '<div class="sv-li"><span class="sv-k">Time zone</span><b>Eastern Time · 12:41 PM for Imogen</b></div></div></div></div></div>')
+    cursor = ('<svg class="sv-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5V19.2L9.3 15.1L12.2 21.6L15 20.4L12.2 14H18.3Z" '
+              'fill="#1D1B18" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg><i class="sv-click" aria-hidden="true"></i>')
+    moment = (page_html
+              + '<span class="sv-pill" aria-hidden="true">Accepted</span>'
+              + f'<div class="sv-close" aria-hidden="true"><i class="sv-row"></i><div class="sv-move"><i style="background-image:url({big})"></i></div></div>'
+              + '<div class="sv-keys" aria-hidden="true"><span class="a">A</span><span>M</span><span>D</span></div>' + cursor)
+    pts = []
+    x = 6
+    while x <= 1134:
+        pts.append((x, 4 + M.wob(x) * .5))
+        x += 12
+    brace = ('M3 22L5 6' + ''.join(f'L{M.f(px)} {M.f(py + 2)}' for px, py in pts) + 'L1135 7L1137 22')
+    bracket = (f'<svg class="sv-bracket" viewBox="0 0 1140 26" preserveAspectRatio="none" aria-hidden="true">'
+               + M._path(brace, M.CLAY, 2.6, 900, 6300).replace('<path ', '<path vector-effect="non-scaling-stroke" ') + '</svg>')
+    P.append('<section class="sec" id="one-window"><div class="in">' + sec_head(d, 660) +
+             f'<figure class="splitfig" data-seen>{bracket}'
+             + note(d['note'], 'right:4px;top:-58px;text-align:right;transform-origin:right top', rot=-3, delay=7000)
+             + '<div class="win"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="pic sv">'
+             + pic('margin-mac-email-app-gmail-calendar', None, split_alt,
+                   '(min-width: 1200px) min(1140px, 100vw - 300px), (min-width: 768px) calc(100vw - 112px), calc(100vw - 32px)', '', cls='sv-img')
+             + moment + '</div></div></figure></div></section>')
+
+    # ---- People & Companies
+    d = C.S_PEOPLE
+    pp = IMG['margin-person-page-crm']
+    IW = 720
+    IH = round(IW * pp['h'] / pp['w'])
+    sx, sy = .536 * IW, .222 * IH
+    people_alt = ('Ava Lindqvist’s person page in Margin: Head of Brand at Saltmarsh Coffee, her local time (12:41 PM), how you met, '
+                  'notes, a timeline of recent mail and meetings, and her tasks.')
+    P.append('<section class="sec alt"><div class="in"><div class="row" style="gap:20px">'
+             f'<div class="col" style="flex:0 1 400px">{sec_head(d, 390)}</div>'
+             f'<div class="col" style="flex:0 1 720px"><div style="position:relative" data-seen>'
+             + pic('margin-person-page-crm', 'margin-person-page-local-time', people_alt, '(min-width: 1024px) 720px, calc(100vw - 112px)', 'calc(100vw - 32px)', cls='shot')
+             + svg_box(IW, IH, M.star(sx + 10, sy - 2, 7, sw=2.2, delay=900) + M.arrow(.6 * IW, .14 * IH, sx + 22, sy - 8, bend=.25, delay=1400), cls='ov t-up')
+             + svg_box(1400, 780, M.star(1222, 214, 13, sw=3, delay=900), cls='ov p-only')
+             + note(d['note'], 'left:50%;top:5%', rot=-3, size=21, delay=1700) + '</div></div></div></div></section>')
+
     # ---- Find time
     d = C.S_TIME
     cal_alt = ('Margin’s calendar beside your mail: unanswered meeting invitations are marked, and Needs your answer gathers them, '
@@ -485,27 +546,11 @@ def home():
              + svg_box(560, 468, M.arrow(-36, -26, 36, 150, bend=-.32, delay=1400), cls='ov d-only')
              + note(d['note'], 'left:-70px;top:-66px', rot=-3, delay=1700) + '</div></div></div></div></section>')
 
-    # ---- People & Companies
-    d = C.S_PEOPLE
-    pp = IMG['margin-person-page-crm']
-    IW = 720
-    IH = round(IW * pp['h'] / pp['w'])
-    sx, sy = .536 * IW, .222 * IH
-    people_alt = ('Ava Lindqvist’s person page in Margin: Head of Brand at Saltmarsh Coffee, her local time (12:41 PM), how you met, '
-                  'notes, a timeline of recent mail and meetings, and her tasks.')
-    P.append('<section class="sec"><div class="in"><div class="row" style="gap:20px">'
-             f'<div class="col" style="flex:0 1 400px">{sec_head(d, 390)}</div>'
-             f'<div class="col" style="flex:0 1 720px"><div style="position:relative" data-seen>'
-             + pic('margin-person-page-crm', 'margin-person-page-local-time', people_alt, '(min-width: 1024px) 720px, calc(100vw - 112px)', 'calc(100vw - 32px)', cls='shot')
-             + svg_box(IW, IH, M.star(sx + 10, sy - 2, 7, sw=2.2, delay=900) + M.arrow(.6 * IW, .14 * IH, sx + 22, sy - 8, bend=.25, delay=1400), cls='ov t-up')
-             + svg_box(1400, 780, M.star(1222, 214, 13, sw=3, delay=900), cls='ov p-only')
-             + note(d['note'], 'left:50%;top:5%', rot=-3, size=21, delay=1700) + '</div></div></div></div></section>')
-
     # ---- The details
     dd = C.DETAILS
     thumbs = ''.join(f'<figure>{fr}<figcaption>{nm}</figcaption></figure>' for nm, fr in M.composer_modes(.31))
     it = dd['items']
-    P.append(f'<section class="sec alt details"><div class="in"><h2 class="lbl">{dd["lbl"]}</h2><div class="dgrid">'
+    P.append(f'<section class="sec details"><div class="in"><h2 class="lbl">{dd["lbl"]}</h2><div class="dgrid">'
              f'<div><div class="thumbs" role="img" aria-label="Margin’s reply composer docked under a message, floating in a corner, and expanded over the reader, with the inbox list visible in each.">{thumbs}</div>'
              f'<h3>{it[0][0]}</h3><p>{it[0][1]}</p></div>'
              + ''.join(f'<div><h3>{x}</h3><p>{y}</p></div>' for x, y in it[1:]) + '</div></div></section>')
@@ -526,7 +571,7 @@ def home():
                  + M.loop(50, 52, 64, 78, sw=2.4, delay=900).replace('<path ', '<path vector-effect="non-scaling-stroke" ') + f'</svg></span>{post}')
             extra = note(d['note'], 'left:120px;top:-34px', rot=-4, delay=1700)
         points += f'<div>{M.priv_icon(i)}<div><h3>{t}</h3><p>{b}</p></div>{extra}</div>'
-    P.append('<section class="sec" id="privacy"><div class="in">' + sec_head(d, 700) +
+    P.append('<section class="sec alt" id="privacy"><div class="in">' + sec_head(d, 700) +
              f'<div class="diagram" data-seen><div class="t-up">{fix(diag_d)}</div><div class="p-only" style="max-width:358px;margin:0 auto">{fix(diag_m)}</div></div>'
              f'<div class="pgrid" data-seen>{points}</div></div></section>')
 
@@ -550,19 +595,19 @@ def home():
             '<p class="s">4 done · 1 not useful · Next notes tomorrow morning</p><p class="c">Next: Saltmarsh label review at 10:00 AM</p>'
             '<p class="b">Back to your mail <kbd>esc</kbd></p></div>')
     joy_alt = 'An empty Margins stack: a line drawing of the sun rising over the horizon, a check mark, and the words “A clear morning.”'
-    P.append('<section class="sec alt"><div class="in">' + sec_head(d, 640) +
+    P.append('<section class="sec"><div class="in">' + sec_head(d, 640) +
              f'<div class="joy-scene t-up" data-seen role="group" aria-label="{esc(joy_alt)}">{sd}{copy}{bd}'
              + note(d['note'], 'left:1.9%;top:43.7%;width:116px;white-space:normal', rot=-4, size=25, delay=3000) + '</div>'
              f'<div class="joy-scene p-only" data-seen role="group" aria-label="{esc(joy_alt)}">{sm}{copy.replace("joy-copy", "joy-copy m")}{bm2}</div></div></section>')
 
     # ---- Second CTA
-    P.append('<section class="sec cta"><div class="in center">'
+    P.append('<section class="sec alt cta"><div class="in center">'
              f'<h2 class="h2" data-seen>Come try it <span class="ul">early.{underline_svg(124, sw=3, delay=700)}</span></h2>'
              f'<p class="lead">{C.CTA["body"]}</p>' + joinform('join-end') + '</div></section>')
 
     # ---- FAQ
     qa = ''.join(f'<div><h3>{q}</h3><p>{a}</p></div>' for q, a in C.FAQ)
-    P.append(f'<section class="sec alt faq" id="faq"><div class="in"><p class="lbl">FAQ</p><h2 class="h2">Questions</h2><div class="qa">{qa}</div></div></section>')
+    P.append(f'<section class="sec faq" id="faq"><div class="in"><p class="lbl">FAQ</p><h2 class="h2">Questions</h2><div class="qa">{qa}</div></div></section>')
 
     plain = lambda s: re.sub(r'<[^>]+>', '', s)
     ld = {"@context": "https://schema.org", "@graph": [
@@ -571,7 +616,7 @@ def home():
          "applicationCategory": "BusinessApplication", "applicationSubCategory": "Email client", "operatingSystem": "macOS 26 or later",
          "url": f"{SITE}/", "image": f"{SITE}/og/margin-og.png",
          "description": DEFINITION + ' It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. '
-                        'Its optional AI runs on your Mac or through your own Claude, never on a Margin server, and never sends email.',
+                        'Its optional AI uses Apple Intelligence on your Mac or your own Claude when you click, never a Margin server, and never sends email.',
          "publisher": {"@id": f"{SITE}/#org"},
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during the beta", "availability": "https://schema.org/PreOrder"},
          "featureList": ["Follow-up, meeting and request notes in the reply bar",
@@ -579,11 +624,13 @@ def home():
                          "Live words: dates, people, files and promises become actions as you type",
                          "Find a time with both calendars side by side; holds placed when you pick",
                          "Calendar built in: accept, maybe or decline invites with A, M or D",
-                         "People and Companies: a page for everyone you write to, with local time",
-                         "Write it: drafts in your voice with your own Claude; never sends",
+                         "Split view: inbox, message, calendar and the person's page in one window",
+                         "People and Companies: a private personal CRM with a page for everyone you write to, local time, and tasks that close themselves",
+                         "Write it: drafts from your notes with your own Claude, on click; never sends",
                          "What's been decided: summaries of long threads",
                          "Request notes found on-device with Apple Intelligence",
                          "Multiple Gmail and Google Workspace accounts in one unified inbox",
+                         "Menu bar agenda with Join",
                          "No Margin server, no analytics, no read receipts"]},
         {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "Margin — Mail that knows what needs you · Gmail app for Mac",
          "isPartOf": {"@id": f"{SITE}/#site"}, "about": {"@id": f"{SITE}/#app"}, "dateModified": BUILT, "inLanguage": "en",
@@ -597,7 +644,7 @@ def home():
                f'imagesizes="(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)" media="(min-width: 768px)" fetchpriority="high">\n'
                f'<link rel="preload" as="image" imagesrcset="{srcset("margin-message-reply-bar-note")}" imagesizes="calc(100vw - 32px)" media="(max-width: 767px)" fetchpriority="high">\n')
     hh = head('Margin — Mail that knows what needs you · Gmail app for Mac',
-              'Margin is a native Mac email app for Gmail with your calendar and people built in. Private AI that runs on your Mac and never sends. Free in beta.',
+              'Margin is a native Mac email app for Gmail with your calendar and a page for everyone you write to. Optional private AI that never sends. Free in beta.',
               '/', og_title='Margin — Mail that knows what needs you',
               og_desc='Give your inbox some margin. A native Mac email app for Gmail with your calendar and people built in. Private AI that never sends. Free during the beta.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
@@ -919,8 +966,8 @@ LLMS_FACTS = """Key facts:
 - Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
 - Privacy: Margin talks directly to Google from the Mac. No Margin server holds mail, credentials or usage data. No analytics. No read receipts or open tracking.
-- AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude on the Mac, only on click (Write it, What's been decided). AI never sends email.
-- Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts in your voice, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies (a page per person with conversations, meetings, tasks and local time; companies by domain); Done instead of Archive; typing under 16 ms per key.
+- AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
+- Shipped features: Margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for Later; "Why this?" on every card; calm scenes when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive; typing under 16 ms per key.
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 """
@@ -932,7 +979,7 @@ def strip_html(s):
 
 def llms():
     summary = (f'> {DEFINITION} It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. '
-               'AI runs on your Mac (Apple Intelligence) or through your own Claude if you opt in. There is no Margin server for your mail, '
+               'AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no Margin server for your mail, '
                'no analytics, and AI never sends. It is in beta and free during the beta.')
     pages = ['- [Home](https://marginmail.ai/): what Margin is and how to join the beta']
     for p in sorted(PAGES, key=lambda p: (not p['path'].startswith('/compare/'), p['path'] != '/compare/', p['path'])):
@@ -946,7 +993,7 @@ def llms():
     out.append('## Home (https://marginmail.ai/)\n')
     out.append(f'### What is Margin?\n\n{strip_html(C.WHAT_IS["lead"] + C.WHAT_IS["rest"])}\n')
     out.append(f'### {C.MANIFESTO["lbl"]}\n\n{strip_html(C.MANIFESTO["text"])}\n')
-    for d in (C.S_STACK, C.S_TIME, C.S_LIVE, C.S_SKIM, C.S_WRITE, C.S_PEOPLE, C.S_MACPRIV, C.S_JOY):
+    for d in (C.S_STACK, C.S_SPLIT, C.S_PEOPLE, C.S_TIME, C.S_LIVE, C.S_SKIM, C.S_WRITE, C.S_MACPRIV, C.S_JOY):
         txt = f'### {strip_html(d["lbl"])}: {strip_html(d["h"])}\n\n{strip_html(d["body"])}\n'
         if 'points' in d:
             txt += '\n' + '\n'.join(f'- {strip_html(t)} {strip_html(b)}' for t, b in d['points']) + '\n'

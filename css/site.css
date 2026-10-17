@@ -463,3 +463,70 @@ table.tbl{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;f
 /* The accept moment waits for its block to be seen, like every other mark. */
 .js .accept .ev,.js .keycaps,.js .keycaps span.a{animation-play-state:paused}
 .js .seen .accept .ev,.js .seen .keycaps,.js .seen .keycaps span.a{animation-play-state:running}
+
+/* One window (Split view, Oct 17). The real 2880 px render; everything on it is placed in that render's pixels (--u).
+   Plays once when seen: the cursor clicks Imogen's name and her page opens over the reader, then A accepts Lena's invite
+   and its row leaves the list, then the Clay bracket draws over the three panes. Reduce Motion: the end state, still. */
+.splitfig{position:relative;margin:92px 0 0}
+.splitfig .sv{container-type:inline-size}
+.sv>*:not(picture){--u:calc(100cqw / 2880)}
+.sv-bracket{position:absolute;left:1%;right:1%;top:-34px;width:98%;height:24px;overflow:visible}
+.sv-page{position:absolute;left:calc(852*var(--u));top:calc(118*var(--u));width:calc(1388*var(--u));height:calc(1724*var(--u));box-sizing:border-box;
+  padding:calc(44*var(--u)) calc(56*var(--u));background:#F7F4EF;border-radius:calc(26*var(--u));box-shadow:0 0 0 1px rgba(60,40,20,.10),calc(-18*var(--u)) 0 calc(60*var(--u)) rgba(60,40,20,.10);
+  overflow:hidden;line-height:1.3;color:var(--ink);font-family:var(--sans);text-align:left;animation:svIn 620ms cubic-bezier(.2,.7,.2,1) 1750ms both}
+@keyframes svIn{from{opacity:0;transform:translateX(calc(70*var(--u)))}to{opacity:1;transform:none}}
+.sv-page p{margin:0}
+.sv-crumb{font-size:calc(26*var(--u));color:#6B645A}.sv-crumb span{margin:0 calc(8*var(--u));color:#9A9184}.sv-crumb b{color:var(--ink);font-weight:600}
+.sv-top{display:flex;align-items:flex-start;gap:calc(34*var(--u));margin-top:calc(50*var(--u))}
+.sv-av{flex:none;display:block;width:calc(132*var(--u));height:calc(132*var(--u));border-radius:50%;background-repeat:no-repeat;
+  background-size:calc(2880*1.65*var(--u)) auto;background-position:calc(-926*1.65*var(--u)) calc(-424*1.65*var(--u));box-shadow:0 0 0 calc(5*var(--u)) #fff,0 0 0 calc(9*var(--u)) #E2D8CC}
+.sv-top>div{flex:1;min-width:0}
+.sv-name{font:400 calc(84*var(--u))/1.05 var(--serif);letter-spacing:-.01em}
+.sv-role{font-size:calc(30*var(--u));margin-top:calc(12*var(--u))!important}.sv-role b{font-weight:600}
+.sv-met{font-size:calc(25*var(--u));color:#6B645A;margin-top:calc(8*var(--u))!important}
+.sv-time{font-size:calc(25*var(--u));color:#6B645A;margin-top:calc(8*var(--u))!important;display:flex;align-items:center;gap:calc(14*var(--u))}
+.sv-time i{display:block;width:calc(44*var(--u));height:calc(4*var(--u));border-radius:9px;background:var(--clay)}
+.sv-btns{display:flex;gap:calc(12*var(--u));flex:none}
+.sv-btns span{font:600 calc(25*var(--u))/1 var(--sans);padding:calc(16*var(--u)) calc(26*var(--u));border-radius:999px;background:#fff;box-shadow:0 0 0 1px #E2D8CC}
+.sv-btns .k{background:var(--ink);color:#fff;box-shadow:none}
+.sv-cards{display:flex;gap:calc(26*var(--u));margin-top:calc(54*var(--u));align-items:flex-start}
+.sv-cards>.sv-card{flex:1.25}
+.sv-side{flex:1;display:flex;flex-direction:column;gap:calc(26*var(--u))}
+.sv-card{background:#fff;border-radius:calc(26*var(--u));box-shadow:0 0 0 1px #ECE5DB;padding:calc(30*var(--u)) calc(32*var(--u))}
+.sv-h{font:600 calc(29*var(--u))/1.2 var(--sans)}.sv-h2{margin-top:calc(34*var(--u))!important}
+.sv-sub{font-size:calc(23*var(--u));color:#6B645A;margin-top:calc(18*var(--u))!important}
+.sv-li{display:grid;grid-template-columns:1fr auto;gap:calc(4*var(--u)) calc(14*var(--u));margin-top:calc(22*var(--u));font-size:calc(24*var(--u))}
+.sv-li b{font-weight:600}.sv-li span{color:#6B645A;font-size:calc(22*var(--u))}.sv-li em{grid-column:1/-1;font-style:normal;color:#5C554B}
+.sv-li .sv-k{grid-column:1/-1;order:-1}
+.sv-task{display:flex;gap:calc(16*var(--u));margin-top:calc(14*var(--u));font-size:calc(24*var(--u))}
+.sv-task i{flex:none;width:calc(28*var(--u));height:calc(28*var(--u));border-radius:calc(7*var(--u));box-shadow:inset 0 0 0 calc(3*var(--u)) #B9AFA2;margin-top:calc(2*var(--u))}
+.sv-task b{display:block;font-weight:500}.sv-task span{display:block;color:#6B645A;font-size:calc(22*var(--u));margin-top:calc(4*var(--u))}
+/* Lena's invitation: A goes down, the pill says so, the row fades and the list closes up (the rows below, from the render, move up). */
+.sv-keys{position:absolute;left:calc(560*var(--u));top:calc(840*var(--u));display:flex;gap:calc(14*var(--u));padding:calc(12*var(--u));border-radius:calc(26*var(--u));
+  background:rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(60,40,20,.12),0 calc(18*var(--u)) calc(50*var(--u)) calc(-16*var(--u)) rgba(60,40,20,.38);animation:svKeys 1900ms cubic-bezier(.2,.7,.2,1) 3500ms both}
+@keyframes svKeys{0%{opacity:0;transform:translateY(calc(16*var(--u))) scale(.94)}16%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:scale(.97)}}
+.sv-keys span{display:inline-flex;align-items:center;justify-content:center;width:calc(76*var(--u));height:calc(76*var(--u));border-radius:calc(18*var(--u));background:var(--paper);
+  box-shadow:0 0 0 1px #D9CFC2,0 3px 0 #D9CFC2;font:600 calc(34*var(--u))/1 var(--sans);color:var(--ink)}
+.sv-keys span.a{animation:press 520ms cubic-bezier(.3,.7,.3,1) 4250ms both}
+.sv-pill{position:absolute;left:calc(310*var(--u));top:calc(866*var(--u));height:calc(36*var(--u));padding:0 calc(16*var(--u));border-radius:999px;background:#DDF1E7;color:#1F5C42;
+  font:700 calc(20*var(--u))/calc(36*var(--u)) var(--sans);letter-spacing:.08em;text-transform:uppercase;animation:fadein 280ms ease-out 4600ms both;opacity:0}
+.sv-close{position:absolute;left:calc(152*var(--u));top:calc(682*var(--u));width:calc(676*var(--u));height:calc(1160*var(--u));overflow:hidden;border-radius:0 0 calc(30*var(--u)) calc(30*var(--u));pointer-events:none}
+.sv-row{position:absolute;left:0;top:0;width:100%;height:calc(258*var(--u));background:#FAF8F5;opacity:0;animation:fadein 380ms ease-out 5500ms both}
+.sv-move{position:absolute;left:0;top:0;width:100%;height:calc(1160*var(--u));background:#FAF8F5;transform:translateY(calc(258*var(--u)));animation:svUp 640ms cubic-bezier(.3,.7,.2,1) 5900ms both}
+.sv-move i{display:block;width:100%;height:calc(902*var(--u));background-repeat:no-repeat;background-size:calc(2880*var(--u)) auto;background-position:calc(-152*var(--u)) calc(-940*var(--u))}
+@keyframes svUp{from{transform:translateY(calc(258*var(--u)))}to{transform:none}}
+.sv-cursor{position:absolute;left:calc(1112*var(--u));top:calc(446*var(--u));width:calc(64*var(--u));height:calc(64*var(--u));margin:calc(-6*var(--u)) 0 0 calc(-12*var(--u));overflow:visible;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.25));animation:svCur 2300ms cubic-bezier(.4,.1,.2,1) 300ms both;transform-origin:20% 10%}
+@keyframes svCur{0%{opacity:0;transform:translate(calc(300*var(--u)),calc(260*var(--u)))}12%{opacity:1}56%{transform:none}62%{transform:scale(.86)}70%{transform:none}86%{opacity:1}100%{opacity:0;transform:none}}
+.sv-click{position:absolute;left:calc(1112*var(--u));top:calc(446*var(--u));width:calc(90*var(--u));height:calc(90*var(--u));margin:calc(-45*var(--u)) 0 0 calc(-45*var(--u));border-radius:50%;
+  box-shadow:inset 0 0 0 calc(4*var(--u)) rgba(194,83,31,.55);opacity:0;animation:svClick 560ms ease-out 1640ms both}
+@keyframes svClick{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:scale(1.5)}}
+.js .splitfig:not(.seen) .sv-page,.js .splitfig:not(.seen) .sv-keys,.js .splitfig:not(.seen) .sv-keys span.a,.js .splitfig:not(.seen) .sv-pill,.js .splitfig:not(.seen) .sv-row,
+.js .splitfig:not(.seen) .sv-move,.js .splitfig:not(.seen) .sv-cursor,.js .splitfig:not(.seen) .sv-click{animation-play-state:paused}
+@media (max-width:767px){.splitfig{margin-top:56px}.sv-bracket{top:-24px;height:16px}}
+@media (prefers-reduced-motion:reduce){
+  .sv-page{animation:none!important;opacity:1;transform:none}
+  .sv-row{animation:none!important;opacity:1}
+  .sv-move{animation:none!important;transform:none}
+  .sv-keys,.sv-cursor,.sv-click,.sv-pill{display:none}
+}
