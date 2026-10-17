@@ -93,9 +93,10 @@ S_PEOPLE = dict(lbl='A private personal CRM, built from your Gmail and calendar'
 DETAILS = dict(lbl='The details',
           items=[('In-window composer.', 'Docked, floating anywhere or expanded over the reader. Your inbox never disappears.'),
                  ('Done, not Archive.', 'Handled mail leaves. That’s the whole idea.'),
-                 ('Multiple Gmail accounts.', 'Several Google accounts, one unified inbox. Plus Dock badge, signatures and View › Zoom.'),
+                 ('Multiple Gmail accounts.', 'Several Google accounts, one unified inbox.'),
                  ('Your day in the menu bar.', 'Today’s agenda one click away, with Join for the next call.'),            # Oct 17, R6
-                 ('Notifications for what needs you.', 'Per account: everything, only what needs you and your VIPs, or nothing. Quiet hours and Focus filters too.')])
+                 ('Notifications for what needs you.', 'Per account: everything, only what needs you and your VIPs, or nothing. Quiet hours and Focus filters too.'),
+                 ('Made to fit you.', 'A signature for each account, a Dock badge, and View › Zoom for the text size you like.')])            # Oct 17: six items, 3 + 3
 
 # Speed & craft + Privacy promise merged (Ben, Oct 16: "Made for the Mac, made for privacy"; no engineering stats)
 S_MACPRIV = dict(lbl='Private email: no servers, no tracking', h='Made for the Mac. Made for privacy.',

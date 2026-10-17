@@ -282,6 +282,19 @@ def priv_icon(i):
     ]
     return f'<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="flex:none">{icons[i]}</svg>'
 
+def detail_icon(i):
+    """Line icons for The details, drawn like priv_icon: composer, Done, accounts, menu bar, notifications, fit."""
+    s = 'fill="none" stroke="#1D1B18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".85"'
+    icons = [
+        f'<rect x="3" y="5" width="26" height="22" rx="3" {s}/><path d="M10 5V27" {s}/><rect x="14" y="16" width="12" height="8" rx="1.6" {s}/><path d="M17 20H23" {s}/>',
+        f'<circle cx="16" cy="16" r="12" {s}/><path d="M10.5 16.5L14.5 20.5L22 12" {s}/>',
+        f'<rect x="7" y="4" width="21" height="15" rx="2" {s}/><path d="M7 6L17.5 13L28 6" {s}/><rect x="3" y="12" width="21" height="15" rx="2" fill="#FBF8F4" stroke="none"/><rect x="3" y="12" width="21" height="15" rx="2" {s}/><path d="M3 14L13.5 21L24 14" {s}/>',
+        f'<path d="M3 8H29" {s}/><rect x="17" y="12" width="12" height="15" rx="2" {s}/><path d="M17 16H29M20.5 10V13M25.5 10V13" {s}/><path d="M20 20H23M20 23H26" {s}/><circle cx="22" cy="5.5" r=".6" {s}/>',
+        f'<path d="M9 22V15a7 7 0 0 1 14 0v7l2 3H7Z" {s}/><path d="M13.5 28a2.5 2.5 0 0 0 5 0" {s}/><path d="M16 5V8" {s}/>',
+        f'<path d="M4 23C7 17 9 13 11 13s-1 9 2 9 4-8 6-8-1 7 2 7 4-3 7-4" {s}/><path d="M4 27H28" {s}/>',
+    ]
+    return f'<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="flex:none">{icons[i]}</svg>'
+
 def two_cals(w=380, rowh=24):
     """Find time: your calendar and Ava's slide in side by side; the shared free hour gets circled (one Clay mark)."""
     hours = ['9', '10', '11', '12', '1', '2', '3', '4']

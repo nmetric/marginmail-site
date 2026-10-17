@@ -546,14 +546,10 @@ def home():
              + svg_box(560, 468, M.arrow(-36, -26, 36, 150, bend=-.32, delay=1400), cls='ov d-only')
              + note(d['note'], 'left:-70px;top:-66px', rot=-3, delay=1700) + '</div></div></div></div></section>')
 
-    # ---- The details
+    # ---- The details: six items, each led by a line icon (3 + 3)
     dd = C.DETAILS
-    thumbs = ''.join(f'<figure>{fr}<figcaption>{nm}</figcaption></figure>' for nm, fr in M.composer_modes(.31))
-    it = dd['items']
     P.append(f'<section class="sec details"><div class="in"><h2 class="lbl">{dd["lbl"]}</h2><div class="dgrid">'
-             f'<div><div class="thumbs" role="img" aria-label="MarginMail’s reply composer docked under a message, floating in a corner, and expanded over the reader, with the inbox list visible in each.">{thumbs}</div>'
-             f'<h3>{it[0][0]}</h3><p>{it[0][1]}</p></div>'
-             + ''.join(f'<div><h3>{x}</h3><p>{y}</p></div>' for x, y in it[1:]) + '</div></div></section>')
+             + ''.join(f'<div>{M.detail_icon(i)}<div><h3>{x}</h3><p>{y}</p></div></div>' for i, (x, y) in enumerate(dd['items'])) + '</div></div></section>')
 
     # ---- Made for the Mac. Made for privacy.
     d = C.S_MACPRIV

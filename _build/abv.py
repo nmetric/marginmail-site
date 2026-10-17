@@ -145,5 +145,5 @@ class Variants:
                 'function s(){if(!v)return;document.querySelectorAll("[data-ab]").forEach(function(e){var k=e.getAttribute("data-ab");'
                 'if(v[k]!=null)e.innerHTML=v[k]});document.querySelectorAll("input[name=x]").forEach(function(e){e.value=window.__abPreview?"":window.__ab})}'
                 'function b(){if(!window.__abPreview)return;var d=document.createElement("div");d.textContent="Previewing variant "+window.__ab+" \\u00b7 not counted";'
-                'd.style.cssText="position:fixed;left:12px;bottom:12px;z-index:9999;padding:6px 10px;border-radius:8px;background:#1f1d1a;color:#fff;font:12px/1.3 system-ui,sans-serif;opacity:.85;pointer-events:none";document.body.appendChild(d)}'
+                'd.style.cssText="position:fixed;right:12px;top:76px;z-index:9999;padding:6px 10px;border-radius:8px;background:#1f1d1a;color:#fff;font:12px/1.3 system-ui,sans-serif;opacity:.85;pointer-events:none";document.body.appendChild(d)}'
                 's();document.documentElement.classList.remove("ab-pending");document.addEventListener("DOMContentLoaded",function(){s();b()})})()</script>')
