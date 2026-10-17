@@ -431,7 +431,7 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 
 ## MarginMail vs HEY: calm email without changing your address (https://marginmail.ai/compare/hey/)
 
-**Short answer:** HEY is an email service from 37signals with its own @hey.com addresses (or your domain hosted at HEY), the Screener, and HEY Calendar, for $99 a year. It isn't a Gmail client. MarginMail is a native Mac app that brings calm to the Gmail and Google Workspace accounts you already have: notes about what needs you, a Screener for new senders, a calendar and people pages. MarginMail is free during its beta.
+**Short answer:** HEY is an email service from 37signals with its own @hey.com addresses (or your domain hosted at HEY), the Screener, and HEY Calendar, for $99 a year. It isn't a Gmail client. MarginMail is a native Mac app that brings calm to the Gmail and Google Workspace accounts you already have: notes about what needs you, New faces for first-time senders, a calendar and people pages. MarginMail is free during its beta.
 
 *Last checked: October 16, 2026. Prices in USD.*
 
@@ -443,7 +443,7 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 | Price | Free during the beta | HEY for You $99/yr (includes HEY Calendar); HEY for Domains $12/user/mo; no free plan, 30-day trial |
 | Your address | Keep your Gmail or Workspace address | @hey.com or your domain hosted at HEY; Gmail only by forwarding plus send-as; no import of old mail |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Web, Mac, Windows, Linux, iOS, Android |
-| Screening new senders | Screener: accept or block first-time senders | The Screener (HEY's signature feature) |
+| Screening new senders | New faces: welcome first-time senders or mark them Not for me, with notes on who you already know | The Screener (HEY's signature feature) |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Imbox, The Feed, Paper Trail, Reply Later, Set Aside |
 | Calendar | Built in, two-way with Google Calendar: A / M / D, find a time with holds | HEY Calendar; Google/Apple/Outlook calendars only as read-only subscriptions |
 | People | A page per person; companies by domain | Contact Notes |
@@ -468,7 +468,7 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 
 ### Who should choose which
 
-**HEY** if you're ready to move your address and adopt HEY's way of doing email. **MarginMail** if you want HEY-like calm, including a Screener, on the Gmail you already have.
+**HEY** if you're ready to move your address and adopt HEY's way of doing email. **MarginMail** if you want HEY-like calm, including a place for new senders, on the Gmail you already have.
 
 ### FAQ
 
@@ -476,7 +476,7 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 Only by forwarding new Gmail mail into HEY and sending as your Gmail address. HEY says it isn't a Gmail client and can't import old mail. MarginMail works directly with your Gmail and Workspace accounts.
 
 **Does MarginMail have a Screener like HEY?**
-Yes. First-time senders go to MarginMail's Screener, where you accept or block them once for all their mail.
+Yes, in its own form: New faces. First-time senders wait there, with a note on what MarginMail knows ("You wrote to her in 2024"), and you choose Welcome or Not for me once for all their mail.
 
 **Does HEY Calendar sync with Google Calendar?**
 Not two-way. HEY can subscribe to Google, Apple or Outlook calendars read-only. MarginMail's calendar is your Google Calendar.
@@ -878,7 +878,7 @@ Shortwave's paid plans are $30, $45 and $120 per seat a month as of October 2026
 ### Switching from Spark
 
 - Your mail stays in Gmail; nothing to import.
-- Spark's Gatekeeper → MarginMail's Screener for first-time senders.
+- Spark's Gatekeeper → MarginMail's New faces for first-time senders.
 - Spark's "Done" → MarginMail's Done (same idea: handled mail leaves).
 - Templates: recreate them in MarginMail and use `;` in the composer.
 - You can run both side by side while you try MarginMail.
@@ -895,7 +895,7 @@ If you're on Gmail or Google Workspace and want privacy plus a calendar and peop
 MarginMail is free during the beta. Pricing will be shared before the beta ends.
 
 **Does MarginMail have Spark's Gatekeeper?**
-Yes, in its own form: first-time senders go to a Screener, where you accept or block them once for all their mail.
+Yes, in its own form: first-time senders go to New faces, where you choose Welcome or Not for me once for all their mail.
 
 **Can Spark's AI send email on its own?**
 Spark's Auto-Drafts never send automatically. But Spark CLI's Send permission, added in July 2026, lets an outside agent send without approving each message. MarginMail's AI can never send.
