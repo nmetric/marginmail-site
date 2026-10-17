@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://marginmail.ai/</loc><lastmod>2026-10-17</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url><loc>https://marginmail.ai/</loc><lastmod>2026-10-17</lastmod><video:video><video:thumbnail_loc>https://marginmail.ai/video/margin-mac-email-app-live-words.jpg</video:thumbnail_loc><video:title>MarginMail in two minutes</video:title><video:description>A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that find a time as you type, invites you answer with one key, the Margins stack, and a page for everyone you write to.</video:description><video:content_loc>https://marginmail.ai/video/marginmail-tour-mac-email-app-gmail.mp4</video:content_loc><video:duration>123</video:duration><video:publication_date>2026-10-17</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video></url>
   <url><loc>https://marginmail.ai/compare/</loc><lastmod>2026-10-16</lastmod></url>
   <url><loc>https://marginmail.ai/compare/airmail/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://marginmail.ai/compare/apple-mail/</loc><lastmod>2026-10-17</lastmod></url>

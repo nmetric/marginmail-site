@@ -267,6 +267,87 @@
     });
   });
 
+  /* ---- Video tour pop-up (copy_home.VIDEO_TOUR). Opened by the hero link (variant A) or the tour's "See MarginMail in action"
+     button (variant TOUR, via the marginmail:video-tour event). Nothing loads until it opens: the dialog, the poster, the
+     captions and the MP4 are all created then. Native controls, captions on, no third parties, no cookies. Closing fires
+     marginmail:video-tour-closed so the hero tour resumes. ---- */
+  var vtCfgEl = doc.getElementById('video-tour-cfg'), vtCfg = null;
+  try { vtCfg = vtCfgEl ? JSON.parse(vtCfgEl.textContent) : null; } catch (e) { vtCfg = null; }
+  var vtLink = doc.querySelector('[data-video-tour]');
+  // The TOUR variant has its own button in the chapter row, so the link under A's window steps aside.
+  if (vtLink && window.__abHero && window.__abHero.video) vtLink.parentNode.hidden = true;
+  var vtDlg = null, vtVid = null, vtOpener = null, vtOpen = false;
+  function vtFocusables() {
+    return Array.prototype.filter.call(vtDlg.querySelectorAll('button,video[controls],a[href]'), function (el) { return !el.hidden && el.offsetParent !== null; });
+  }
+  function vtBuild(c) {
+    vtDlg = doc.createElement('dialog');
+    vtDlg.className = 'vmodal';
+    vtDlg.setAttribute('aria-labelledby', 'vm-title');
+    vtDlg.innerHTML = '<div class="vm-panel"><div class="vm-head"><h2 class="vm-title" id="vm-title">' + esc(c.title || c.label) + '</h2>' +
+      '<button type="button" class="vm-close" aria-label="' + esc((c.close || 'Close') + ' the video') + '">' +
+      '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3L11 11M11 3L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>' +
+      '<span>' + esc(c.close || 'Close') + '</span></button></div>' +
+      '<div class="vm-frame"><video controls playsinline preload="none" width="' + (c.w || 1920) + '" height="' + (c.h || 1080) + '" poster="' + esc(c.poster) + '">' +
+      '<source src="' + esc(c.src) + '" type="video/mp4">' +
+      '<track kind="captions" srclang="en" label="English" src="' + esc(c.vtt) + '" default>' +
+      '<a href="' + esc(c.src) + '">Download the video (MP4)</a></video></div></div>';
+    doc.body.appendChild(vtDlg);
+    vtVid = vtDlg.querySelector('video');
+    var showCaptions = function () { for (var i = 0; i < vtVid.textTracks.length; i++) if (vtVid.textTracks[i].kind === 'captions') vtVid.textTracks[i].mode = 'showing'; };
+    vtVid.addEventListener('loadedmetadata', showCaptions);
+    showCaptions();
+    vtDlg.querySelector('.vm-close').addEventListener('click', vtClose);
+    // Esc: the dialog's own cancel, routed through vtClose so focus and the tour come back.
+    vtDlg.addEventListener('cancel', function (e) { e.preventDefault(); vtClose(); });
+    // A click on the dim area around the panel closes it.
+    vtDlg.addEventListener('click', function (e) { if (e.target === vtDlg) vtClose(); });
+    vtDlg.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); vtClose(); return; }
+      if (e.key !== 'Tab') return;
+      var f = vtFocusables();
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1], a = doc.activeElement;
+      if (e.shiftKey && (a === first || !vtDlg.contains(a))) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && (a === last || !vtDlg.contains(a))) { e.preventDefault(); first.focus(); }
+    });
+  }
+  function vtOpenPlayer(c, opener) {
+    c = c && c.src ? c : vtCfg;
+    if (!c || !c.src || vtOpen) return;
+    if (!vtDlg) vtBuild(c);
+    vtOpener = opener || doc.activeElement;
+    vtOpen = true;
+    root.classList.add('vm-on');
+    if (vtDlg.showModal) vtDlg.showModal(); else vtDlg.setAttribute('open', '');
+    vtDlg.classList.toggle('still', reduce.matches);
+    // The click that opened the player is the user's go-ahead to play with sound. With Reduce Motion on, it waits for Play.
+    if (!reduce.matches) {
+      var pr = vtVid.play();
+      if (pr && pr.catch) pr.catch(function () { /* the browser said no; the Play button is right there */ });
+    }
+    vtVid.focus();
+  }
+  function vtClose() {
+    if (!vtOpen) return;
+    vtOpen = false;
+    vtVid.pause();
+    if (vtDlg.close) vtDlg.close(); else vtDlg.removeAttribute('open');
+    root.classList.remove('vm-on');
+    var back = vtOpener && doc.contains(vtOpener) ? vtOpener : doc.querySelector('.tour-ch .vt') || vtLink;
+    if (back && back.focus) back.focus();
+    doc.dispatchEvent(new CustomEvent('marginmail:video-tour-closed'));
+  }
+  if (vtLink) vtLink.addEventListener('click', function (e) {
+    if (!vtCfg || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // new tab / download still work
+    e.preventDefault();
+    vtOpenPlayer(vtCfg, vtLink);
+  });
+  doc.addEventListener('marginmail:video-tour', function (e) {
+    var t = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.vt') : null;
+    vtOpenPlayer(e.detail, t || doc.querySelector('.tour-ch .vt'));
+  });
+
   /* ---- The scroll sky: CSS scroll-driven animations where supported; otherwise a light rAF fallback ---- */
   var sky = doc.querySelector('.sky');
   var scrollTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()');

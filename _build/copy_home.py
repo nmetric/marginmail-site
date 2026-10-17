@@ -154,10 +154,18 @@ TOUR = dict(  # Oct 17: the hero product tour, A/B variant TOUR (chapter labels 
 
 # Video tour hook (Ben, Oct 17): a longer video tour will open in a pop-up from a "See MarginMail in action" button beside the
 # hero tour's chapter labels. None = no button (it stays hidden; variant A never has it). To turn it on later, set e.g.
-# VIDEO_TOUR = dict(label='See MarginMail in action', src='/video/marginmail-tour.mp4') and rebuild: the button appears in the TOUR
-# variant and, when pressed, pauses the tour and fires `marginmail:video-tour` on document (detail = this dict) for the pop-up to
-# handle; the pop-up fires `marginmail:video-tour-closed` to resume. The pop-up and the video are not built yet.
-VIDEO_TOUR = None
+# The 2-minute video tour (Ben approved the final cut Oct 17). `label` is the button in the TOUR variant's chapter row; it pauses
+# the tour and fires `marginmail:video-tour` on document (detail = the dict below plus the file URLs build.py adds). `link` is
+# the text link under variant A's static hero window. Both open the same pop-up player (js/site.js); closing it fires
+# `marginmail:video-tour-closed`, which resumes the tour. Set VIDEO_TOUR = None to hide both.
+VIDEO_TOUR = dict(
+    label='See MarginMail in action',
+    link='Watch the 2-minute tour',
+    title='MarginMail in two minutes',
+    description=('A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that '
+                 'find a time as you type, invites you answer with one key, the Margins stack, and a page for everyone you write to.'),
+    close='Close',
+)
 
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare MarginMail', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3

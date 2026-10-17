@@ -350,13 +350,41 @@ def render_headline(text):
             f'{underline_svg(462, sw=3, delay=900)}</span>')
 
 
+# The 2-minute video tour (copy_home.VIDEO_TOUR): content/video/out -> /video/ (public), opened in js/site.js's pop-up player.
+VIDEO_FILES = {'marginmail-tour-mac-email-app-gmail.mp4': '/video/marginmail-tour-mac-email-app-gmail.mp4',
+               'margin-mac-email-app-live-words.jpg': '/video/margin-mac-email-app-live-words.jpg',
+               'marginmail-tour.en.vtt': '/video/marginmail-tour.en.vtt'}
+VIDEO_DURATION = 'PT2M3S'
+VIDEO_UPLOAD = '2026-10-17'
+
+
+def video_cfg():
+    """What the pop-up needs: copy plus content-hashed file URLs. None when the video tour is off."""
+    if not C.VIDEO_TOUR:
+        return None
+    mp4, jpg, vtt = VIDEO_FILES.values()
+    return dict(C.VIDEO_TOUR, src=v(mp4), poster=v(jpg), vtt=v(vtt), w=1920, h=1080)
+
+
+def video_transcript():
+    """The tour's spoken words, from content/video/out/TOUR.srt, as plain paragraphs (one per caption)."""
+    srt = open(os.path.join(ROOT, 'content/video/out/TOUR.srt'), encoding='utf-8').read().replace('\r', '')
+    lines = []
+    for block in re.split(r'\n\s*\n', srt.strip()):
+        rows = [r.strip() for r in block.split('\n') if r.strip()]
+        rows = [r for r in rows if not r.isdigit() and '-->' not in r]
+        if rows:
+            lines.append(' '.join(rows))
+    return ' '.join(lines)
+
+
 def hero_config(name):
     """What a hero-swap variant's page script needs (abv.Variants.apply_script). 'tour': the product tour in the hero window."""
     if name == 'tour':
         wk = 'margin-calendar-week-unanswered-invites'
         return {'css': v('/motion/tour.css'), 'js': v('/motion/tour.js'), 'label': C.TOUR['label'], 'replay': C.TOUR['replay'],
                 'beats': [{'id': i, 'label': lbl, 'aria': aria} for i, lbl, aria in C.TOUR['beats']],
-                'video': C.VIDEO_TOUR,  # None keeps the 'See MarginMail in action' button hidden (copy_home.VIDEO_TOUR)
+                'video': video_cfg(),  # None keeps the 'See MarginMail in action' button hidden (copy_home.VIDEO_TOUR)
                 # The week render the Find time section already uses, same candidates and sizes, so the browser reuses it.
                 'week': {'src': v(IMG[wk]['srcs'][0][2]), 'srcset': srcset(wk), 'sizes': '(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)'}}
     raise SystemExit(f'unknown hero visual {name!r}')
@@ -364,6 +392,19 @@ def hero_config(name):
 
 versions = abv.Versions()
 AB = abv.Variants(render_headline, hero_config)
+
+
+def video_link():
+    """Variant A's way into the video tour: a text link under the hero window (the TOUR variant hides it; its chapter row has
+    the button). Without JavaScript it's a plain link to the MP4. The pop-up's settings ride along as JSON."""
+    vc = video_cfg()
+    if not vc:
+        return ''
+    play = ('<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6.2" fill="none" stroke="currentColor" stroke-width="1.3"/>'
+            '<path d="M5.6 4.4L9.6 7L5.6 9.6Z" fill="currentColor"/></svg>')
+    cfg = json.dumps(vc, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+    return (f'<p class="vt-link"><a href="{vc["src"]}" data-video-tour>{play}{esc(vc["link"])}</a></p>'
+            f'<script type="application/json" id="video-tour-cfg">{cfg}</script>')
 
 
 def responsive_svg(svg):
@@ -405,7 +446,7 @@ def home():
              '<figure class="hero-shot" data-seen style="margin-left:0;margin-right:0"><div class="win"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="pic">'
              + pic('margin-mac-email-app-gmail-calendar', 'margin-message-reply-bar-note', hero_alt,
                    '(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)', 'calc(100vw - 32px)', eager=True)
-             + marker + '</div></div></figure></div></section><!--ab-apply-->')
+             + marker + '</div></div></figure>' + video_link() + '</div></section><!--ab-apply-->')
 
     # ---- What is MarginMail?
     wi = C.WHAT_IS
@@ -643,6 +684,7 @@ def home():
         {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail: Mail that knows what needs you · Gmail app for Mac",
          "isPartOf": {"@id": f"{SITE}/#site"}, "about": {"@id": f"{SITE}/#app"}, "dateModified": BUILT, "inLanguage": "en",
          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + shot['srcs'][0][2]}},
+        *([video_ld()] if C.VIDEO_TOUR else []),
         {"@type": "FAQPage", "@id": f"{SITE}/#faq", "mainEntity": [
             {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in C.FAQ]}]}
 
@@ -657,6 +699,16 @@ def home():
               og_desc='Give your inbox some margin. A native Mac email app for Gmail with your calendar and people built in. Private AI that never sends. Free during the beta.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
     write('index.html', page(hh, ''.join(P), home=True, motion=('stack', 'live-words', 'write-it'), stickybar=True))
+
+
+def video_ld():
+    vt = C.VIDEO_TOUR
+    return {"@type": "VideoObject", "@id": f"{SITE}/#video-tour", "name": vt['title'], "description": vt['description'],
+            "thumbnailUrl": [SITE + VIDEO_FILES['margin-mac-email-app-live-words.jpg']], "uploadDate": VIDEO_UPLOAD,
+            "duration": VIDEO_DURATION, "contentUrl": SITE + VIDEO_FILES['marginmail-tour-mac-email-app-gmail.mp4'],
+            "width": 1920, "height": 1080, "inLanguage": "en", "isFamilyFriendly": True,
+            "transcript": video_transcript(), "about": {"@id": f"{SITE}/#app"}, "publisher": {"@id": f"{SITE}/#org"},
+            "isPartOf": {"@id": f"{SITE}/#webpage"}}
 
 
 # =============================================================== article pages (compare, best, guides)
@@ -963,8 +1015,17 @@ def sitemap():
     urls = [('/', BUILT)] + [(p['path'], p['lastmod']) for p in PAGES]
     order = {'/': 0, '/compare/': 1}
     urls.sort(key=lambda u: (order.get(u[0], 2 if u[0].startswith('/compare/') else 3 if u[0].startswith(('/best/', '/guides/')) else 4), u[0]))
-    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-           + ''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod></url>\n' for u, d in urls) + '</urlset>\n')
+    vid = ''
+    if C.VIDEO_TOUR:
+        vt = C.VIDEO_TOUR
+        vid = (f'<video:video><video:thumbnail_loc>{SITE}{VIDEO_FILES["margin-mac-email-app-live-words.jpg"]}</video:thumbnail_loc>'
+               f'<video:title>{esc(vt["title"])}</video:title><video:description>{esc(vt["description"])}</video:description>'
+               f'<video:content_loc>{SITE}{VIDEO_FILES["marginmail-tour-mac-email-app-gmail.mp4"]}</video:content_loc>'
+               f'<video:duration>123</video:duration><video:publication_date>{VIDEO_UPLOAD}</video:publication_date>'
+               f'<video:family_friendly>yes</video:family_friendly></video:video>')
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+           + (' xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"' if vid else '') + '>\n'
+           + ''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod>{vid if u == "/" else ""}</url>\n' for u, d in urls) + '</urlset>\n')
     write('sitemap.xml', xml)
     write('robots.txt', ROBOTS)
 
@@ -994,7 +1055,12 @@ def llms():
         label = 'Compare' if p['path'] == '/compare/' else p['title']
         desc = p['meta'].get('meta_description', '')
         pages.append(f'- [{label}]({SITE}{p["path"]})' + (f': {desc}' if desc and p['path'] == '/compare/' else ''))
-    head_txt = f'# MarginMail\n\n{summary}\n\n{LLMS_FACTS}\n## Pages\n' + '\n'.join(pages) + '\n'
+    video_txt = ''
+    if C.VIDEO_TOUR:
+        vt = C.VIDEO_TOUR
+        video_txt = (f'## Video\n- [{vt["title"]}]({SITE}{VIDEO_FILES["marginmail-tour-mac-email-app-gmail.mp4"]}) (2 min 3 s, MP4, English captions at '
+                     f'{SITE}{VIDEO_FILES["marginmail-tour.en.vtt"]}): {vt["description"]}\n\nTranscript: {video_transcript()}\n\n')
+    head_txt = f'# MarginMail\n\n{summary}\n\n{LLMS_FACTS}\n{video_txt}## Pages\n' + '\n'.join(pages) + '\n'
     write('llms.txt', head_txt)
 
     out = [f'# MarginMail\n\n{summary}\n\n{LLMS_FACTS}']
@@ -1008,6 +1074,10 @@ def llms():
         if 'priv' in d:
             txt += f'\n{strip_html(d["priv"])}\n'
         out.append(txt)
+    if C.VIDEO_TOUR:
+        vt = C.VIDEO_TOUR
+        out.append(f'### Video: {vt["title"]} ({SITE}{VIDEO_FILES["marginmail-tour-mac-email-app-gmail.mp4"]})\n\n{vt["description"]} '
+                   f'Length 2:03. Captions: {SITE}{VIDEO_FILES["marginmail-tour.en.vtt"]}\n\nTranscript:\n\n{video_transcript()}\n')
     out.append('### FAQ\n\n' + '\n\n'.join(f'**{strip_html(q)}**\n{strip_html(a)}' for q, a in C.FAQ) + '\n')
     for p in PAGES:
         if not p['src'] or p['path'] in ('/privacy/', '/terms/'):
@@ -1031,6 +1101,14 @@ def brand_files():
     for n in ('stack', 'live-words', 'write-it', 'tour'):
         for ext in ('css', 'js'):
             shutil.copyfile(os.path.join(ROOT, f'assets/motion/{n}.{ext}'), os.path.join(ROOT, f'motion/{n}.{ext}'))
+    if C.VIDEO_TOUR:
+        os.makedirs(os.path.join(ROOT, 'video'), exist_ok=True)
+        for src, dst in VIDEO_FILES.items():
+            a, b = os.path.join(ROOT, 'content/video/out', src), os.path.join(ROOT, dst.lstrip('/'))
+            if not os.path.exists(a):
+                raise SystemExit(f'video tour: missing {a}')
+            if not os.path.exists(b) or open(a, 'rb').read() != open(b, 'rb').read():
+                shutil.copyfile(a, b)
 
 
 KNOWN = set()

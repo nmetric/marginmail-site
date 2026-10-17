@@ -12,6 +12,11 @@ Key facts:
 - Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 
+## Video
+- [MarginMail in two minutes](https://marginmail.ai/video/marginmail-tour-mac-email-app-gmail.mp4) (2 min 3 s, MP4, English captions at https://marginmail.ai/video/marginmail-tour.en.vtt): A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that find a time as you type, invites you answer with one key, the Margins stack, and a page for everyone you write to.
+
+Transcript: This is MarginMail. Your mail, your calendar and the people you work with, in one window on your Mac. It notes what needs you. Imogen wants 30 minutes next week, and the note says so. As you write, MarginMail underlines days, files and promises. Mention a day with someone to see when you're both free. Pick a time and it's held on your calendar. Name a file to attach it, and a promise becomes a reminder. Everyone you write to has a page: what you talked about, what you promised, and the time where they are. Companies group themselves by email domain. Open an invitation, and the calendar turns to that day. Press A, M or D to answer. The email files itself. When you invite a few people, you see their free and busy times side by side. Pull the calendar wider, and one day becomes three. Then there's the Margins stack: only what needs you, beside your calendar. Every card says why it's there. Jot a few notes and press Write it. A draft appears, from your notes and the thread. Anything new, like this number, is flagged. You read it, then send it yourself. Turn a card over to see its email. Drag right for Done. Drag left, and it waits at the back of the stack. When the stack is empty, you get a quiet scene. There's no MarginMail server. Your mail goes between your Mac and Google, and nowhere else. Nothing tracks you, and AI never sends. MarginMail. Give your inbox some margin. Join the beta at marginmail.ai.
+
 ## Pages
 - [Home](https://marginmail.ai/): what MarginMail is and how to join the beta
 - [Compare](https://marginmail.ai/compare/): Dated, sourced comparisons: MarginMail vs Spark, Superhuman, Apple Mail, Outlook, Gmail, Airmail, Mimestream, Shortwave, HEY, Canary, Missive and Notion Mail.

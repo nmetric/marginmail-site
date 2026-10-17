@@ -528,3 +528,38 @@ table.tbl{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;f
   .sv-move{animation:none!important;transform:none}
   .sv-keys,.sv-cursor,.sv-click,.sv-pill{display:none}
 }
+
+/* ---- Video tour: the link under the hero window (variant A) and the pop-up player (js/site.js) ---- */
+.vt-link{margin:22px 0 0;text-align:center;font:500 15px/22px var(--sans)}
+.vt-link[hidden]{display:none}
+.vt-link a{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;color:var(--clayink);text-decoration:underline;text-decoration-color:rgba(194,83,31,.35);text-underline-offset:4px}
+.vt-link a:hover{color:var(--clay);text-decoration-color:currentColor}
+.vt-link svg{flex:none}
+html.vm-on{overflow:hidden}
+.vmodal{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:24px;border:0;background:transparent;color:var(--ink);display:none;align-items:center;justify-content:center;overflow:auto}
+.vmodal[open]{display:flex}
+.vmodal::backdrop{background:rgba(242,236,228,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.vm-panel{position:relative;width:min(1120px,100%,calc((100vh - 140px) * 16 / 9));background:var(--paper);border-radius:16px;padding:14px 16px 16px;box-shadow:0 0 0 1px var(--rule),0 2px 6px rgba(60,40,20,.06),0 40px 90px -30px rgba(60,40,20,.35)}
+.vm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px 4px}
+.vm-title{font:500 21px/1.2 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.vm-close{display:inline-flex;align-items:center;gap:7px;flex:none;padding:8px 12px;border:0;border-radius:999px;background:var(--sand);color:var(--ink);font:500 14px/1 var(--sans);cursor:pointer}
+.vm-close:hover{background:var(--rule)}
+.vm-frame{position:relative;border-radius:10px;overflow:hidden;background:var(--warm);box-shadow:0 0 0 1px rgba(60,40,20,.08);line-height:0}
+.vm-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--warm)}
+.vmodal :focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.vm-frame video:focus-visible{outline-offset:-2px}
+.vmodal video::cue{font-family:var(--sans);background:rgba(29,27,24,.78);color:#fff}
+@media (prefers-reduced-motion:no-preference){
+  .vmodal[open]:not(.still) .vm-panel{animation:vm-in .26s var(--ease) both}
+  .vmodal[open]:not(.still)::backdrop{animation:vm-fade .26s ease-out both}
+}
+@keyframes vm-in{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes vm-fade{from{opacity:0}to{opacity:1}}
+@media (max-width:767px){
+  .vt-link{margin-top:18px}
+  .vmodal{padding:0}
+  .vm-panel{width:100%;border-radius:0;padding:12px 0 0;box-shadow:0 0 0 1px var(--rule)}
+  .vm-head{margin:0 12px 10px 16px}
+  .vm-title{font-size:18px}
+  .vm-frame{border-radius:0;box-shadow:none}
+}

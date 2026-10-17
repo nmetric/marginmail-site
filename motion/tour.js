@@ -292,7 +292,7 @@
     list = ORDER[mobile ? 'm' : 'd'].filter(function (id) { return COPY[id]; });
     ch.innerHTML = list.map(function (id) { return '<button type="button"><span>' + COPY[id].label + '</span><i></i></button>'; }).join('') +
       '<button type="button" class="rp" hidden>' + (cfg.replay || 'Replay') + '</button>' +
-      // Video tour hook: hidden unless the build sets copy_home.VIDEO_TOUR; the pop-up itself isn't built yet.
+      // Video tour: hidden unless the build sets copy_home.VIDEO_TOUR; js/site.js opens the pop-up player.
       '<button type="button" class="vt"' + (cfg.video ? '' : ' hidden') + '>' + (cfg.video && cfg.video.label || 'See MarginMail in action') + '</button>';
     btns = ch.querySelectorAll('button:not(.rp):not(.vt)');
     rp = ch.querySelector('.rp');
@@ -370,7 +370,8 @@
   ch.addEventListener('focusin', function () { foc = true; sync(); });
   ch.addEventListener('focusout', function (e) { if (!ch.contains(e.relatedTarget)) { foc = false; keep = false; sync(); } });
   document.addEventListener('visibilitychange', sync);
-  document.addEventListener('marginmail:video-tour-closed', function () { vid = false; sync(); });
+  // Closing the video hands focus back to its button in the chapter row; like a chapter click, that shouldn't hold the tour paused.
+  document.addEventListener('marginmail:video-tour-closed', function () { vid = false; keep = true; sync(); });
   function reset() { if (raf) cancelAnimationFrame(raf); raf = 0; started = false; ended = false; setup(); start(); sync(); }
   (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(reset);
   (rm.addEventListener ? rm.addEventListener.bind(rm, 'change') : rm.addListener.bind(rm))(reset);
