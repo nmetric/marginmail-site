@@ -133,6 +133,7 @@ LOCK = ('<svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rec
 
 ORG = {"@type": "Organization", "@id": f"{SITE}/#org", "name": "MarginMail", "url": f"{SITE}/", "logo": f"{SITE}/logo.png",
        "email": "hello@marginmail.ai",
+       "sameAs": ["https://www.youtube.com/@MarginMail", "https://www.linkedin.com/company/marginmail"],
        "description": "MarginMail makes a native Mac email app for Gmail with a calendar and personal CRM built in."}
 WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name": "MarginMail", "publisher": {"@id": f"{SITE}/#org"}, "inLanguage": "en"}
 
@@ -203,10 +204,11 @@ def moon():
 
 
 def footer():
-    links = [('Compare MarginMail', '/compare/'), ('Privacy', '/privacy/'), ('Terms', '/terms/'), ('Contact', 'mailto:hello@marginmail.ai')]
+    links = [('Compare MarginMail', '/compare/'), ('Privacy', '/privacy/'), ('Terms', '/terms/'), ('Contact', 'mailto:hello@marginmail.ai'),
+             ('YouTube', 'https://www.youtube.com/@MarginMail'), ('LinkedIn', 'https://www.linkedin.com/company/marginmail')]
     return (f'<footer class="foot" data-seen>{moon()}<div class="in"><div><a class="brand" href="/" aria-label="MarginMail, home"><img src="{v("/img/brand/lockup-footer.svg")}" width="189" height="48" alt="MarginMail" loading="lazy"></a>'
             f'<p class="line">{FOOT_LINE}</p></div>'
-            f'<div><nav aria-label="Footer"><ul>' + ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in links) + '</ul></nav>'
+            f'<div><nav aria-label="Footer"><ul>' + ''.join(f'<li><a href="{u}"{" rel=\"me noopener\"" if u.startswith("https://") else ""}>{t}</a></li>' for t, u in links) + '</ul></nav>'
             f'<p class="fine">{FOOT_SMALL}</p></div></div></footer>')
 
 
