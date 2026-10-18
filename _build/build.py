@@ -205,11 +205,26 @@ def moon():
 
 def footer():
     links = [('Compare MarginMail', '/compare/'), ('Privacy', '/privacy/'), ('Terms', '/terms/'), ('Contact', 'mailto:hello@marginmail.ai'),
-             ('YouTube', 'https://www.youtube.com/@MarginMail'), ('LinkedIn', 'https://www.linkedin.com/company/marginmail')]
+]
     return (f'<footer class="foot" data-seen>{moon()}<div class="in"><div><a class="brand" href="/" aria-label="MarginMail, home"><img src="{v("/img/brand/lockup-footer.svg")}" width="189" height="48" alt="MarginMail" loading="lazy"></a>'
             f'<p class="line">{FOOT_LINE}</p></div>'
-            f'<div><nav aria-label="Footer"><ul>' + ''.join(f'<li><a href="{u}"{" rel=\"me noopener\"" if u.startswith("https://") else ""}>{t}</a></li>' for t, u in links) + '</ul></nav>'
-            f'<p class="fine">{FOOT_SMALL}</p></div></div></footer>')
+            f'<div><nav aria-label="Footer"><ul>' + ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in links) + '</ul></nav>'
+            f'<p class="fine">{FOOT_SMALL}</p>{social()}</div></div></footer>')
+
+
+SOCIAL = [
+    ('MarginMail on YouTube', 'https://www.youtube.com/@MarginMail',
+     '<path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/>'),
+    ('MarginMail on LinkedIn', 'https://www.linkedin.com/company/marginmail',
+     '<path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.75h2.67ZM7 8.62a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.34 18h-2.67v-4.01c0-.96-.02-2.19-1.33-2.19-1.34 0-1.54 1.04-1.54 2.12V18h-2.67V9.75h2.56v1.13h.04a2.8 2.8 0 0 1 2.53-1.39c2.7 0 3.2 1.78 3.2 4.1Z"/>'),
+]
+
+
+def social():
+    return ('<ul class="social" aria-label="MarginMail elsewhere">' + ''.join(
+        f'<li><a href="{u}" rel="me noopener" aria-label="{label}" title="{label}">'
+        f'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">{d}</svg></a></li>'
+        for label, u, d in SOCIAL) + '</ul>')
 
 
 def sky():
@@ -712,7 +727,8 @@ def video_ld():
             "duration": VIDEO_DURATION, "contentUrl": SITE + VIDEO_FILES['marginmail-tour-mac-email-app-gmail.mp4'],
             "width": 1920, "height": 1080, "inLanguage": "en", "isFamilyFriendly": True,
             "transcript": video_transcript(), "about": {"@id": f"{SITE}/#app"}, "publisher": {"@id": f"{SITE}/#org"},
-            "isPartOf": {"@id": f"{SITE}/#webpage"}}
+            "isPartOf": {"@id": f"{SITE}/#webpage"},
+            "embedUrl": "https://www.youtube.com/embed/14iXHUgHpoU", "sameAs": ["https://www.youtube.com/watch?v=14iXHUgHpoU"]}
 
 
 # =============================================================== article pages (compare, best, guides)
