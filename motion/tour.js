@@ -2,7 +2,7 @@
  * MarginMail hero tour (A/B variant TOUR): a scripted product tour inside the hero window. Loaded only for that variant
  * (abv.py's apply script injects it after the static hero has painted). Plays once when the hero is seen (site.js adds
  * .seen / .off on the figure), pauses on hover or focus, rests on the last frame. Chapters under the window jump to any
- * beat; Replay appears at the end. Reduce Motion: one still frame (each chapter shows its own still). Phones get four beats.
+ * beat; Replay appears at the end. Reduce Motion: one still frame (each chapter shows its own still). Phones get the same six beats, laid out for a 360-wide stage.
  * Every scene element is timed with CSS (--d); the clock only advances beats, so pausing stops both together.
  */
 (function () {
@@ -190,12 +190,47 @@
   }
 
   // ------------------------------------------------------------------ beat 4: the calendar sidebar, dragged wider: 1 day becomes 3
-  function wide() {
-    var y = function (h) { return 96 + (h - 7) * 48; };
-    var days = [
-      ['Tue 13', [[9, 9.25, 'Studio standup', 'b'], [10, 10.75, 'Saltmarsh label review', ''], [12.25, 13.25, 'Lunch with Hugo', ''], [14, 15.5, 'Focus: Kiln proposal', 'st'], [16, 16.25, 'Press check call', '']]],
-      ['Wed 14', [[9, 9.25, 'Studio standup', 'b'], [10, 11, 'Kiln moodboard review', 'b'], [13.5, 14.5, 'Type pairing session', ''], [15.5, 15.9, 'Saltmarsh: copy for tins', 'q']]],
-      ['Thu 15', [[9, 9.25, 'Studio standup', 'b'], [11, 11.75, 'Saltmarsh shoot walkthrough', ''], [14, 16, 'Press slot: Saltmarsh labels', '']]]];
+  var DAYS = [
+    ['Tue 13', [[9, 9.25, 'Studio standup', 'b'], [10, 10.75, 'Saltmarsh label review', ''], [12.25, 13.25, 'Lunch with Hugo', ''], [14, 15.5, 'Focus: Kiln proposal', 'st'], [16, 16.25, 'Press check call', '']]],
+    ['Wed 14', [[9, 9.25, 'Studio standup', 'b'], [10, 11, 'Kiln moodboard review', 'b'], [13.5, 14.5, 'Type pairing session', ''], [15.5, 15.9, 'Saltmarsh: copy for tins', 'q']]],
+    ['Thu 15', [[9, 9.25, 'Studio standup', 'b'], [11, 11.75, 'Saltmarsh shoot walkthrough', ''], [14, 16, 'Press slot: Saltmarsh labels', '']]]];
+  // Phones: the inbox on the left, the calendar as one narrow day on the right; the Clay handle pulls it across the
+  // whole frame and the one day becomes three.
+  function wideM() {
+    var RH = 23, y = function (h) { return 38 + (h - 9) * RH; };
+    function col(day, l, w, head) {
+      var s = '';
+      day[1].forEach(function (e) {
+        s += '<div class="tr-ev ' + e[3] + '" style="left:calc(' + l + '% + 2px);width:calc(' + w + '% - 4px);top:' + (y(e[0]) + 1) + 'px;height:' + (Math.max(e[1] - e[0], .5) * RH - 2) + 'px"><b>' + e[2] + '</b></div>';
+      });
+      if (head) s += '<div class="ab" style="left:calc(' + l + '% + 3px);top:23px;font-weight:600;font-size:10px">' + day[0] + '</div>';
+      return s;
+    }
+    var grid = '';
+    for (var h = 9; h <= 16; h++) {
+      grid += '<div class="tr-hr" style="left:6px;top:' + y(h) + 'px">' + (h > 12 ? h - 12 : h) + '</div><div class="tr-line" style="left:28px;right:4px;top:' + y(h) + 'px"></div>';
+    }
+    var inner = 'left:28px;right:4px;top:0;bottom:0';
+    var one = E('ab a-out', 1250, inner, col(DAYS[0], 0, 100) + '<div class="tr-now" style="left:0;right:0;top:' + y(9.68) + 'px"></div>');
+    var three = E('ab a-fade', 1250, inner, col(DAYS[0], 0, 33.33, 1) + col(DAYS[1], 33.33, 33.33, 1) + col(DAYS[2], 66.66, 33.34, 1) +
+      '<div class="tr-now" style="left:0;width:33.33%;top:' + y(9.68) + 'px"></div>');
+    var heads = E('ab a-out', 1250, 'left:8px;top:6px;font-size:11px', '<b>Today</b> <span class="tr-sub">Tue, Oct 13</span>') +
+      E('ab a-fade', 1250, 'left:8px;top:6px;font-size:11px', '<b>3 days</b> <span class="tr-sub">Oct 13 – 15</span>');
+    var handle = E('a-out', 2100, box(0, 0) + 'top:0;bottom:0', E('ab a-fade', 350, 'left:-1px;top:0;bottom:0;width:3px;border-radius:2px;background:var(--clay)') +
+      E('ab a-fade', 250, box(-12, 98, 24, 24), '<svg viewBox="0 0 26 26" style="left:0;top:0;width:24px;height:24px"><path d="M2 13h22M7 8l-5 5 5 5M19 8l5 5-5 5" fill="none" stroke="#C2531F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'));
+    function row(ini, who, subj) {
+      return '<div style="display:flex;gap:7px;align-items:center;padding:7px 0;border-top:1px solid #EFE8DE">' + av(ini, AV[ini], 9) +
+        '<div style="min-width:0"><b>' + who + '</b><div class="tr-sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + subj + '</div></div></div>';
+    }
+    var inbox = '<div class="ab" style="left:12px;top:8px;width:200px;font-size:10.5px"><div style="font:400 15px/1.2 var(--serif);margin-bottom:5px">Inbox</div>' +
+      row('AL', 'Ava Lindqvist', 'Re: Spring catalog shoot') + row('MR', 'Marco Reyes', 'The signed proof') +
+      row('IH', 'Imogen Hale', '30 minutes next week?') + row('LB', 'Lena Brandt', 'Invitation: Saltmarsh shoot walkthrough') + '</div>';
+    var panel = E('tr-panel a-fade a-widen', 700, 'top:6px;right:6px;bottom:6px;--l0:226px;--l1:6px;background:#FCFAF7;overflow:visible;font-size:9.5px', heads + grid + one + three + handle);
+    return { html: '<div class="tr-bg" style="background:#F4EFE8"></div>' + inbox + E('a-out', 900, box(0, 0), hand('pull it wider', 70, 196, 19, -4, 300)) + panel, dur: 3400 };
+  }
+  function wide(m) {
+    if (m) return wideM();
+    var y = function (h) { return 96 + (h - 7) * 48; }, days = DAYS;
     function col(day, l, w, head) {
       var s = '';
       day[1].forEach(function (e) {
@@ -247,7 +282,8 @@
   }
 
   // ------------------------------------------------------------------ beat 6: a person's page (personal CRM), then rest
-  function people() {
+  function people(m) {
+    if (m) return peopleM();
     function pc(l, w, d, title, rows) { return E('tr-pc a-in', d, box(l, 206, w, 200), '<div class="t">' + title + '</div>' + rows); }
     function li(a, b, c) { return '<div class="li"><div>' + a + (c ? '<em>' + c + '</em>' : '') + '</div><span>' + b + '</span></div>'; }
     var body = '<div class="ab tr-crumb" style="left:28px;top:22px">Companies › saltmarshcoffee.com › <b>Ava Lindqvist</b></div>' +
@@ -265,8 +301,24 @@
     return { html: E('tr-panel a-slide', 0, box(338, 48, 794, 682) + 'background:#F7F4EF;font-size:15px', body) + hand('it’s lunchtime for Ava', 736, 116, 28, -3, 1400), dur: 3200 };
   }
 
+  // Phones: a compact page for Ava: who she is, her local time (starred), and a short timeline across mail, meetings and tasks.
+  function peopleM() {
+    function tl(d, kind, what, when) {
+      return E('a-in', d, 'display:flex;align-items:baseline;gap:8px;padding:6px 0;border-top:1px solid #F4EFE8',
+        '<span class="tr-lbl" style="width:58px;flex:none;font-size:8.5px">' + kind + '</span><span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + what + '</span><span class="tr-sub" style="white-space:nowrap">' + when + '</span>');
+    }
+    var body = '<div class="ab tr-crumb" style="left:12px;top:8px">Companies › saltmarshcoffee.com › <b>Ava Lindqvist</b></div>' +
+      '<div class="ab" style="left:12px;top:32px">' + av('AL', AV.AL, 15) + '</div>' +
+      '<div class="ab" style="left:56px;top:28px"><div class="tr-name" style="font-size:24px">Ava Lindqvist</div>' +
+      '<div style="margin-top:3px">Head of Brand, <b>Saltmarsh Coffee</b></div>' +
+      '<div class="tr-sub" style="margin-top:3px;white-space:nowrap"><b style="color:var(--clayink)">12:41 PM for Ava</b><span style="position:relative;display:inline-block;width:20px;height:1em;vertical-align:-3px">' + star(10, 6, 5, 1000) + '</span>· Portland, Maine</div></div>' +
+      E('tr-pc a-in', 400, box(10, 112, 340, 116) + 'padding:.6em .8em', '<div class="t" style="margin-bottom:.3em">Timeline</div>' +
+        tl(500, 'Mail', 'Saltmarsh label review', 'Today') + tl(620, 'Meeting', 'Saltmarsh shoot walkthrough', 'Thu 11:00') + tl(740, 'Task', '<i class="tk"></i>Send the final shot list', 'Fri'));
+    return { html: E('tr-panel a-slide', 0, 'inset:0;border-radius:0;background:#F7F4EF;font-size:11px', body) + hand('lunchtime for Ava', 226, 30, 16, -5, 1300), dur: 3000 };
+  }
+
   var BUILD = { words: words, invite: invite, time: findTime, wide: wide, stack: stack, people: people };
-  var ORDER = { d: ['words', 'invite', 'time', 'wide', 'stack', 'people'], m: ['words', 'invite', 'time', 'stack'] };
+  var ORDER = { d: ['words', 'invite', 'time', 'wide', 'stack', 'people'], m: ['words', 'invite', 'time', 'wide', 'stack', 'people'] };
 
   // ------------------------------------------------------------------ layer, chapters, clock
   var layer = document.createElement('div');
