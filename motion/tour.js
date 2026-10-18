@@ -130,15 +130,19 @@
       ['9 AM', '10', '11', '12 PM', '1'].forEach(function (s, i) {
         hrs += '<div class="tr-hr" style="top:' + y(9 + i) + 'px;left:8px">' + s + '</div><div class="tr-line" style="left:42px;right:8px;top:' + y(9 + i) + 'px"></div>';
       });
-      var h = '<div class="tr-bg" style="background:#FCFAF7"></div><div class="ab" style="left:12px;top:12px;font-size:14px"><b>Thu, Oct 15</b> <span class="tr-sub">· Calendar</span></div>' + hrs +
+      // The banner arrives on its own, then leaves completely (a-out ends at 1350ms) before the calendar opens on the
+      // invite, so the banner never sits over the "Thu, Oct 15 · Calendar" header.
+      var cal = '<div class="ab" style="left:12px;top:12px;font-size:14px"><b>Thu, Oct 15</b> <span class="tr-sub">· Calendar</span></div>' + hrs +
         E('tr-ev b', null, box(46, y(9) + 1, 180, 18), '<b>Studio standup</b>') +
-        E('tr-ev q', null, box(46, y(11) + 2, 180, 32), '<b>Saltmarsh shoot walkthrough</b><span>11:00 – 11:45 AM</span>') +
+        E('tr-ev q', null, box(46, y(11) + 2, 180, 32), '<b>Saltmarsh shoot walkthrough</b><span>11:00 – 11:45 AM</span>');
+      var h = '<div class="tr-bg" style="background:#FCFAF7"></div>' +
+        E('ab a-fade', 1400, 'inset:0', cal) +
         E('a-out', 1000, box(0, 0), E('tr-ban a-drop', 100, box(30, 6, 300) + 'font-size:11px', ban())) +
-        loop(136, y(11.4), 100, 25, 1200, 640) +
-        keys(246, y(11) - 1, 1500) +
-        E('tr-ev a-fade', 2200, box(46, y(11) + 2, 180, 32), '<b>Saltmarsh shoot walkthrough</b><span>11:00 – 11:45 AM</span>') +
-        hand('accepted with A', 170, y(12) + 8, 21, -4, 2300);
-      return { html: '<div style="font-size:12px">' + h + '</div>', dur: 3400 };
+        loop(136, y(11.4), 100, 25, 1700, 640) +
+        keys(246, y(11) - 1, 2000) +
+        E('tr-ev a-fade', 2700, box(46, y(11) + 2, 180, 32), '<b>Saltmarsh shoot walkthrough</b><span>11:00 – 11:45 AM</span>') +
+        hand('accepted with A', 170, y(12) + 8, 21, -4, 2800);
+      return { html: '<div style="font-size:12px">' + h + '</div>', dur: 3900 };
     }
     var d = '';
     d += E('ab a-move', 600, box(119, 11, 52, 27) + '--x:56px;border-radius:14px;background:rgba(194,83,31,.16)');
@@ -278,7 +282,7 @@
   ch.setAttribute('aria-label', cfg.label || 'Product tour chapters');
   fig.appendChild(ch);
 
-  var mobile, list, dur = 1, btns, rp, cur = -1, t = 0, last = 0, raf = 0, started = false, ended = false;
+  var mobile, list, dur = 1, btns, rp, tabs, cur = -1, t = 0, last = 0, raf = 0, started = false, ended = false;
   var hov = false, foc = false, keep = false, off = false, vid = false;
 
   function fit() {
@@ -290,12 +294,14 @@
   function setup() {
     mobile = mq.matches;
     list = ORDER[mobile ? 'm' : 'd'].filter(function (id) { return COPY[id]; });
-    ch.innerHTML = list.map(function (id) { return '<button type="button"><span>' + COPY[id].label + '</span><i></i></button>'; }).join('') +
-      '<button type="button" class="rp" hidden>' + (cfg.replay || 'Replay') + '</button>' +
+    ch.innerHTML = '<div class="tour-tabs">' + list.map(function (id) { return '<button type="button"><span>' + COPY[id].label + '</span><i></i></button>'; }).join('') +
+      '<button type="button" class="rp" hidden>' + (cfg.replay || 'Replay') + '</button></div>' +
       // Video tour: hidden unless the build sets copy_home.VIDEO_TOUR; js/site.js opens the pop-up player.
       '<button type="button" class="vt"' + (cfg.video ? '' : ' hidden') + '>' + (cfg.video && cfg.video.label || 'See MarginMail in action') + '</button>';
     btns = ch.querySelectorAll('button:not(.rp):not(.vt)');
     rp = ch.querySelector('.rp');
+    tabs = ch.querySelector('.tour-tabs');
+    tabs.addEventListener('scroll', edges, { passive: true });
     btns.forEach(function (b, i) { b.addEventListener('click', function () { keep = true; go(i); }); });
     rp.addEventListener('click', function () { keep = true; go(0); btns[0].focus(); });
     ch.querySelector('.vt').addEventListener('click', function () {
@@ -324,7 +330,26 @@
     layer.setAttribute('aria-label', COPY[list[i]].aria);
     shot.setAttribute('aria-hidden', 'true');
     btns.forEach(function (bt, j) { if (j === i) bt.setAttribute('aria-current', 'step'); else bt.removeAttribute('aria-current'); });
+    reveal(btns[i]);
     bars();
+  }
+  // Phones: the chapter strip scrolls sideways when it doesn't fit. Fade whichever edge has more chapters past it, and keep
+  // the current chapter (or Replay) in view, scrolling only the strip, never the page.
+  function edges() {
+    if (!tabs) return;
+    var max = tabs.scrollWidth - tabs.clientWidth;
+    tabs.classList.toggle('fl', max > 1 && tabs.scrollLeft > 1);
+    tabs.classList.toggle('fr', max > 1 && tabs.scrollLeft < max - 1);
+  }
+  function reveal(el) {
+    if (!tabs || !el || tabs.scrollWidth <= tabs.clientWidth + 1) return edges();
+    var x = tabs.scrollLeft, l = el.getBoundingClientRect().left - tabs.getBoundingClientRect().left + x, r = l + el.offsetWidth, pad = 28;
+    if (l - pad < x) x = l - pad;
+    else if (r + pad > x + tabs.clientWidth) x = r + pad - tabs.clientWidth;
+    if (x !== tabs.scrollLeft) {
+      try { tabs.scrollTo({ left: Math.max(0, x), behavior: rm.matches ? 'auto' : 'smooth' }); } catch (e) { tabs.scrollLeft = Math.max(0, x); }
+    }
+    edges();
   }
   function bars() {
     btns.forEach(function (bt, j) {
@@ -333,7 +358,7 @@
     });
   }
   function go(i) {
-    ended = false; rp.hidden = true; started = true;
+    ended = false; rp.hidden = true; started = true; edges();
     show(i);
     sync();
   }
@@ -344,7 +369,7 @@
     if (t >= dur) {
       if (cur < list.length - 1) show(cur + 1);
       else {
-        ended = true; rp.hidden = false; bars();
+        ended = true; rp.hidden = false; reveal(rp); bars();
         // js/site.js counts this (hero_tour_complete, anonymous, once per page load); the tour itself sends nothing.
         document.dispatchEvent(new CustomEvent('marginmail:hero-tour-ended'));
         return sync();
@@ -368,7 +393,7 @@
   }
 
   setup();
-  if (window.ResizeObserver) new ResizeObserver(fit).observe(pic); else addEventListener('resize', fit);
+  if (window.ResizeObserver) { new ResizeObserver(fit).observe(pic); new ResizeObserver(edges).observe(ch); } else addEventListener('resize', function () { fit(); edges(); });
   new MutationObserver(function () { off = fig.classList.contains('off'); start(); sync(); }).observe(fig, { attributes: true, attributeFilter: ['class'] });
   win.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hov = true; sync(); } });
   win.addEventListener('pointerleave', function () { hov = false; sync(); });

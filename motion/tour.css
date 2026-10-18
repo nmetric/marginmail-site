@@ -127,9 +127,20 @@
 .tour-ch .rp[hidden],.tour-ch .vt[hidden]{display:none}
 .tour-ch .vt{margin-left:6px;color:#fff;background:var(--clay);border-radius:999px;padding:7px 14px;font-weight:600}
 .tour-ch .vt:hover{color:#fff;background:var(--clayink)}
+.tour-tabs{display:contents}
 @media (max-width:767px){
   .tour{border-radius:0 0 12px 12px}
-  .tour-ch{top:calc(100% + 8px);font-size:12px;gap:0}
-  .tour-ch button{padding:8px 6px 10px}.tour-ch i{left:6px;right:6px}
-  .tour-ch .vt{position:absolute;right:8px;bottom:calc(100% + 16px);padding:6px 11px;box-shadow:0 6px 16px -6px rgba(60,40,20,.5)}
+  /* Phones: the row is in the page flow. Line 1 is the chapter strip (one line; it scrolls sideways with snap when the
+     labels don't fit, fading the edge that has more past it); line 2 is the video button, always visible. */
+  .tour-ch{position:relative;top:auto;left:auto;right:auto;margin-top:6px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:13px}
+  .tour-tabs{display:flex;max-width:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding:0 24px;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 3px;--fl:0px;--fr:0px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
+  .tour-tabs::-webkit-scrollbar{display:none}
+  .tour-tabs.fl{--fl:28px}.tour-tabs.fr{--fr:28px}
+  .tour-tabs button{flex:none;scroll-snap-align:start;white-space:nowrap;min-height:40px;padding:10px 8px 13px}
+  .tour-ch i{left:8px;right:8px;bottom:5px}
+  .tour-ch button:focus-visible{outline-offset:-2px}
+  .tour-ch .vt{margin:0;min-height:44px;padding:11px 22px;font-size:15px;line-height:1.2;box-shadow:0 6px 16px -8px rgba(60,40,20,.5)}
 }

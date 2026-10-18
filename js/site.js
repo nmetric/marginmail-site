@@ -296,15 +296,21 @@
   });
 
   /* ---- Video tour pop-up (copy_home.VIDEO_TOUR). Opened by the hero link (variant A) or the tour's "See MarginMail in action"
-     button (variant TOUR, via the marginmail:video-tour event). Nothing loads until it opens: the dialog, the poster, the
-     captions and the MP4 are all created then. Native controls, captions on, no third parties, no cookies. Closing fires
-     marginmail:video-tour-closed so the hero tour resumes. ---- */
+     button (variant TOUR, via the marginmail:video-tour event). The dialog and its <video preload="none"> are built ahead of
+     time (at idle after load, or on the opener's pointerdown/touchstart), so the MP4 downloads nothing until it opens and the
+     opening tap only has to call play(). WebKit lets a <video> play with sound only from play() called synchronously inside
+     the user's gesture (webkit.org/blog/6784, "New <video> Policies for iOS"; webkit.org/blog/7734, "Auto-Play Policy Changes
+     for macOS"), on an element whose source was already selected: creating the <source> in the same tick as play() on a
+     preload=none element left iOS showing "playing" with nothing playing. So open() sets preload=auto and calls play() before
+     anything async, confirms with `playing`, and if the browser says no (or nothing loads) shows a big Play button whose own
+     tap starts it. Native controls, captions on, no third parties, no cookies. Closing fires marginmail:video-tour-closed
+     so the hero tour resumes. ---- */
   var vtCfgEl = doc.getElementById('video-tour-cfg'), vtCfg = null;
   try { vtCfg = vtCfgEl ? JSON.parse(vtCfgEl.textContent) : null; } catch (e) { vtCfg = null; }
   var vtLink = doc.querySelector('[data-video-tour]');
   // The TOUR variant has its own button in the chapter row, so the link under A's window steps aside.
   if (vtLink && window.__abHero && window.__abHero.video) vtLink.parentNode.hidden = true;
-  var vtDlg = null, vtVid = null, vtOpener = null, vtOpen = false;
+  var vtDlg = null, vtVid = null, vtPlay = null, vtOpener = null, vtOpen = false, vtCfgUsed = null, vtWatch = 0, vtLoaded = false;
   // Per open: the first play, and each quarter milestone crossed while playing (sent at most once per open). A reopen
   // resumes where it left off, so milestones already behind the playhead at open time aren't counted again.
   var VT_MARKS = [[0.25, 'tour_25'], [0.5, 'tour_50'], [0.75, 'tour_75']];
@@ -322,7 +328,20 @@
   function vtFocusables() {
     return Array.prototype.filter.call(vtDlg.querySelectorAll('button,video[controls],a[href]'), function (el) { return !el.hidden && el.offsetParent !== null; });
   }
+  function vtShowPlay(on) {
+    if (!vtPlay) return;
+    vtPlay.hidden = !on;
+    if (on && vtOpen) vtPlay.focus();
+  }
+  function vtStopWatch() { if (vtWatch) { clearTimeout(vtWatch); vtWatch = 0; } }
+  // The poster (~200 KB) is fetched only once someone reaches for the video: on the opener's pointerdown/touchstart/focus, or at open.
+  function vtWarm() {
+    if (!vtDlg) vtBuild(vtCfg);
+    if (vtVid && vtCfgUsed && vtCfgUsed.poster && !vtVid.getAttribute('poster')) vtVid.setAttribute('poster', vtCfgUsed.poster);
+  }
   function vtBuild(c) {
+    if (vtDlg || !c || !c.src) return;
+    vtCfgUsed = c;
     vtDlg = doc.createElement('dialog');
     vtDlg.className = 'vmodal';
     vtDlg.setAttribute('aria-labelledby', 'vm-title');
@@ -330,22 +349,32 @@
       '<button type="button" class="vm-close" aria-label="' + esc((c.close || 'Close') + ' the video') + '">' +
       '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3L11 11M11 3L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>' +
       '<span>' + esc(c.close || 'Close') + '</span></button></div>' +
-      '<div class="vm-frame"><video controls playsinline preload="none" width="' + (c.w || 1920) + '" height="' + (c.h || 1080) + '" poster="' + esc(c.poster) + '">' +
+      '<div class="vm-frame"><video controls playsinline webkit-playsinline preload="none" width="' + (c.w || 1920) + '" height="' + (c.h || 1080) + '">' +
       '<source src="' + esc(c.src) + '" type="video/mp4">' +
       '<track kind="captions" srclang="en" label="English" src="' + esc(c.vtt) + '" default>' +
-      '<a href="' + esc(c.src) + '">Download the video (MP4)</a></video></div></div>';
+      '<a href="' + esc(c.src) + '">Download the video (MP4)</a></video>' +
+      '<button type="button" class="vm-play" hidden aria-label="Play the video"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 7.5v17l14-8.5z" fill="currentColor"/></svg></button></div></div>';
     doc.body.appendChild(vtDlg);
     vtVid = vtDlg.querySelector('video');
+    vtPlay = vtDlg.querySelector('.vm-play');
     var showCaptions = function () { for (var i = 0; i < vtVid.textTracks.length; i++) if (vtVid.textTracks[i].kind === 'captions') vtVid.textTracks[i].mode = 'showing'; };
     vtVid.addEventListener('loadedmetadata', showCaptions);
     showCaptions();
+    ['progress', 'loadeddata', 'canplay'].forEach(function (n) { vtVid.addEventListener(n, function () { vtLoaded = true; }); });
+    // `playing` is the proof: frames are moving. Only then does the big Play button go and tour_play count.
     vtVid.addEventListener('playing', function () {
+      vtStopWatch();
+      vtShowPlay(false);
       if (!vtOpen || !vtRun || vtRun.played) return;
       vtRun.played = true;
       countEvent('tour_play');
     });
+    // Started from the native controls instead: the overlay steps aside straight away.
+    vtVid.addEventListener('play', function () { if (vtPlay) vtPlay.hidden = true; });
     vtVid.addEventListener('timeupdate', function () { vtProgress(false); });
     vtVid.addEventListener('ended', function () { vtProgress(true); });
+    vtVid.addEventListener('error', function () { vtStopWatch(); if (vtOpen) { vtVid.pause(); vtShowPlay(true); } }, true);
+    vtPlay.addEventListener('click', function () { vtStart(true); });
     vtDlg.querySelector('.vm-close').addEventListener('click', vtClose);
     // Esc: the dialog's own cancel, routed through vtClose so focus and the tour come back.
     vtDlg.addEventListener('cancel', function (e) { e.preventDefault(); vtClose(); });
@@ -361,10 +390,36 @@
       else if (!e.shiftKey && (a === last || !vtDlg.contains(a))) { e.preventDefault(); first.focus(); }
     });
   }
+  // Must run synchronously inside a click/tap handler: nothing awaited before play().
+  function vtStart(retry) {
+    vtStopWatch();
+    vtVid.preload = 'auto';
+    // A retry after a stalled first attempt (nothing loaded at all): start the resource selection over, still in the gesture.
+    if (retry && !vtLoaded && vtVid.readyState === 0 && vtVid.networkState !== 2) vtVid.load();
+    var pr;
+    try { pr = vtVid.play(); } catch (e) { pr = null; vtVid.pause(); vtShowPlay(true); return; }
+    if (pr && pr.then) {
+      pr.then(null, function () {
+        // NotAllowedError (no gesture credit) or AbortError: make sure the native controls say paused, and offer the real button.
+        vtStopWatch();
+        if (!vtOpen) return;
+        vtVid.pause();
+        vtShowPlay(true);
+      });
+    }
+    // Watchdog: play() accepted but no frames and no bytes after a few seconds is the stuck state, not slow buffering.
+    // Pause so the native controls stop claiming "playing", and hand over to the big Play button.
+    vtWatch = setTimeout(function () {
+      vtWatch = 0;
+      if (!vtOpen || vtVid.paused) return; // paused: the browser said no (handled above) or the viewer paused it
+      if (vtVid.readyState < 3 && !vtLoaded) { vtVid.pause(); vtShowPlay(true); }
+    }, 4000);
+  }
   function vtOpenPlayer(c, opener, source) {
     c = c && c.src ? c : vtCfg;
     if (!c || !c.src || vtOpen) return;
     if (!vtDlg) vtBuild(c);
+    vtWarm();
     vtOpener = opener || doc.activeElement;
     // Where this open starts (a finished video restarts from 0 when played again).
     var d = vtVid.duration, at = d > 0 && isFinite(d) && !vtVid.ended ? vtVid.currentTime / d : 0;
@@ -374,16 +429,16 @@
     root.classList.add('vm-on');
     if (vtDlg.showModal) vtDlg.showModal(); else vtDlg.setAttribute('open', '');
     vtDlg.classList.toggle('still', reduce.matches);
-    // The click that opened the player is the user's go-ahead to play with sound. With Reduce Motion on, it waits for Play.
-    if (!reduce.matches) {
-      var pr = vtVid.play();
-      if (pr && pr.catch) pr.catch(function () { /* the browser said no; the Play button is right there */ });
-    }
-    vtVid.focus();
+    vtPlay.hidden = true;
+    // The tap that opened the player is the user's go-ahead to play with sound. With Reduce Motion on, it waits for Play.
+    if (!reduce.matches) vtStart(false);
+    else { vtVid.preload = 'auto'; vtShowPlay(true); }
+    if (vtPlay.hidden) vtVid.focus();
   }
   function vtClose() {
     if (!vtOpen) return;
     vtOpen = false;
+    vtStopWatch();
     vtVid.pause();
     if (vtDlg.close) vtDlg.close(); else vtDlg.removeAttribute('open');
     root.classList.remove('vm-on');
@@ -400,6 +455,13 @@
     var t = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.vt') : null;
     vtOpenPlayer(e.detail, t || doc.querySelector('.tour-ch .vt'), 'tour_button');
   });
+  if (vtCfg) {
+    // Reaching for an opener builds (if idle hasn't yet) and starts the poster, before the click that plays.
+    var vtReach = function (e) { var t = e.target; if (t && t.closest && t.closest('[data-video-tour],.tour-ch .vt')) vtWarm(); };
+    ['pointerdown', 'touchstart', 'focusin'].forEach(function (n) { doc.addEventListener(n, vtReach, { capture: true, passive: true }); });
+    var vtIdle = function () { (window.requestIdleCallback || function (f) { return setTimeout(f, 1200); })(function () { vtBuild(vtCfg); }, { timeout: 4000 }); };
+    if (doc.readyState === 'complete') vtIdle(); else addEventListener('load', vtIdle);
+  }
 
   /* ---- The scroll sky: CSS scroll-driven animations where supported; otherwise a light rAF fallback ---- */
   var sky = doc.querySelector('.sky');

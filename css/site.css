@@ -548,6 +548,11 @@ html.vm-on{overflow:hidden}
 .vm-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--warm)}
 .vmodal :focus-visible{outline:2px solid var(--clay);outline-offset:3px}
 .vm-frame video:focus-visible{outline-offset:-2px}
+.vm-play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:var(--clay);color:#fff;cursor:pointer;line-height:0;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 18px 40px -12px rgba(60,40,20,.6);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.vm-play[hidden]{display:none}
+.vm-play:hover{background:var(--clayink)}
+.vm-play svg{width:38px;height:38px;margin-left:4px}
+.vmodal .vm-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .vmodal video::cue{font-family:var(--sans);background:rgba(29,27,24,.78);color:#fff}
 @media (prefers-reduced-motion:no-preference){
   .vmodal[open]:not(.still) .vm-panel{animation:vm-in .26s var(--ease) both}
@@ -562,4 +567,5 @@ html.vm-on{overflow:hidden}
   .vm-head{margin:0 12px 10px 16px}
   .vm-title{font-size:18px}
   .vm-frame{border-radius:0;box-shadow:none}
+  .vm-play{width:68px;height:68px;margin:-34px 0 0 -34px}.vm-play svg{width:30px;height:30px}
 }
