@@ -157,15 +157,30 @@ TOUR = dict(  # Oct 17: the hero product tour, A/B variant TOUR (chapter labels 
 # The 2-minute video tour (Ben approved the final cut Oct 17). `label` is the button in the TOUR variant's chapter row; it pauses
 # the tour and fires `marginmail:video-tour` on document (detail = the dict below plus the file URLs build.py adds). `link` is
 # the text link under variant A's static hero window. Both open the same pop-up player (js/site.js); closing it fires
-# `marginmail:video-tour-closed`, which resumes the tour. Set VIDEO_TOUR = None to hide both.
+# `marginmail:video-tour-closed`, which resumes the tour. The watch page /tour/ holds the VideoObject. Set VIDEO_TOUR = None
+# to hide the page and both ways in.
 VIDEO_TOUR = dict(
     label='See MarginMail in action',
     link='Watch the 2-minute tour',
     title='MarginMail in two minutes',
     description=('A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that '
-                 'find a time as you type, invites you answer with one key, the Margins stack, and a page for everyone you write to.'),
+                 'find a time as you type, invites you answer with one key, the Margins stack and a page for everyone you write to.'),
     close='Close',
 )
+# The chapters on /tour/: (label, number of the caption in TOUR.srt that opens the chapter). Each start time comes from that
+# caption, so they can't drift from the video; the transcript on the page is split at the same captions.
+VIDEO_CHAPTERS = [
+    ('What MarginMail is', 1),
+    ('Notes on what needs you', 3),
+    ('Live words as you write', 5),
+    ('A page for everyone you write to', 9),
+    ('Invites and free times', 12),
+    ('The Margins stack', 17),
+    ('Write it', 20),
+    ('Done and the back of the stack', 24),
+    ('Privacy', 27),
+    ('Join the beta', 30),
+]
 
 FOOT_LINE = 'Mail that knows what needs you. A native Mac email app for Gmail.'  # v3
 FOOT_LINKS = ['Compare MarginMail', 'Answers', 'Privacy', 'Terms', 'Contact']  # v3

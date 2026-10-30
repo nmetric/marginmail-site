@@ -447,7 +447,7 @@
     doc.dispatchEvent(new CustomEvent('marginmail:video-tour-closed'));
   }
   if (vtLink) vtLink.addEventListener('click', function (e) {
-    if (!vtCfg || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // new tab / download still work
+    if (!vtCfg || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // new tab still opens the watch page
     e.preventDefault();
     vtOpenPlayer(vtCfg, vtLink, 'hero_link');
   });
@@ -462,6 +462,24 @@
     var vtIdle = function () { (window.requestIdleCallback || function (f) { return setTimeout(f, 1200); })(function () { vtBuild(vtCfg); }, { timeout: 4000 }); };
     if (doc.readyState === 'complete') vtIdle(); else addEventListener('load', vtIdle);
   }
+
+  /* ---- /tour/: the chapter list moves the page's player. Without JavaScript each chapter is a link to the MP4 at that time.
+     Nothing is counted here. ---- */
+  var wtVid = doc.querySelector('.wt-frame video');
+  if (wtVid) doc.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('[data-seek]') : null;
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    var t = +a.getAttribute('data-seek');
+    var seek = function () { wtVid.currentTime = t; };
+    // Before the metadata arrives the browser can drop a seek, so it's repeated then. play() stays inside the tap for iOS.
+    if (wtVid.readyState < 1) wtVid.addEventListener('loadedmetadata', seek, { once: true });
+    seek();
+    var played = wtVid.play();
+    if (played && played.catch) played.catch(function () {});
+    var box = wtVid.getBoundingClientRect();
+    if (box.top < 0 || box.bottom > innerHeight) wtVid.scrollIntoView({ block: 'center', behavior: reduce.matches ? 'auto' : 'smooth' });
+  });
 
   /* ---- The scroll sky: CSS scroll-driven animations where supported; otherwise a light rAF fallback ---- */
   var sky = doc.querySelector('.sky');

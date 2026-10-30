@@ -4,6 +4,7 @@
 - HTML structure: tag nesting, void elements, <p> holding block elements, duplicate ids, references (for=, aria-*)
 - Accessibility basics: one <h1>, no skipped heading levels, alt on every <img>, labelled inputs, lang
 - SEO: title/description length, canonical, OG/Twitter tags, JSON-LD parses, FAQPage matches visible text
+- Video: one full VideoObject on the site, on /tour/, and the sitemap's video entry on that page
 - Links: every internal href/src resolves to a file in the build; anchors (#id) exist on the target page
 - Weight: bytes per page (HTML + CSS + JS + fonts + eager images; lazy images and below-the-fold media listed separately)
 """
@@ -18,6 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 BLOCK = {'address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form',
          'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'}
+VIDEO_FIELDS = ('name', 'description', 'url', 'thumbnailUrl', 'uploadDate', 'duration', 'contentUrl', 'embedUrl', 'transcript')
 SKIP_DIRS = {'.git', 'content', 'docs', 'waitlist', 'tools', 'brand', 'assets', '_build', 'node_modules'}
 
 
@@ -70,8 +72,10 @@ class Page(html.parser.HTMLParser):
         if k := a.get('href'):
             if tag in ('a', 'link'):
                 self.links.append((tag, k, a.get('rel', '')))
-        if tag in ('img', 'script', 'source') and a.get('src'):
+        if tag in ('img', 'script', 'source', 'track') and a.get('src'):
             self.links.append((tag, a['src'], ''))
+        if tag == 'video' and a.get('poster'):
+            self.links.append((tag, a['poster'], ''))
         if tag == 'img':
             self.imgs.append(a)
             if 'alt' not in a:
@@ -169,6 +173,7 @@ def main():
     pages = built_pages()
     parsed = {}
     problems = 0
+    videos = []
     for p in pages:
         rel = os.path.relpath(p, ROOT)
         pg = Page(rel)
@@ -217,6 +222,13 @@ def main():
                 errs.append(f'JSON-LD does not parse: {e}')
                 continue
             for node in data.get('@graph', [data]):
+                if node.get('@type') == 'VideoObject':
+                    videos.append(rel)
+                    missing = [k for k in VIDEO_FIELDS if not node.get(k)]
+                    if missing:
+                        errs.append(f'VideoObject missing {", ".join(missing)}')
+                    if not re.search(r'T.*([+-]\d\d:\d\d|Z)$', node.get('uploadDate', '')):
+                        errs.append('VideoObject uploadDate has no timezone')
                 if node.get('@type') == 'FAQPage':
                     for q in node['mainEntity']:
                         for s in (q['name'], q['acceptedAnswer']['text']):
@@ -238,8 +250,15 @@ def main():
             print(f'\n{rel}')
             for e in errs:
                 print('  -', e)
+    if videos not in ([], ['tour/index.html']):
+        problems += 1
+        print('VideoObject should be only on tour/index.html, found on:', videos)
     # sitemap and robots
     sm = open(os.path.join(ROOT, 'sitemap.xml')).read()
+    video_locs = re.findall(r'<loc>https://marginmail\.ai(/[^<]*)</loc><lastmod>[^<]*</lastmod><video:video>', sm)
+    if sm.count('<video:video>') != len(videos) or (videos and video_locs != ['/tour/']):
+        problems += 1
+        print('sitemap video entry should be on /tour/ only, found on:', video_locs)
     locs = re.findall(r'<loc>https://marginmail\.ai(/[^<]*)</loc>', sm)
     for l in locs:
         fs, _ = resolve('index.html', l)

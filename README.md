@@ -14,6 +14,7 @@ Python standard library plus macOS `sips` (images). Commit the built files; Page
 | Source | Becomes |
 |---|---|
 | `content/homepage.md` (copy lives in `_build/copy_home.py`) | `index.html` |
+| `copy_home.VIDEO_TOUR`, `VIDEO_CHAPTERS`, `content/video/out/` | `tour/` (the watch page, which holds the VideoObject), `video/` |
 | `content/comparisons/*.md` | `compare/` and `compare/<slug>/` |
 | `content/seo/pages/*.md` | `best/…/`, `guides/…/` (from each file's `url`) |
 | `_build/legal/privacy.html`, `terms.html` (legal text, edit by hand) | `privacy/`, `terms/` |

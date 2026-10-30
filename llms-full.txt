@@ -67,9 +67,9 @@ MarginMail is a native Mac app with no MarginMail server in the middle, so we ca
 
 Clear the stack and you’ll see a sunrise, or another quiet scene that suits the time of day.
 
-### Video: MarginMail in two minutes (https://marginmail.ai/video/marginmail-tour-mac-email-app-gmail.mp4)
+### Video: MarginMail in two minutes (https://marginmail.ai/tour/)
 
-A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that find a time as you type, invites you answer with one key, the Margins stack, and a page for everyone you write to. Length 2:03. Captions: https://marginmail.ai/video/marginmail-tour.en.vtt
+A two-minute tour of MarginMail, a native Mac email app for Gmail: notes in the reply bar, live words that find a time as you type, invites you answer with one key, the Margins stack and a page for everyone you write to. Length 2:03. Captions: https://marginmail.ai/video/marginmail-tour.en.vtt
 
 Transcript:
 
