@@ -374,7 +374,7 @@ VIDEO_FILES = {'marginmail-tour-mac-email-app-gmail.mp4': '/video/marginmail-tou
                'margin-mac-email-app-live-words.jpg': '/video/margin-mac-email-app-live-words.jpg',
                'marginmail-tour.en.vtt': '/video/marginmail-tour.en.vtt'}
 VIDEO_DURATION = 'PT2M3S'
-VIDEO_UPLOAD = '2026-10-17'
+VIDEO_UPLOAD = '2026-10-17T09:00:00-07:00'  # ISO 8601 with a timezone: Google flags a bare date (Oct 29 Search Console)
 
 
 def video_cfg():
