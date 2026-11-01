@@ -7,6 +7,7 @@
 - Video: one full VideoObject on the site, on /tour/, and the sitemap's video entry on that page
 - Links: every internal href/src resolves to a file in the build; anchors (#id) exist on the target page
 - Weight: bytes per page (HTML + CSS + JS + fonts + eager images; lazy images and below-the-fold media listed separately)
+- Release notes (/releases/, from _build/releases.py): noindex, not in the sitemap, linked from no other page, and no beacon, site.js, form or third party
 """
 import html.parser
 import json
@@ -21,6 +22,26 @@ BLOCK = {'address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'f
          'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'}
 VIDEO_FIELDS = ('name', 'description', 'url', 'thumbnailUrl', 'uploadDate', 'duration', 'contentUrl', 'embedUrl', 'transcript')
 SKIP_DIRS = {'.git', 'content', 'docs', 'waitlist', 'tools', 'brand', 'assets', '_build', 'node_modules'}
+
+
+def release_page_errors(source):
+    """What a /releases/ page must never carry, read from its source (the board's list, Ben's Nov 1 answers)."""
+    errs = []
+    if not re.search(r'<meta name="robots" content="noindex">', source):
+        errs.append('no noindex')
+    if 'Content-Security-Policy' not in source:
+        errs.append('no Content-Security-Policy')
+    if re.search(r'sendBeacon|/hit\b|join\.marginmail\.ai', source):
+        errs.append('the visit beacon')
+    if '/js/site.js' in source:
+        errs.append('site.js')
+    if '<form' in source:
+        errs.append('a form')
+    if re.search(r'(src|srcset|href)="(https?:)?//', source):
+        errs.append('a third-party request')
+    if re.search(r'\b(ben|nowacky)\b', source, re.I):
+        errs.append("Ben's name")
+    return errs
 
 
 class Page(html.parser.HTMLParser):
@@ -183,6 +204,9 @@ def main():
     for p, pg in parsed.items():
         rel = os.path.relpath(p, ROOT)
         errs = list(pg.errors)
+        release_page = rel.startswith('releases/')
+        if release_page:
+            errs += release_page_errors(open(p, encoding='utf-8').read())
         if pg.stack and pg.stack not in (['html'], ['html', 'body'], []):
             errs.append(f'unclosed at end: {pg.stack}')
         for i, n in pg.ids.items():
@@ -208,10 +232,10 @@ def main():
         if rel != '404.html':
             if not 10 <= len(t) <= 70:
                 errs.append(f'title length {len(t)}: {t}')
-            if not 50 <= len(d) <= 160:
+            if not release_page and not 50 <= len(d) <= 160:
                 errs.append(f'description length {len(d)}')
             for k in ('canonical', 'og:title', 'og:description', 'og:image', 'og:url', 'twitter:card'):
-                if not pg.meta.get(k):
+                if not release_page and not pg.meta.get(k):
                     errs.append(f'missing {k}')
         faq_visible = ' '.join(pg.text)
         faq_visible = re.sub(r'\s+', ' ', faq_visible)
@@ -235,6 +259,8 @@ def main():
                             if re.sub(r'\s+', ' ', s) not in faq_visible:
                                 errs.append(f'FAQPage text not visible on page: {s[:60]}…')
         for tag, href, relattr in pg.links:
+            if not release_page and tag == 'a' and urllib.parse.urlsplit(href).path.startswith('/releases'):
+                errs.append(f'links to the release notes, which stay unlinked: {href}')
             fs, frag = resolve(rel, href)
             if fs is None:
                 continue
@@ -265,9 +291,13 @@ def main():
         if not os.path.exists(fs):
             problems += 1
             print('sitemap URL has no page:', l)
+    for l in locs:
+        if l.startswith('/releases'):
+            problems += 1
+            print('release notes in the sitemap:', l)
     for p in parsed:
         rel = '/' + os.path.relpath(p, ROOT).replace('index.html', '')
-        if rel not in locs and rel != '/404.html':
+        if rel not in locs and rel != '/404.html' and not rel.startswith('/releases/'):
             problems += 1
             print('page missing from sitemap:', rel)
     print(f'\n{len(parsed)} pages, {len(locs)} sitemap URLs, {problems} problems')

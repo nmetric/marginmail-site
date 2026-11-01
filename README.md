@@ -20,6 +20,7 @@ Python standard library plus macOS `sips` (images). Commit the built files; Page
 | `_build/legal/privacy.html`, `terms.html` (legal text, edit by hand) | `privacy/`, `terms/` |
 | `assets/shots/` | `img/*.jpg` (resized; hero ≤ 250 KB) |
 | `assets/motion/{stack,live-words,write-it}.*`, `brand/final/lockup/` | `motion/`, `img/brand/` |
+| the app repo's `docs/release-notes/1.0-b<N>.md` and fixture screenshots, by `_build/releases.py` | `releases/`, `releases/1.0-<N>/` |
 
 Hand-written, not generated: `css/site.css`, `js/site.js` (forms, marks drawing on view, sticky Join bar, star easter egg, scroll-sky fallback), `fonts/` (Newsreader and Caveat, latin subset, OFL), favicons, `og/margin-og.png`.
 
@@ -34,6 +35,11 @@ Forms post to the waitlist endpoint (`waitlist/README.md`). `?r=` (or `?ref=`) i
 Every page carries `<meta name="page-version">`: a short hash of its visible copy (text in `<main>`; not CSS, JS or markup). Visit counts and signups are counted per version, so `waitlist/stats.sh --versions` shows conversion per version over time. When a hash changes, the build appends a line to `content/versions.md` (date, page, version, what changed in the headline or subhead).
 
 A/B tests (homepage hero only): the page as written is variant A, and it's what the HTML contains, so crawlers and no-JS visitors always see A. To **start** a test, add rows to the ```variants block at the end of `content/homepage.md` (`id | weight | headline | subhead | cta | note`, empty field = keep A's text), rebuild, check the hero at 1440/1024/390, push. Each page view picks a variant by weight in a tiny inline script before the hero paints; nothing is stored (no cookie, no localStorage), so each view stands alone. Views and signups carry the variant id. Read results with `waitlist/stats.sh --ab` (conversion per variant and a two-proportion z-test against A; it says when there's too little data). To **stop**, delete the rows (keep the block), rebuild and push. Ideas waiting for approval: `content/seo/ab-ideas.md`.
+
+## Release notes
+`/releases/` lists the builds and `/releases/1.0-<N>/` is one build, with its screenshots (click to enlarge) and the hand note. `_build/releases.py` writes them, apart from `build.py`, and only under `releases/`: the app's `scripts/release-beta.sh` runs it on an approved release, pushes `releases/` alone and waits for the page before the feed names it. `build.py` never touches this folder. `releases/releases.css` and `releases.js` are hand-written; after changing the page template, run `--rebuild`.
+
+The pages are public but quiet: noindex, not in the nav or sitemap, linked from nowhere else, no visit beacon, no `site.js`, no form, no third party, and a strict CSP. Only these pages follow the system to dark. Screenshots are the app's fixture references, named in the notes by `Shot:` lines, so no real mail can reach them, and Ben's name never appears. `check.py` checks all of it except the pictures; the app's release gate reads those with Vision.
 
 Social cards: `python3 _build/og.py` renders `og/compare-*.png`, `og/guides-*.png` and `og/best-*.png` with headless Chrome; run it before `build.py` when titles change.
 
