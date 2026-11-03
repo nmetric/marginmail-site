@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "4",
+  "channel": "beta",
+  "date": "2026-11-03",
+  "sentence": "Now and then, MarginMail can show a short message in the sidebar: a survey, or a note about something new."
+ },
+ {
+  "version": "1.0",
   "build": "3",
   "channel": "beta",
   "date": "2026-11-02",
