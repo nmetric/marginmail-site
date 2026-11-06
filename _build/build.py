@@ -738,9 +738,9 @@ def home():
                f'imagesizes="(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)" media="(min-width: 768px)" fetchpriority="high">\n'
                f'<link rel="preload" as="image" imagesrcset="{srcset("margin-message-reply-bar-note")}" imagesizes="calc(100vw - 32px)" media="(max-width: 767px)" fetchpriority="high">\n')
     hh = head('MarginMail: Mail that knows what needs you · Gmail and Outlook for Mac',
-              'MarginMail is a native Mac email app for Google and Microsoft accounts, with your calendar and people built in. Private AI that never sends. Free in beta.',
+              'MarginMail is a native Mac email app for your Google and Microsoft accounts, together in one inbox, with your calendar and people built in. AI that never sends.',
               '/', og_title='MarginMail: Mail that knows what needs you',
-              og_desc='Give your inbox some margin. A native Mac email app for Google and Microsoft accounts, with your calendar and people built in. Private AI that never sends.',
+              og_desc='Give your inbox some margin. A native Mac email app for your Google and Microsoft accounts, together in one inbox, with your calendar and people built in.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
     write('index.html', page(hh, ''.join(P), home=True, motion=('stack', 'live-words', 'write-it'), stickybar=True))
 

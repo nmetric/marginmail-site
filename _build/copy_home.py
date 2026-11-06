@@ -7,8 +7,8 @@ People moved to third and rewritten (R3), two new FAQs (R7). content/homepage.md
 
 HERO_H = 'Mail that knows what needs you.'
 HERO_NOTE = 'Give your inbox some margin'
-HERO_SUB = ('A native Mac email app for Google and Microsoft accounts, with your calendar and the people you work with in one window. '
-            'MarginMail notes what needs you and helps you find a meeting time as you type. It works fully with AI off, and AI never sends.')  # v3
+HERO_SUB = ('A native Mac email app for your Google and Microsoft accounts, together in one inbox. '
+            'MarginMail notes what needs you and helps you find a meeting time as you type. It works fully with AI off, and AI never sends.')  # v3; Nov 6: first sentence approved by Ben
 PRIV_LINE = 'Just your email. No tracking.'
 SMALL_LINE = 'Free during the beta · macOS 26 or later · Google and Microsoft accounts'  # v3; Nov 6: Microsoft accounts shipped
 
