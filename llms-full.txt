@@ -62,7 +62,7 @@ MarginMail is a native Mac app with no MarginMail server in the middle, so we ca
 - No read receipts. MarginMail never adds read receipts or open tracking to the mail you send.
 - No MarginMail server. Your mail goes between your Mac and Google or Microsoft, and nowhere else.
 - AI only if you want it. Apple Intelligence on your Mac first. Your own Claude only if you opt in, and only when you click. AI never sends.
-- Your data, your account. MarginMail’s own settings, notes, snoozes and People sync between your Macs, encrypted so only your own devices can read them. They’re kept in a hidden folder in your own Google or Microsoft account. Your mail stays with your provider, as always.
+- Your data, your account. MarginMail’s own settings, notes, snoozes and People sync between your Macs, encrypted so only your own devices can read them. They’re kept in MarginMail’s own folder in your Google or Microsoft account. Your mail stays with your provider, as always.
 
 ### When the Margins stack is empty: An empty stack ends with a sunrise.
 
@@ -85,7 +85,7 @@ MarginMail is a native Mac email app for Google and Microsoft accounts, with a c
 Google doesn’t make a Gmail app for the Mac; Gmail runs in a browser. MarginMail is a native macOS app built on the Gmail API, so your Gmail and Google Workspace accounts get real Mac windows, notifications and keyboard shortcuts, with your calendar and the people you write to in the same window. It works with Microsoft 365 and Outlook.com accounts too.
 
 **Does MarginMail store my emails on its servers?**
-No. There is no MarginMail server for your mail. MarginMail connects directly to Google or Microsoft from your Mac, so your messages stay with you and your mail provider. MarginMail’s own settings, notes and snoozes sync between your Macs in a hidden folder in your own Google or Microsoft account, encrypted so only your own devices can read them. Your mail is stored and protected by your provider, as it always is. There are no analytics in the app, so we can’t see how you use it.
+No. There is no MarginMail server for your mail. MarginMail connects directly to Google or Microsoft from your Mac, so your messages stay with you and your mail provider. MarginMail’s own settings, notes and snoozes sync between your Macs in MarginMail’s own folder in your Google or Microsoft account, encrypted so only your own devices can read them. Your mail is stored and protected by your provider, as it always is. There are no analytics in the app, so we can’t see how you use it.
 
 **Does MarginMail have a built-in personal CRM?**
 Yes. Everyone you write to gets a page built from your mail and calendar: past conversations, meetings, notes, tasks and their local time, grouped by company. Tasks close themselves when the reply or file arrives. What you add syncs between your Macs, encrypted so only your own devices can read it. Nothing goes to a CRM service, and there’s nothing to import.
@@ -1180,7 +1180,7 @@ MarginMail uses three tiers. Each one says what it is when it appears.
 | **3. Your own Claude** (opt in) | **Write it** drafts a reply from your notes and the thread; **What's been decided** summarizes long threads | The Claude Code you installed on your Mac, signed in to your own Claude plan | Only the conversation you clicked on, sent by your Claude to Anthropic under your account's terms. MarginMail isn't in that path and never sees your login |
 
 **What's true in every tier:**
-- **No MarginMail server.** MarginMail talks to Google or Microsoft directly from your Mac. Its own settings, notes and snoozes sync in a hidden folder in your own account, encrypted so only your own devices can read them. Your mail stays with your provider.
+- **No MarginMail server.** MarginMail talks to Google or Microsoft directly from your Mac. Its own settings, notes and snoozes sync in MarginMail's own folder in your account, encrypted so only your own devices can read them. Your mail stays with your provider.
 - **No analytics.** We can't see how you use MarginMail.
 - **AI never sends.** Write it fills the composer; you read it and press ⌘⏎. Anything the draft added that the thread didn't have (a new recipient, a link, a number or a code) is flagged.
 - **Tier 3 is click-only and read-only.** Your Claude runs with MarginMail's read-only tools; it can't send, delete, create filters or fetch the web.
