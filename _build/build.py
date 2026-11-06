@@ -29,7 +29,7 @@ import abv  # noqa: E402
 SITE = 'https://marginmail.ai'
 ENDPOINT = 'https://join.marginmail.ai/join'
 BUILT = '2026-10-17'
-DEFINITION = 'MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in.'
+DEFINITION = 'MarginMail is a native Mac email app for Google and Microsoft accounts, with a calendar and a personal CRM built in.'
 FOOT_LINE = C.FOOT_LINE
 FOOT_SMALL = C.FOOT_SMALL
 _HASH = {}
@@ -134,7 +134,7 @@ LOCK = ('<svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rec
 ORG = {"@type": "Organization", "@id": f"{SITE}/#org", "name": "MarginMail", "url": f"{SITE}/", "logo": f"{SITE}/logo.png",
        "email": "hello@marginmail.ai",
        "sameAs": ["https://www.youtube.com/@MarginMail", "https://www.linkedin.com/company/marginmail"],
-       "description": "MarginMail makes a native Mac email app for Gmail with a calendar and personal CRM built in."}
+       "description": "MarginMail makes a native Mac email app for Google and Microsoft accounts with a calendar and personal CRM built in."}
 WEBSITE = {"@type": "WebSite", "@id": f"{SITE}/#site", "url": f"{SITE}/", "name": "MarginMail", "publisher": {"@id": f"{SITE}/#org"}, "inLanguage": "en"}
 
 
@@ -271,7 +271,7 @@ BEACON = ('(function(){try{var n=navigator,l=location,q=new URLSearchParams(l.se
 
 def head(title, desc, path, og_title=None, og_desc=None, og_alt=None, ld=None, extra='', motion=(), og_image='/og/margin-og.png'):
     url = SITE + path
-    og_alt = og_alt or "MarginMail: Mail that knows what needs you. A native Mac email app for Gmail, with the handwritten note 'give your inbox some margin'."
+    og_alt = og_alt or "MarginMail: Mail that knows what needs you. A native Mac email app for Google and Microsoft accounts, with the handwritten note 'give your inbox some margin'."
     ldj = ''
     if ld:
         ldj = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + '</script>'
@@ -650,7 +650,7 @@ def home():
     d = C.S_MACPRIV
     diag_d, _ = M.privacy_diagram(1140, 310)
     diag_m, _ = M.privacy_diagram(358, 470, vertical=True)
-    diag_alt = ('Diagram: your Mac connects directly to Google, with an optional dotted line to your own Claude; a “MarginMail server” box is crossed out '
+    diag_alt = ('Diagram: your Mac connects directly to your mail at Google or Microsoft, with an optional dotted line to your own Claude; a “MarginMail server” box is crossed out '
                 'because there isn’t one, and a tracking pixel bounces off before it reaches the Mac.')
     fix = lambda s: responsive_svg(s).replace(re.search(r'aria-label="[^"]*"', s).group(0), f'aria-label="{esc(diag_alt)}"')
     points = ''
@@ -720,10 +720,11 @@ def home():
                          "Write it: drafts from your notes with your own Claude, on click; never sends",
                          "What's been decided: summaries of long threads",
                          "Request notes found on-device with Apple Intelligence",
-                         "Multiple Gmail and Google Workspace accounts in one unified inbox",
+                         "Gmail, Google Workspace, Microsoft 365 and Outlook.com accounts in one unified inbox",
+                         "Settings, notes and snoozes synced between your Macs, end-to-end encrypted in your own account",
                          "Menu bar agenda with Join",
                          "No MarginMail server, no analytics, no read receipts"]},
-        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail: Mail that knows what needs you · Gmail app for Mac",
+        {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": "MarginMail: Mail that knows what needs you · Gmail and Outlook for Mac",
          "isPartOf": {"@id": f"{SITE}/#site"}, "about": {"@id": f"{SITE}/#app"}, "dateModified": BUILT, "inLanguage": "en",
          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + shot['srcs'][0][2]},
          # The pop-up plays the tour here, but its full VideoObject lives on the watch page, so this is only a reference.
@@ -736,10 +737,10 @@ def home():
     preload = (f'<link rel="preload" as="image" imagesrcset="{srcset("margin-mac-email-app-gmail-calendar")}" '
                f'imagesizes="(min-width: 1200px) min(1140px, 100vw - 300px), calc(100vw - 112px)" media="(min-width: 768px)" fetchpriority="high">\n'
                f'<link rel="preload" as="image" imagesrcset="{srcset("margin-message-reply-bar-note")}" imagesizes="calc(100vw - 32px)" media="(max-width: 767px)" fetchpriority="high">\n')
-    hh = head('MarginMail: Mail that knows what needs you · Gmail app for Mac',
-              'MarginMail is a native Mac email app for Gmail with your calendar and a page for everyone you write to. Optional private AI that never sends. Free in beta.',
+    hh = head('MarginMail: Mail that knows what needs you · Gmail and Outlook for Mac',
+              'MarginMail is a native Mac email app for Google and Microsoft accounts, with your calendar and people built in. Private AI that never sends. Free in beta.',
               '/', og_title='MarginMail: Mail that knows what needs you',
-              og_desc='Give your inbox some margin. A native Mac email app for Gmail with your calendar and people built in. Private AI that never sends. Free during the beta.',
+              og_desc='Give your inbox some margin. A native Mac email app for Google and Microsoft accounts, with your calendar and people built in. Private AI that never sends.',
               ld=ld, extra=preload, motion=('stack', 'live-words', 'write-it'))
     write('index.html', page(hh, ''.join(P), home=True, motion=('stack', 'live-words', 'write-it'), stickybar=True))
 
@@ -768,8 +769,8 @@ def tour():
     vt, vc = C.VIDEO_TOUR, video_cfg()
     url = SITE + TOUR_PATH
     chapters = video_chapters()
-    title, desc = f'{vt["title"]}: a tour of the Mac email app for Gmail', ('Watch the two-minute MarginMail tour: a native Mac email app for Gmail '
-                                                                            'with your calendar and people built in. Chapters and a full transcript.')
+    title, desc = f'{vt["title"]}: a tour of the Mac email app', ('Watch a two-minute tour of MarginMail, a Mac email app for Google and Microsoft accounts, '
+                                                                 'with your calendar and people built in. Chapters and transcript.')
     player = (f'<div class="wt-frame"><video controls playsinline webkit-playsinline preload="metadata" poster="{vc["poster"]}" width="{vc["w"]}" height="{vc["h"]}" '
               f'aria-label="{esc(vt["title"])}"><source src="{vc["src"]}" type="video/mp4">'
               f'<track kind="captions" srclang="en" label="English" src="{vc["vtt"]}" default>'
@@ -783,7 +784,7 @@ def tour():
             f'<section class="blk" aria-labelledby="chapters"><h2 id="chapters">Chapters</h2><ol class="wt-ch">{rows}</ol></section>'
             f'<section class="blk prose" aria-labelledby="transcript"><h2 id="transcript">Transcript</h2>{spoken}</section>'
             f'<section class="ctabox" aria-label="Join the beta"><div><h2 data-seen>{h} <span class="ul">{last}{underline_svg(70, sw=2.6, delay=700)}</span></h2>'
-            f'<p class="body sub">Free during the beta. For Gmail and Google Workspace on your Mac.</p></div>{joinform("join", source="tour")}</section>'
+            f'<p class="body sub">Free during the beta. For Google and Microsoft accounts on your Mac.</p></div>{joinform("join", source="tour")}</section>'
             '</div></div>')
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "WebPage", "@id": url, "url": url, "name": title, "description": desc, "dateModified": TOUR_UPDATED, "inLanguage": "en",
@@ -1118,12 +1119,13 @@ def sitemap():
 
 LLMS_FACTS = """Key facts:
 - Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
-- Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
+- Accounts: Gmail, Google Workspace, Microsoft 365 (work or school) and personal Microsoft accounts (Outlook.com, Hotmail, Live), on their own or together, multiple accounts in one unified inbox. Microsoft accounts sign in with "Continue with Microsoft"; mail, calendar (RSVP; new events go to Outlook), contacts and attachments come through Microsoft Graph. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
-- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics in the app. No read receipts or open tracking.
+- Privacy: MarginMail talks directly to Google or Microsoft from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics in the app. No read receipts or open tracking.
+- Data and sync: settings, notes and snoozes stay in step across the user's Macs through private sync, end-to-end encrypted so only the user's devices can read them. The encrypted copies are kept in the user's own account: Google Drive's hidden app folder, or for a Microsoft account its OneDrive app folder (or a hidden mail folder when OneDrive isn't available). No MarginMail server is involved.
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
-- Shipped features: margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; a sunrise or another quiet scene when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive.
-- Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
+- Shipped features: margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; a sunrise or another quiet scene when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; what the user adds syncs end-to-end encrypted in the user's own account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive.
+- Not for: Windows, Android, iPhone (an iPhone app comes later), iCloud, Yahoo or IMAP accounts (later), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 """
 
