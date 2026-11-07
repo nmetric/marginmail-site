@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "5",
+  "channel": "beta",
+  "date": "2026-11-06",
+  "sentence": "MarginMail now works with Microsoft accounts: Outlook mail, calendar, contacts and files from Microsoft 365 or Outlook.com, on their own or beside your Google accounts in one inbox."
+ },
+ {
+  "version": "1.0",
   "build": "4",
   "channel": "beta",
   "date": "2026-11-03",
