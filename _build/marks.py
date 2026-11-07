@@ -120,7 +120,7 @@ def promise_icon(i):
     return f'<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">{icons[i]}</svg>'
 
 def privacy_diagram(w=1140, h=300, vertical=False):
-    """Diagram 7, "The path": your Mac <-> Google, optional dotted branch to your Claude, no MarginMail server."""
+    """Diagram 7, "The path": your Mac <-> your mail (Google or Microsoft), optional dotted branch to your Claude, no MarginMail server."""
     lab = 'font-family:-apple-system,system-ui,sans-serif;font-size:15px;font-weight:600;fill:#1D1B18'
     sub = 'font-family:-apple-system,system-ui,sans-serif;font-size:13px;fill:#5C554B'
     I = 'stroke="#1D1B18" stroke-opacity=".85" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"'
@@ -139,11 +139,11 @@ def privacy_diagram(w=1140, h=300, vertical=False):
         line = hline(mx + 92, gx - 92, my, sw=1.6, delay=300, dur=1200)
         arrows = (f'<path d="M{mx+100} {my-7}L{mx+90} {my}L{mx+100} {my+7}M{gx-100} {my-7}L{gx-90} {my}L{gx-100} {my+7}" {I}/>')
         branch = f'<path d="M{mx+40} {my+56}Q{mx+80} {cy} {cx-110} {cy}" fill="none" stroke="#1D1B18" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/>'
-        out = (f'<svg aria-label="Your Mac talks to Google directly. An optional dotted line goes to your own Claude. There is no MarginMail server." '
+        out = (f'<svg aria-label="Your Mac talks to Google or Microsoft directly. An optional dotted line goes to your own Claude. There is no MarginMail server." '
                f'role="img" width="{w}" height="{h}" viewBox="0 0 {w} {h}" style="display:block;overflow:visible">'
                f'{mac(mx, my)}<text x="{mx}" y="{my+78}" text-anchor="middle" style="{lab}">Your Mac</text>'
-               f'{cloud(gx, gy)}<text x="{gx}" y="{gy+6}" text-anchor="middle" style="{lab}">Google</text>'
-               f'<text x="{gx}" y="{gy+58}" text-anchor="middle" style="{sub}">Gmail · Calendar · Contacts</text>'
+               f'{cloud(gx, gy)}<text x="{gx}" y="{gy+6}" text-anchor="middle" style="{lab}">Your mail</text>'
+               f'<text x="{gx}" y="{gy+58}" text-anchor="middle" style="{sub}">Google or Microsoft</text>'
                f'{line}{arrows}{branch}'
                f'<rect x="{cx-110}" y="{cy-26}" width="220" height="52" rx="12" fill="#fff" stroke="#1D1B18" stroke-opacity=".5" stroke-width="1.3" stroke-dasharray="3 5"/>'
                f'<text x="{cx}" y="{cy-3}" text-anchor="middle" style="{lab}">Your Claude</text><text x="{cx}" y="{cy+15}" text-anchor="middle" style="{sub}">if you turn it on</text>'
@@ -154,18 +154,18 @@ def privacy_diagram(w=1140, h=300, vertical=False):
                f'{pixel(gx-96, my-18, mx+122, my-18)}'
                f'</svg>')
         return out, (sx, sy)
-    # vertical (mobile): Mac on top, Google below, the direct line between; Claude (dotted) left, no server right.
+    # vertical (mobile): Mac on top, your mail below, the direct line between; Claude (dotted) left, no server right.
     mx, my, gx, gy = w / 2, 70, w / 2, 410
     cx, cy = 78, 246
     sx, sy = w - 70, 246
     line = (f'<path d="M{mx} {my+92}L{gx} {gy-44}" {I} pathLength="1" class="dw" style="animation-duration:1200ms;animation-delay:300ms"/>'
             f'<path d="M{mx-6} {my+102}L{mx} {my+92}L{mx+6} {my+102}M{gx-6} {gy-54}L{gx} {gy-44}L{gx+6} {gy-54}" {I}/>')
     branch = f'<path d="M{mx-78} {my+48}Q{cx} {my+60} {cx} {cy-26}" fill="none" stroke="#1D1B18" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/>'
-    out = (f'<svg aria-label="Your Mac talks to Google directly. An optional dotted line goes to your own Claude. There is no MarginMail server." '
+    out = (f'<svg aria-label="Your Mac talks to Google or Microsoft directly. An optional dotted line goes to your own Claude. There is no MarginMail server." '
            f'role="img" width="{w}" height="{h}" viewBox="0 0 {w} {h}" style="display:block;overflow:visible">'
            f'{mac(mx, my)}<text x="{mx}" y="{my+76}" text-anchor="middle" style="{lab}">Your Mac</text>'
-           f'{cloud(gx, gy)}<text x="{gx}" y="{gy+6}" text-anchor="middle" style="{lab}">Google</text>'
-           f'<text x="{gx}" y="{gy+50}" text-anchor="middle" style="{sub}">Gmail · Calendar · Contacts</text>'
+           f'{cloud(gx, gy)}<text x="{gx}" y="{gy+6}" text-anchor="middle" style="{lab}">Your mail</text>'
+           f'<text x="{gx}" y="{gy+50}" text-anchor="middle" style="{sub}">Google or Microsoft</text>'
            f'{line}{branch}'
            f'<rect x="{cx-70}" y="{cy-26}" width="140" height="52" rx="12" fill="#fff" stroke="#1D1B18" stroke-opacity=".5" stroke-width="1.3" stroke-dasharray="3 5"/>'
            f'<text x="{cx}" y="{cy-3}" text-anchor="middle" style="{lab}">Your Claude</text><text x="{cx}" y="{cy+15}" text-anchor="middle" style="{sub}">if you turn it on</text>'

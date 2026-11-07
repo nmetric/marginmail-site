@@ -1,22 +1,23 @@
 # MarginMail
 
-> MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no MarginMail server for your mail, no analytics in the app, and AI never sends. It is in beta and free during the beta.
+> MarginMail is a native Mac email app for Google and Microsoft accounts, with a calendar and a personal CRM built in. It notes what needs you, keeps your calendar beside your inbox, and gives everyone you write to a page. AI is optional: Apple Intelligence on your Mac, or your own Claude if you opt in, only on click (that conversation goes to Anthropic under your own plan). There is no MarginMail server for your mail, no analytics in the app, and AI never sends. It is in beta and free during the beta.
 
 Key facts:
 - Platform: macOS 26 or later, native SwiftUI app. iPhone companion app later.
-- Accounts: Gmail and Google Workspace, multiple accounts in one unified inbox. iCloud and other providers later.
+- Accounts: Gmail, Google Workspace, Microsoft 365 (work or school) and personal Microsoft accounts (Outlook.com, Hotmail, Live), on their own or together, multiple accounts in one unified inbox. Microsoft accounts sign in with "Continue with Microsoft"; mail, calendar (RSVP; new events go to Outlook), contacts and attachments come through Microsoft Graph. iCloud and other providers later.
 - Price: free during the beta. Pricing not yet announced.
-- Privacy: MarginMail talks directly to Google from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics in the app. No read receipts or open tracking.
+- Privacy: MarginMail talks directly to Google or Microsoft from the Mac. No MarginMail server holds mail, credentials or usage data. No analytics in the app. No read receipts or open tracking.
+- Data and sync: MarginMail's own information (settings, colors, rules and templates, signatures, notes, snoozes, follow-ups, Screener decisions, People and companies, and the list of the user's devices) stays in step across the user's Macs. It is encrypted on the Mac before it leaves, so only the user's own devices can read it; the key is created on the first device and shared only with devices the user approves. The encrypted files are kept in the user's own account: Google Drive's hidden app folder, or for a Microsoft account its OneDrive app folder (or a hidden mail folder when OneDrive isn't available). No MarginMail server is involved. Not encrypted by MarginMail: mail, drafts, calendar and contacts, which the provider stores and protects as usual. Triage marks (Needs you, Later, Introductions, pinned, Done) are stored with each message so every device sees them: Gmail labels on Google, private message properties on Microsoft.
 - AI: optional. Tier 1 rules (no AI), Tier 2 Apple on-device (Request notes), Tier 3 the user's own Claude, signed in on the Mac, only on click (Write it, What's been decided); only that one conversation goes to Anthropic, under the user's own plan. AI never sends email.
-- Shipped features: margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; a sunrise or another quiet scene when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; stored in the user's own Google account); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive.
-- Not for: Windows, Android, Microsoft 365 or iCloud-only users (yet), shared team inboxes, open tracking.
+- Shipped features: margin notes (Follow-ups, Meetings, Requests) shown in the reply bar; the Margins stack (drag right for Done, left for the back of the stack; "Why this?" on every card; a sunrise or another quiet scene when empty); live words (dates, people, files and promises become actions as you type, rules only); Write it (drafts from your notes and the thread, flags anything new); What's been decided (long-thread summary); in-window composer (docked, floating, expanded); Split view (inbox, message and today's calendar side by side; click a name for the person's page); calendar built in (unanswered invites marked, accept with A/M/D, answering files the email, Needs your answer list, find a time with holds); People and Companies, a private personal CRM (a page per person with conversations, meetings, notes, tasks that close themselves and local time; who's waiting on you; companies by domain; what the user adds syncs encrypted so only the user's own devices can read it); menu bar agenda with Join; notifications per account (everything, needs you + VIPs, or nothing; quiet hours, Focus filters); Done instead of Archive.
+- Not for: Windows, Android, iPhone (an iPhone app comes later), iCloud, Yahoo or IMAP accounts (later), shared team inboxes, open tracking.
 - Contact: hello@marginmail.ai
 
 ## Home (https://marginmail.ai/)
 
 ### What is MarginMail?
 
-MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you (follow-ups, meeting invites and requests), helps you find a meeting time as you type, and gives everyone you write to a page. Its AI is optional: Apple Intelligence on your Mac, or your own Claude when you click. There’s no MarginMail server, and the AI never sends email for you.
+MarginMail is a native Mac email app for Google and Microsoft accounts, with a calendar and a personal CRM built in. It notes what needs you (follow-ups, meeting invites and requests), helps you find a meeting time as you type, and gives everyone you write to a page. Its AI is optional: Apple Intelligence on your Mac, or your own Claude when you click. There’s no MarginMail server, and the AI never sends email for you.
 
 ### What the margin is for
 
@@ -30,13 +31,13 @@ MarginMail writes a short note in the margin when someone's waiting on you, when
 
 Open Split view and your whole day is in one window. Read Imogen’s message, and her page is a click away: what you last talked about and the time where she is. Today’s calendar sits beside it. An invite you haven’t answered looks different. Press A, M or D, and its email files itself.
 
-### A private personal CRM, built from your Gmail and calendar: Everyone you write to has a page.
+### A private personal CRM, built from your mail and calendar: Everyone you write to has a page.
 
-Before a meeting, open their page: what you last talked about, what you promised, who’s waiting on whom, and the time where they are. Tasks close themselves when the reply, the file or the yes arrives. Companies group themselves by email domain. It’s all built from the mail and calendar you already have, and it stays in your own Google account. There’s nothing to import, and nothing is uploaded.
+Before a meeting, open their page: what you last talked about, what you promised, who’s waiting on whom, and the time where they are. Tasks close themselves when the reply, the file or the yes arrives. Companies group themselves by email domain. It’s all built from the mail and calendar you already have. What you add syncs between your Macs, encrypted so only your own devices can read it. There’s nothing to import, and nothing goes to a CRM service.
 
-### Google Calendar built in, with Find a time: Find time in the margins of your day.
+### Your calendar built in, with Find a time: Find time in the margins of your day.
 
-The full calendar is one click away. Meeting invites you haven’t answered look different, and a Needs your answer list keeps them together, each answered with one key. When you schedule a meeting, Find a time shows both calendars side by side when Google shares theirs with you. Pick a time and the hold is placed.
+The full calendar is one click away. Meeting invites you haven’t answered look different, and a Needs your answer list keeps them together, each answered with one key. When you schedule a meeting, Find a time shows both calendars side by side when the other person’s calendar is shared with you. Pick a time and the hold is placed.
 
 ### Schedule meetings and attach files as you type: Type a day and a name, and see when you’re both free.
 
@@ -59,9 +60,9 @@ MarginMail is a native Mac app with no MarginMail server in the middle, so we ca
 - No usage tracking. No analytics or telemetry in the app, so we can’t see how you use it. This site sets no cookies and doesn’t track you: we count visits anonymously on our own server, with no ads or third parties, and we honor Do Not Track.
 - Tracking pixels blocked. Remote images are blocked by default. Load them for one message, or always for a sender you trust. Hidden 1×1 tracking pixels are stripped even when you load images, and the images MarginMail does load are fetched without cookies or referrer.
 - No read receipts. MarginMail never adds read receipts or open tracking to the mail you send.
-- No MarginMail server. Your mail goes between your Mac and Google, and nowhere else.
+- No MarginMail server. Your mail goes between your Mac and Google or Microsoft, and nowhere else.
 - AI only if you want it. Apple Intelligence on your Mac first. Your own Claude only if you opt in, and only when you click. AI never sends.
-- Your data, your account. MarginMail’s own data lives in your Google account’s private app folder.
+- Your data, your account. MarginMail’s own settings, notes, snoozes and People sync between your Macs, encrypted so only your own devices can read them. They’re kept in MarginMail’s own folder in your Google or Microsoft account. Your mail stays with your provider, as always.
 
 ### When the Margins stack is empty: An empty stack ends with a sunrise.
 
@@ -78,16 +79,16 @@ This is MarginMail. Your mail, your calendar and the people you work with, in on
 ### FAQ
 
 **What is MarginMail?**
-MarginMail is a native Mac email app for Gmail and Google Workspace, with a calendar and a personal CRM built in. It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. Its optional AI uses Apple Intelligence on your Mac or your own Claude, and never sends email.
+MarginMail is a native Mac email app for Google and Microsoft accounts, with a calendar and a personal CRM built in. It notes what needs you, helps you find meeting times as you type, and gives everyone you write to a page. Its optional AI uses Apple Intelligence on your Mac or your own Claude, and never sends email.
 
 **Is there a native Gmail app for Mac?**
-Google doesn’t make a Gmail app for the Mac; Gmail runs in a browser. MarginMail is a native macOS app built on the Gmail API, so your Gmail and Google Workspace accounts get real Mac windows, notifications and keyboard shortcuts, with your calendar and the people you write to in the same window.
+Google doesn’t make a Gmail app for the Mac; Gmail runs in a browser. MarginMail is a native macOS app built on the Gmail API, so your Gmail and Google Workspace accounts get real Mac windows, notifications and keyboard shortcuts, with your calendar and the people you write to in the same window. It works with Microsoft 365 and Outlook.com accounts too.
 
 **Does MarginMail store my emails on its servers?**
-No. There is no MarginMail server for your mail. MarginMail connects directly to Google from your Mac, so your messages stay with you and Google. MarginMail’s own small settings live in your Google Drive’s hidden app folder. There are no analytics in the app, so we can’t see how you use it.
+No. There is no MarginMail server for your mail. MarginMail connects directly to Google or Microsoft from your Mac, so your messages stay with you and your mail provider. MarginMail’s own settings, notes and snoozes sync between your Macs in MarginMail’s own folder in your Google or Microsoft account, encrypted so only your own devices can read them. Your mail is stored and protected by your provider, as it always is. There are no analytics in the app, so we can’t see how you use it.
 
 **Does MarginMail have a built-in personal CRM?**
-Yes. Everyone you write to gets a page built from your mail and calendar: past conversations, meetings, notes, tasks and their local time, grouped by company. Tasks close themselves when the reply or file arrives. It stays in your own Google account. Nothing is uploaded to a CRM service, and there’s nothing to import.
+Yes. Everyone you write to gets a page built from your mail and calendar: past conversations, meetings, notes, tasks and their local time, grouped by company. Tasks close themselves when the reply or file arrives. What you add syncs between your Macs, encrypted so only your own devices can read it. Nothing goes to a CRM service, and there’s nothing to import.
 
 **Is MarginMail’s AI private?**
 Yes. Request notes use Apple Intelligence on your Mac, so nothing leaves it. If you choose, Write it and What’s been decided use your own Claude, signed in on your Mac, only when you click. Only that one conversation goes to Anthropic, under your own plan. MarginMail never sees your Claude login, uses no API key, and runs no AI server.
@@ -99,13 +100,16 @@ Yes. MarginMail works fully with AI off. Follow-up and meeting notes, live words
 No, never. MarginMail’s AI can draft a reply, but only you can send it. Before you do, MarginMail flags anything the draft added that the thread didn’t have, such as a new recipient, a link, a number or a code, and labels which AI wrote it.
 
 **Does MarginMail work with multiple Gmail accounts?**
-Yes. You can add several Gmail and Google Workspace accounts and see them in one unified inbox, with your calendars together beside it. MarginMail supports Google accounts today. iCloud and other providers come later.
+Yes. Add several Gmail and Google Workspace accounts, and Microsoft 365 or Outlook.com accounts too, and see them all in one unified inbox with your calendars together beside it. iCloud and other providers come later.
+
+**Does MarginMail work with Outlook and Microsoft 365?**
+Yes. Choose Continue with Microsoft to add a Microsoft 365 work or school account, or a personal Outlook.com, Hotmail or Live account. Your mail, calendar, contacts and attachments come straight from Microsoft to your Mac. You answer invites with A, M or D, and new events go to your Outlook calendar. Microsoft accounts work on their own or beside your Google accounts in one inbox.
 
 **Does MarginMail have a calendar?**
-Yes. Your Google Calendar sits beside your inbox. Invitations you haven’t answered look different and gather in a Needs your answer list. Press A, M or D to accept, maybe or decline, and the invite’s email files itself. Find a time shows both calendars side by side when Google shares theirs with you, and places the hold.
+Yes. Your Google or Outlook calendar sits beside your inbox. Invitations you haven’t answered look different and gather in a Needs your answer list. Press A, M or D to accept, maybe or decline, and the invite’s email files itself. Find a time shows both calendars side by side when the other person’s calendar is shared with you, and places the hold.
 
 **Can I see my email and calendar in one window on Mac?**
-Yes. MarginMail’s Split view shows your inbox, the message and today’s calendar side by side. Click a name to see that person’s page. Answer invites with A, M or D, and their email files itself. It works with several Google accounts and calendars at once.
+Yes. MarginMail’s Split view shows your inbox, the message and today’s calendar side by side. Click a name to see that person’s page. Answer invites with A, M or D, and their email files itself. It works with several Google and Microsoft accounts and calendars at once.
 
 **How do follow-up reminders work in MarginMail?**
 When you’re waiting on a reply, MarginMail notices and writes a note in the reply bar, like “You asked Ava on Oct 9. No reply in 6 days.” The note joins your Margins stack so you can nudge, mark it Done or send it to the back of the stack. It works on rules, with AI off.
@@ -117,10 +121,10 @@ No. MarginMail never adds read receipts or open tracking to the mail you send. I
 MarginMail is free during the beta. Pricing will be announced before the beta ends, well before anything changes for you. Joining the beta only needs your email address, and the only email we’ll send is your invite.
 
 **Is there a MarginMail app for iPhone?**
-Not yet. MarginMail starts on the Mac, where your mail, calendar and people share one window. An iPhone companion app is planned for later. Until then, your mail stays in Gmail as usual, so you can keep using Gmail on your phone.
+Not yet. MarginMail starts on the Mac, where your mail, calendar and people share one window. An iPhone companion app is planned for later. Until then, your mail stays with Google or Microsoft as usual, so you can keep using Gmail or Outlook on your phone.
 
 **Is MarginMail the same as the Margin app for iPhone?**
-No. MarginMail is our own Apple-native email app for the Mac, built for Gmail and Google Workspace, with an iPhone companion app planned for later. It isn’t affiliated with other apps named Margin. Everything about MarginMail is on marginmail.ai, and the beta is free to join.
+No. MarginMail is our own Apple-native email app for the Mac, built for Google and Microsoft accounts, with an iPhone companion app planned for later. It isn’t affiliated with other apps named Margin. Everything about MarginMail is on marginmail.ai, and the beta is free to join.
 
 **What Mac do I need for MarginMail?**
 MarginMail needs macOS 26 or later. Request notes use Apple Intelligence, so they need a Mac where Apple Intelligence is available and turned on. Everything else, including the calendar, follow-up notes, live words and People, works without it.
@@ -160,7 +164,7 @@ Join the list on this page and we’ll email you when your invite is ready. We�
 
 ### MarginMail isn't the right choice (yet) when
 
-- You need **iCloud, Microsoft 365 or IMAP** accounts.
+- You need **iCloud or IMAP** accounts.
 - You need **Windows, Android or a full iPhone app** today.
 - Your **team shares an inbox**.
 - You rely on **read receipts or open tracking** (MarginMail never offers them).
@@ -177,19 +181,19 @@ Join the list on this page and we’ll email you when your invite is ready. We�
 |---|---|---|
 | Price | Free during the beta | Free for one account; Pro $49.99/yr or $7.99/mo (US). Apple notified yearly subscribers of a change from $9.99 to $49.99 (Sept 2026) |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone, iPad, Apple Watch, Vision Pro |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Workspace, iCloud, Exchange (EWS), Office 365, Outlook, IMAP, POP3 |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail, Workspace, iCloud, Exchange (EWS), Office 365, Outlook, IMAP, POP3 |
 | Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | None built in; send mail to Fantastical or Calendar 5 |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests) and the Margins stack | Smart Inbox, rules and actions, snooze, custom swipes |
 | People | A page per person; companies by domain | Not a feature |
 | AI | Optional: Apple Intelligence on your Mac; your own Claude, on click (Write it) | Airmail MCP server: connect Claude, Codex or other MCP clients; runs locally on your Mac |
 | AI sends mail | Never | Per-capability permissions you choose |
-| Servers | No MarginMail server; Mac ↔ Google | Messages not stored on Airmail servers; push uses Airmail's push service |
+| Servers | No MarginMail server; Mac ↔ Google or Microsoft | Messages not stored on Airmail servers; push uses Airmail's push service |
 | Read receipts | Never offered | Mac plugin |
 | Customization | Deliberately few settings | Very deep |
 
 ### Where Airmail is the better choice
 
-- You use **iCloud, Exchange, Outlook or IMAP** accounts. MarginMail is Google-only today.
+- You use **iCloud, IMAP, POP3 or an Exchange server outside Microsoft 365**. MarginMail supports Google and Microsoft 365 / Outlook.com accounts today.
 - You want **iPhone, iPad, Watch and Vision Pro** apps now.
 - You love **customizing everything**: swipes, toolbars, rules, actions.
 - You want an **agent to operate your mail through MCP** from Claude or Codex.
@@ -217,7 +221,7 @@ No built-in calendar. You can share messages to Fantastical or Calendar 5. Margi
 Yes, through the Airmail MCP server, which runs on your Mac and lets Claude or other MCP clients work with your mail. MarginMail uses your own Claude inside the app, only when you click Write it, and AI never sends.
 
 **Which accounts does MarginMail support compared with Airmail?**
-MarginMail supports Gmail and Google Workspace today, with iCloud and others later. Airmail supports nearly every provider.
+MarginMail supports Gmail, Google Workspace, Microsoft 365 and Outlook.com accounts today, with iCloud and others later. Airmail supports nearly every provider.
 
 **Is MarginMail free?**
 Yes, during the beta. Pricing will be shared before the beta ends.
@@ -242,7 +246,7 @@ Yes, during the beta. Pricing will be shared before the beta ends.
 |---|---|---|
 | Price | Free during the beta | Free with macOS |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone, iPad |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | iCloud, Gmail, Exchange/Outlook, Yahoo, any IMAP |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | iCloud, Gmail, Exchange/Outlook, Yahoo, any IMAP |
 | Gmail specifics | Uses the Gmail API: real threads, labels, Done, aliases, signatures from Gmail | Uses IMAP for Gmail |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Categories, Priority Messages, summaries |
 | Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Separate Calendar app; suggestions can create an event from a message |
@@ -255,7 +259,7 @@ Yes, during the beta. Pricing will be shared before the beta ends.
 
 ### Where Apple Mail is the better choice
 
-- You use **iCloud, Exchange or IMAP** accounts. MarginMail is Google-only today.
+- You use **iCloud, IMAP or an Exchange server outside Microsoft 365**. MarginMail supports Google and Microsoft 365 / Outlook.com accounts today.
 - You want mail on **iPhone and iPad** in the same app now.
 - You want something **free** that comes with every Mac.
 - You're happy with a **simple list** and a separate Calendar app.
@@ -275,7 +279,7 @@ Yes, during the beta. Pricing will be shared before the beta ends.
 ### FAQ
 
 **Is there a better Mac mail app than Apple Mail for Gmail?**
-If you use Gmail or Google Workspace, MarginMail is built on the Gmail API and adds a calendar, people pages and notes about what needs you, while staying private. Apple Mail is better if you also need iCloud or Exchange accounts.
+If you use Gmail or Google Workspace, MarginMail is built on the Gmail API and adds a calendar, people pages and notes about what needs you, while staying private. Apple Mail is better if you also need iCloud or IMAP accounts.
 
 **Does Apple Mail have a calendar?**
 No. Calendar is a separate app on the Mac. MarginMail has a calendar in the same window as your mail.
@@ -311,7 +315,7 @@ MarginMail needs macOS 26 or later.
 |---|---|---|
 | Price | Free during the beta | Free; Growth $36/yr; Pro+ $100/yr; lifetime option; no monthly plans |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, iPhone/iPad, Windows, Android |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Outlook, iCloud, Exchange, IMAP |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail, Outlook, iCloud, Exchange, IMAP |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | AI priority inbox, VIP and Flagged views, Mark as Done |
 | Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in: view events, accept invites, suggest times (Copilot Schedule); not on Android |
 | People | A page per person; companies by domain | Not a feature |
@@ -320,11 +324,11 @@ MarginMail needs macOS 26 or later.
 | AI sends mail | Never | Drafts for review |
 | Read receipts | Never | Canary sends its own read receipts (on by default on macOS); blocks incoming trackers |
 | Encryption | Gmail's standard TLS | PGP and SecureSend (Pro+) |
-| Vendor servers | No MarginMail server; Mac ↔ Google | Mail and credentials on device by default; optional push and Cloud Sync use Canary's servers |
+| Vendor servers | No MarginMail server; Mac ↔ Google or Microsoft | Mail and credentials on device by default; optional push and Cloud Sync use Canary's servers |
 
 ### Where Canary is the better choice
 
-- You need **iCloud, Outlook, Exchange or IMAP** accounts.
+- You need **iCloud, IMAP or an Exchange server outside Microsoft 365**.
 - You need **Windows or Android** too.
 - You need **PGP or encrypted send** to clients (Pro+), or HIPAA support with a BAA.
 - You want a **low yearly price** with no subscription surprises.
@@ -349,10 +353,10 @@ Partly. Canary's privacy policy says prioritization models are created and store
 Yes, Canary has its own read receipts, on by default on macOS, and it blocks incoming tracking pixels. MarginMail never sends read receipts.
 
 **Does MarginMail support encryption like Canary?**
-MarginMail uses Gmail's standard encrypted connections. It doesn't offer PGP; if you need PGP, Canary's Pro+ plan does.
+MarginMail uses Google's and Microsoft's standard encrypted connections. It doesn't offer PGP; if you need PGP, Canary's Pro+ plan does.
 
 **Which accounts does MarginMail support?**
-Gmail and Google Workspace today; other providers come later.
+Gmail, Google Workspace, Microsoft 365 and Outlook.com today; iCloud and other providers come later.
 
 **Is MarginMail free?**
 Yes, during the beta. Pricing will be shared before the beta ends.
@@ -377,7 +381,7 @@ Yes, during the beta. Pricing will be shared before the beta ends.
 |---|---|---|
 | Price | Free during the beta | Free; Gemini extras with Google AI Plus $9.99/mo, AI Pro $19.99/mo; Workspace from $7/user/mo |
 | Mac app | Native (SwiftUI), macOS 26+ | None; browser tab |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | One account per tab or account switcher |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | One account per tab or account switcher |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Category tabs; AI Inbox with suggested to-dos (paid plans) |
 | Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Calendar side panel; "Help me schedule" for one-on-one meetings |
 | People | A page per person (conversations, meetings, tasks, local time); companies by domain | Google Contacts |
@@ -417,7 +421,7 @@ No. Google offers Gmail on the web and on iPhone and Android, but not a Mac app.
 Help Me Write, thread summaries and Suggested Replies became free for all users in January 2026. AI Overviews in search, AI Inbox and the Gemini side panel need a Google AI or eligible Workspace plan.
 
 **Does MarginMail change anything in my Gmail account?**
-MarginMail uses the Gmail API from your Mac. What you do in MarginMail (Done, labels, replies) shows up in Gmail as usual. MarginMail keeps its own small state in your Google Drive's hidden app folder, not on a MarginMail server.
+MarginMail uses the Gmail API from your Mac. What you do in MarginMail (Done, labels, replies) shows up in Gmail as usual. MarginMail keeps its own small state in your Google Drive's hidden app folder, encrypted so only your own devices can read it, not on a MarginMail server.
 
 **Can I use several Gmail accounts in MarginMail?**
 Yes. Add several Gmail and Workspace accounts; they share one unified inbox.
@@ -447,9 +451,9 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 
 | | **MarginMail** | **HEY** |
 |---|---|---|
-| What it is | A Mac app for your existing Google accounts | An email service with its own addresses and hosting |
+| What it is | A Mac app for your existing Google and Microsoft accounts | An email service with its own addresses and hosting |
 | Price | Free during the beta | HEY for You $99/yr (includes HEY Calendar); HEY for Domains $12/user/mo; no free plan, 30-day trial |
-| Your address | Keep your Gmail or Workspace address | @hey.com or your domain hosted at HEY; Gmail only by forwarding plus send-as; no import of old mail |
+| Your address | Keep your Gmail, Workspace, Microsoft 365 or Outlook.com address | @hey.com or your domain hosted at HEY; Gmail only by forwarding plus send-as; no import of old mail |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Web, Mac, Windows, Linux, iOS, Android |
 | Screening new senders | New faces: welcome first-time senders or mark them Not for me | The Screener (HEY's signature feature) |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Imbox, The Feed, Paper Trail, Reply Later, Set Aside |
@@ -458,7 +462,7 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 | AI | Optional. Apple Intelligence on your Mac; your own Claude on click | No built-in AI; HEY CLI and MCP let your own agent (e.g. Claude Code) access your account |
 | AI sends mail | Never | Agents get the access you grant (a read-only mode exists) |
 | Tracking | Remote images blocked by default; no read receipts | Spy-pixel blocking; no read receipts |
-| Servers | No MarginMail server; Mac ↔ Google | HEY hosts your mail (37signals; not SOC 2) |
+| Servers | No MarginMail server; Mac ↔ Google or Microsoft | HEY hosts your mail (37signals; not SOC 2) |
 
 ### Where HEY is the better choice
 
@@ -517,8 +521,8 @@ HEY for You is $99 a year as of October 2026. MarginMail is free during its beta
 | Price | Free during the beta | $49.99/yr or $4.99/mo; 14-day trial; no free plan |
 | Mac app | Native (SwiftUI), macOS 26+ | Native, macOS 12+ |
 | iPhone | Companion app later | Limited TestFlight beta (iOS 26+) for subscribers |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail and Google Workspace; Outlook, IMAP and JMAP "planned" |
-| How it syncs | Directly with Google from your Mac; no MarginMail server | Directly with the Gmail API; data and tokens only on your device |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail and Google Workspace; Outlook, IMAP and JMAP "planned" |
+| How it syncs | Directly with Google (or Microsoft) from your Mac; no MarginMail server | Directly with the Gmail API; data and tokens only on your device |
 | Calendar | Built in: Split view, unanswered invites marked, A / M / D, find a time with holds | No calendar view; an availability banner beside invites, accept/decline, one-click join |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests) and the Margins stack | Gmail categories, labels, filters, snooze |
 | People | A page per person (conversations, meetings, tasks, local time); companies by domain | Contact photos; no people view |
@@ -585,14 +589,14 @@ Yes. Both read the same Gmail account, so you can try MarginMail without leaving
 | Built for | One person's mail, calendar and people | Teams sharing inboxes and channels |
 | Price | Free during the beta | Starter $14, Productive $24, Business $36 per user/mo billed yearly ($18 / $30 / $45 monthly); no free plan; 30-day trial |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Web, Mac, Windows, iOS, Android (desktop apps are web-based) |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, Outlook/M365, IMAP, plus SMS, WhatsApp, Messenger, Instagram, live chat |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail, Outlook/M365, IMAP, plus SMS, WhatsApp, Messenger, Instagram, live chat |
 | Collaboration | None by design | Shared inboxes, assignment, comments, tasks |
 | Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in, rebuilt Sept 2026 with teammate availability and time-zone columns |
 | People | A page per person (conversations, meetings, tasks, local time); companies by domain | Shared contact book; CRM sidebars (HubSpot, Pipedrive, Salesforce) |
 | AI | Optional. Apple Intelligence on your Mac; your own Claude on click | Bring your own OpenAI, Anthropic or Gemini key, or Missive credits; AI rules, assistant, drafted replies; MCP server |
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | Your chosen AI provider, via Missive's service |
 | AI sends mail | Never | Approve-and-send drafted replies |
-| Vendor servers | No MarginMail server; Mac ↔ Google | Missive stores mail on its servers (AWS); SOC 2 Type II |
+| Vendor servers | No MarginMail server; Mac ↔ Google or Microsoft | Missive stores mail on its servers (AWS); SOC 2 Type II |
 
 ### Where Missive is the better choice
 
@@ -624,7 +628,7 @@ Yes. Missive supports your own OpenAI, Anthropic or Gemini key, or Missive-manag
 No. MarginMail is for one person's mail. For a shared team inbox, Missive is built for that.
 
 **Can I use MarginMail for personal mail and Missive for team mail?**
-Yes. MarginMail works with your Google accounts; your team inbox can stay in Missive.
+Yes. MarginMail works with your Google and Microsoft accounts; your team inbox can stay in Missive.
 
 ### Sources
 
@@ -655,7 +659,7 @@ If you still want an inbox to read in, MarginMail is a native Mac one for the sa
 |---|---|---|
 | Status | In beta, free during the beta | Closed Sept 22, 2026 |
 | Platforms | Native Mac app (macOS 26+); iPhone companion later | Was web, Mac and iOS |
-| Accounts | Gmail and Google Workspace, several accounts in one unified inbox | Was Gmail (Outlook not supported) |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several accounts in one unified inbox | Was Gmail (Outlook not supported) |
 | What needs you | Margin notes for Follow-ups, Meetings and Requests; the Margins stack (Done / back of the stack); "Why this?" on every card | AI auto-labels and custom views |
 | Calendar | Built in: unanswered invites marked, accept with A / M / D, find a time with holds | Separate (Notion Calendar) |
 | People | A page for everyone you write to; companies by domain | Not built in |
@@ -663,14 +667,14 @@ If you still want an inbox to read in, MarginMail is a native Mac one for the sa
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | Notion's cloud |
 | AI sends mail by itself | Never | No (drafts) |
 | Works with AI off | Yes, fully | AI was central |
-| MarginMail/Notion servers hold your mail | No MarginMail server; Mac ↔ Google only | Processed in Notion's service |
+| MarginMail/Notion servers hold your mail | No MarginMail server; Mac ↔ Google or Microsoft only | Processed in Notion's service |
 | Analytics in the app | None | Standard product analytics |
 
 ### Who should choose which
 
 - **Choose Notion Custom Agents** if you liked Notion Mail mostly because you never opened it, and you want an agent to label, archive and draft for you inside your Notion workspace.
 - **Choose MarginMail** if you want a real inbox again, with a short stack of what needs you, your calendar and people beside it, and your mail kept between you and Google.
-- **Neither** if you need Outlook or Windows today.
+- **Neither** if you need Windows today.
 
 ### Moving from Notion Mail to MarginMail
 
@@ -706,9 +710,9 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 - Crypto Briefing on the shutdown and Skiff history, June 25, 2026: https://cryptobriefing.com/notion-mail-shutdown-ai-agents/
 - Notion's help page about the shutdown now redirects to the help-centre home (checked Oct 16, 2026).
 
-## MarginMail vs Outlook for Mac: mail and calendar together, for Google accounts (https://marginmail.ai/compare/outlook-mac/)
+## MarginMail vs Outlook for Mac: mail and calendar together, for Google and Microsoft accounts (https://marginmail.ai/compare/outlook-mac/)
 
-**Short answer:** The new Outlook for Mac is free, keeps mail and calendar in one app, supports almost every provider, and adds Copilot with Microsoft 365 plans from $9.99 a month. MarginMail is a native Mac app for Gmail and Google Workspace that also keeps mail and calendar together, adds people pages and notes about what needs you, and keeps AI optional: Apple Intelligence on your Mac, or your own Claude on click. Choose Outlook if you live in Microsoft 365, and MarginMail if you live in Google.
+**Short answer:** The new Outlook for Mac is free, keeps mail and calendar in one app, supports almost every provider, and adds Copilot with Microsoft 365 plans from $9.99 a month. MarginMail is a native Mac app for Microsoft 365, Outlook.com, Gmail and Google Workspace that also keeps mail and calendar together, adds people pages and notes about what needs you, and keeps AI optional: Apple Intelligence on your Mac, or your own Claude on click. Choose Outlook if you want Copilot or need Windows and the web, and MarginMail if you want people pages, AI that stays optional and private, and no MarginMail server in the middle.
 
 *Last checked: October 16, 2026. Prices in USD.*
 
@@ -718,32 +722,32 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 |---|---|---|
 | Price | Free during the beta | App free (ad-supported without Microsoft 365); Copilot with M365 Personal $9.99/mo, Family $12.99/mo, Premium $19.99/mo; business Copilot licensing varies |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Outlook.com, Exchange/M365, Google, iCloud, Yahoo, IMAP |
+| Accounts | Microsoft 365 (work or school), Outlook.com, Gmail and Google Workspace, several in one unified inbox | Outlook.com, Exchange/M365, Google, iCloud, Yahoo, IMAP |
 | Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Built in, as its own module |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Focused Inbox, rules, categories; Copilot can prioritize |
 | People | A page per person; companies by domain | People / contacts module |
 | AI | Optional. Apple Intelligence on your Mac; your own Claude on click (Write it, What's been decided) | Copilot: draft and edit conversationally, summarize, Copilot Chat window; agentic inbox and calendar features rolling out (Windows and web first) |
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | Microsoft's cloud |
 | AI sends mail | Never | Reports differ on Copilot follow-ups; check your tenant's settings |
-| Vendor servers | No MarginMail server; Mac ↔ Google | Microsoft cloud (non-Microsoft accounts sync through Microsoft's service, per widespread reports) |
+| Vendor servers | No MarginMail server; Mac ↔ Microsoft or Google | Microsoft cloud (non-Microsoft accounts sync through Microsoft's service, per widespread reports) |
 
 ### Where Outlook is the better choice
 
-- Your company runs on **Microsoft 365 or Exchange**. MarginMail doesn't support Microsoft accounts yet.
+- Your company runs on an **Exchange server outside Microsoft 365**. MarginMail works with Microsoft 365 and Outlook.com, not on-premises Exchange.
 - You need **Windows, web or Android** too.
 - You want **Copilot** across Word, Excel and Outlook under one subscription.
 - You're mixing **many providers** in one app.
 
 ### Where MarginMail is the better choice
 
-- You live in **Gmail or Google Workspace** and want a Mac app built for it.
+- You have **Microsoft 365 at work and Gmail at home** and want both in one native Mac inbox, with your mail going only between your Mac and Microsoft or Google.
 - You want **AI that starts on your Mac** and uses your own Claude only when you click, and **never sends**.
 - You want **people pages** and **notes about what needs you**, not just a focused list.
 - You want **live words**: type "Tuesday with Ava" and both calendars' free times appear.
 
 ### Who should choose which
 
-**Outlook** for Microsoft 365 workplaces and mixed-provider power users. **MarginMail** for Google Workspace and Gmail people who want Outlook's mail-plus-calendar feel in a native Mac app for Gmail, with no MarginMail server.
+**Outlook** for Copilot across Microsoft 365, Windows and the web, and for mixing many providers. **MarginMail** for Microsoft 365, Outlook.com, Gmail and Google Workspace people who want mail, calendar and people together in a native Mac app, with no MarginMail server.
 
 ### FAQ
 
@@ -751,13 +755,13 @@ MarginMail is free during the beta. Pricing will be shared before the beta ends.
 Yes. The new Outlook for Mac is free; without a Microsoft 365 subscription it's ad-supported. Copilot features come with Microsoft 365 plans (Personal is $9.99 a month as of October 2026).
 
 **Can I use Outlook for Mac with Gmail?**
-Yes, Outlook can add Google accounts. MarginMail is built only for Google accounts and uses the Gmail and Google Calendar APIs directly from your Mac.
+Yes, Outlook can add Google accounts. MarginMail works with Google and Microsoft accounts side by side, talking to Google and Microsoft directly from your Mac.
 
 **What happened to legacy Outlook for Mac?**
 Microsoft retired Exchange Web Services in Exchange Online in October 2026, so legacy Outlook for Mac stops working with Exchange Online; Microsoft says most users have moved to new Outlook.
 
 **Does MarginMail support Microsoft 365?**
-Not yet. MarginMail supports Gmail and Google Workspace today; other providers come later.
+Yes. Choose Continue with Microsoft to add a Microsoft 365 work or school account, or a personal Outlook.com account. Your mail, calendar, contacts and attachments come straight from Microsoft to your Mac, on their own or beside your Google accounts in one inbox.
 
 **Does MarginMail have Copilot-style AI?**
 MarginMail's AI is optional and private: Apple Intelligence on your Mac finds requests, and your own Claude writes a draft from your notes when you click Write it (only that conversation goes to Anthropic, under your plan). It never sends.
@@ -782,7 +786,7 @@ MarginMail's AI is optional and private: Apple Intelligence on your Mac finds re
 |---|---|---|
 | Price | Free during the beta | Business $30, Premier $45, Max $120 per seat/mo; 14-day trial; a limited free individual plan is reported by third parties |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail and Google Workspace; Microsoft 365 not supported |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail and Google Workspace; Microsoft 365 not supported |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack | Bundles with delivery schedules, Splits, AI filters, todos from mail |
 | Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built-in Google Calendar; the AI can check availability and create events |
 | People | A page per person; companies by domain | HubSpot integration; no people view found |
@@ -791,7 +795,7 @@ MarginMail's AI is optional and private: Apple Intelligence on your Mac finds re
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | Shortwave's cloud (Google Cloud); sub-processors include OpenAI, Anthropic, Pinecone |
 | AI sends mail | Never | Not documented either way |
 | Read receipts | Never | Read statuses and link tracking |
-| Security attestations | No server to attest; Mac ↔ Google | CASA Tier 2; SOC 2 not claimed |
+| Security attestations | No server to attest; Mac ↔ Google or Microsoft | CASA Tier 2; SOC 2 not claimed |
 | Works with AI off | Yes, fully | AI is the core of the product |
 
 ### Where Shortwave is the better choice
@@ -822,7 +826,7 @@ Shortwave's pricing page names Claude Haiku 4.5, Sonnet 4.6 and Opus 4.6 by plan
 MarginMail is designed for that: AI is optional, runs on your Mac first, and never goes through a MarginMail server. It also works fully with AI off.
 
 **Does Shortwave support Outlook?**
-Shortwave says Microsoft 365 and Exchange aren't supported. MarginMail also supports Google accounts only today.
+Shortwave says Microsoft 365 and Exchange aren't supported. MarginMail supports Microsoft 365 and Outlook.com accounts as well as Google ones.
 
 **Can I use my own Claude with MarginMail?**
 Yes. MarginMail uses the Claude you already have signed in on your Mac, under your own plan; only the conversation you click on goes to Anthropic. It never sees your login and doesn't use an API key.
@@ -850,21 +854,21 @@ Shortwave's paid plans are $30, $45 and $120 per seat a month as of October 2026
 |---|---|---|
 | Price | Free during the beta | Free; Plus $10/mo ($99/yr); Pro $20/mo ($199/yr); Enterprise on request |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, iPhone, iPad, Apple Watch, Android |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail, iCloud, Yahoo, Exchange/M365, Outlook, any IMAP |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail, iCloud, Yahoo, Exchange/M365, Outlook, any IMAP |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Smart Inbox (priority vs. the rest), bundles, Gatekeeper for new senders |
 | Calendar | Built in: unanswered invites marked, A / M / D, Needs your answer list, find a time with holds | Built in, with Meeting Notes |
 | People | A page per person (conversations, meetings, tasks, local time); companies by domain | Priority Sender; no people pages |
 | AI | Optional. Apple Intelligence on your Mac (Requests); your own Claude on click (Write it, What's been decided) | Spark +AI (write, summarize), AI Assistant over your mail, Meeting Notes; Auto-Drafts in closed beta (Pro) |
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | On-device models and/or Azure OpenAI, OpenAI, Anthropic and Google Vertex AI, per Spark's privacy policy |
 | Agents | No outside agent access; AI never sends | Spark CLI for Claude Code and Codex; "Send" permission lets an agent send without per-message approval (Pro) |
-| Vendor servers | No MarginMail server; Mac ↔ Google only | Spark's servers handle shared mail, Send Later and push; recent mail kept up to 4 hours; login stored as a token |
+| Vendor servers | No MarginMail server; Mac ↔ Google or Microsoft only | Spark's servers handle shared mail, Send Later and push; recent mail kept up to 4 hours; login stored as a token |
 | Send later with the laptop closed | Needs a Mac awake | Yes (server-side) |
 | Teams | Not a team product | Shared inbox, shared drafts, assignments, comments |
 | Analytics in the app | None | See Spark's privacy policy |
 
 ### Where Spark is the better choice
 
-- You use **iCloud, Outlook, Yahoo or IMAP** accounts. MarginMail is Google-only today.
+- You use **iCloud, Yahoo or IMAP** accounts. MarginMail supports Google and Microsoft 365 / Outlook.com accounts today.
 - You need **Windows, Android or a mature iPhone app**.
 - You want a **free plan** that will stay free.
 - You want **Send Later and push that work with your laptop closed**.
@@ -894,10 +898,10 @@ Shortwave's paid plans are $30, $45 and $120 per seat a month as of October 2026
 ### FAQ
 
 **Is Spark private?**
-Spark's privacy policy (Sept 10, 2026) says content is mostly processed on your device, while its servers handle shared mail, Send Later and recent mail for up to 4 hours, and AI can use cloud providers including OpenAI, Anthropic and Google. MarginMail has no server for your mail at all: it talks to Google directly from your Mac.
+Spark's privacy policy (Sept 10, 2026) says content is mostly processed on your device, while its servers handle shared mail, Send Later and recent mail for up to 4 hours, and AI can use cloud providers including OpenAI, Anthropic and Google. MarginMail has no server for your mail at all: it talks to Google or Microsoft directly from your Mac.
 
 **What's the best Spark alternative for Mac?**
-If you're on Gmail or Google Workspace and want privacy plus a calendar and people in one window, MarginMail is built for that. If you need iCloud or Outlook accounts, Spark is still the more complete choice today.
+If you're on Gmail or Google Workspace and want privacy plus a calendar and people in one window, MarginMail is built for that. If you need iCloud, Yahoo or IMAP accounts, Spark is still the more complete choice today.
 
 **Does MarginMail have a free plan like Spark?**
 MarginMail is free during the beta. Pricing will be shared before the beta ends.
@@ -932,7 +936,7 @@ MarginMail is a Mac app. An iPhone companion comes later. There are no plans for
 |---|---|---|
 | Price | Free during the beta | Starter $30/mo ($25 yearly); Business $40/mo ($33 yearly); Enterprise custom. No free Mail plan |
 | Platforms | Native Mac (macOS 26+); iPhone companion later | Mac, Windows, web, iOS, Android |
-| Accounts | Gmail and Google Workspace, several in one unified inbox | Gmail/Workspace and Outlook/Microsoft 365 |
+| Accounts | Gmail, Google Workspace, Microsoft 365 and Outlook.com, several in one unified inbox | Gmail/Workspace and Outlook/Microsoft 365 |
 | What needs you | Margin notes (Follow-ups, Meetings, Requests); the Margins stack with "Why this?" | Split Inbox, Auto Labels, Snooze, reminders |
 | Calendar | Built in: unanswered invites marked, A / M / D, find a time with holds | Built in, with scheduling |
 | People | A page per person (conversations, meetings, tasks, local time); companies by domain | Contact pane; HubSpot, Salesforce, Pipedrive on Business |
@@ -941,12 +945,12 @@ MarginMail is a Mac app. An iPhone companion comes later. There are no plans for
 | Where AI runs | Apple Intelligence on your Mac; your own Claude plan only if you opt in, on click (that conversation goes to Anthropic under your account). No MarginMail server. | Superhuman's cloud, with Anthropic and OpenAI models |
 | Agents | No outside agent access; AI never sends | Mail MCP (Business+): assistants can search, draft, schedule and send |
 | Read receipts | Never | Read Statuses on all plans; Recent Opens on Business |
-| Vendor servers | No MarginMail server; Mac ↔ Google | Superhuman keeps its own index of mail and calendar; SOC 2 Type 2 |
+| Vendor servers | No MarginMail server; Mac ↔ Google or Microsoft | Superhuman keeps its own index of mail and calendar; SOC 2 Type 2 |
 | Works with AI off | Yes, fully | AI is part of every plan |
 
 ### Where Superhuman is the better choice
 
-- You use **Microsoft 365** or need **Windows, web or Android**.
+- You need **Windows, web or Android**.
 - You want **Auto Drafts waiting** for you before you open a thread.
 - You want **outside agents** (Claude, ChatGPT, Codex) to work your mail through an MCP server.
 - Your team relies on **read statuses** or **CRM sync**.
@@ -971,7 +975,7 @@ MarginMail is a Mac app. An iPhone companion comes later. There are no plans for
 Superhuman Mail Starter is $25 a month billed yearly ($30 monthly) and Business is $33 billed yearly ($40 monthly), as of October 2026. There's no free Mail plan. MarginMail is free during its beta.
 
 **What's a cheaper Superhuman alternative for Mac?**
-MarginMail is free during its beta and runs natively on the Mac with a calendar, people pages and optional private AI. It supports Gmail and Google Workspace today.
+MarginMail is free during its beta and runs natively on the Mac with a calendar, people pages and optional private AI. It supports Gmail, Google Workspace, Microsoft 365 and Outlook.com today.
 
 **Does Superhuman read my email?**
 Superhuman processes mail in its cloud to power AI features and keeps its own index of mail and calendar; it says neither it nor its vendors train on your data. MarginMail has no server for your mail; optional AI runs on your Mac or through your own Claude.
@@ -983,7 +987,7 @@ No. MarginMail deliberately doesn't track whether people open your mail.
 Superhuman's Mail MCP lets connected assistants send mail. MarginMail's AI can only draft; ⌘⏎ is always yours.
 
 **Does MarginMail support Outlook like Superhuman?**
-Not yet. MarginMail supports Gmail and Google Workspace today; other providers come later.
+Yes. MarginMail supports Microsoft 365 and Outlook.com accounts alongside Gmail and Google Workspace, in one inbox; iCloud and other providers come later.
 
 ### Sources
 
@@ -1026,7 +1030,7 @@ Five questions that matter for Gmail on a Mac:
 
 #### MarginMail: best for mail, calendar and people in one private window (ours)
 A native Mac email app for Gmail and Google Workspace. It writes short notes about what needs you (follow-ups, meeting invites, requests), turns them into a stack you work through beside your calendar, and gives everyone you write to a page. Live words turn "Tuesday with Ava" into both calendars' free times. There's no MarginMail server and no analytics; AI is optional, on your Mac or your own Claude, and never sends.
-**Choose it if** you live in Gmail on a Mac and want your day in one window. **Skip it if** you need iCloud or Microsoft accounts, Windows, or an iPhone app today. macOS 26+.
+**Choose it if** you live in Gmail on a Mac and want your day in one window. **Skip it if** you need iCloud, Windows, or an iPhone app today. macOS 26+.
 
 #### Mimestream: best pure native Gmail client
 Fast, focused and faithful to Gmail's labels, filters and categories, talking straight to the Gmail API with data only on your device. No calendar view and no AI. iPhone app in a limited TestFlight beta.
@@ -1176,7 +1180,7 @@ MarginMail uses three tiers. Each one says what it is when it appears.
 | **3. Your own Claude** (opt in) | **Write it** drafts a reply from your notes and the thread; **What's been decided** summarizes long threads | The Claude Code you installed on your Mac, signed in to your own Claude plan | Only the conversation you clicked on, sent by your Claude to Anthropic under your account's terms. MarginMail isn't in that path and never sees your login |
 
 **What's true in every tier:**
-- **No MarginMail server.** MarginMail talks to Google directly from your Mac. Its own small settings live in your Google Drive's hidden app folder.
+- **No MarginMail server.** MarginMail talks to Google or Microsoft directly from your Mac. Its own settings, notes and snoozes sync in MarginMail's own folder in your account, encrypted so only your own devices can read them. Your mail stays with your provider.
 - **No analytics.** We can't see how you use MarginMail.
 - **AI never sends.** Write it fills the composer; you read it and press ⌘⏎. Anything the draft added that the thread didn't have (a new recipient, a link, a number or a code) is flagged.
 - **Tier 3 is click-only and read-only.** Your Claude runs with MarginMail's read-only tools; it can't send, delete, create filters or fetch the web.
