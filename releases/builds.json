@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "6",
+  "channel": "beta",
+  "date": "2026-11-08",
+  "sentence": "Adding a Microsoft 365 account no longer closes MarginMail right as you finish signing in."
+ },
+ {
+  "version": "1.0",
   "build": "5",
   "channel": "beta",
   "date": "2026-11-06",
