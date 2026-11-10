@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "7",
+  "channel": "beta",
+  "date": "2026-11-09",
+  "sentence": "MarginMail now names each account by its own service, so a Microsoft 365 account no longer reads as Gmail."
+ },
+ {
+  "version": "1.0",
   "build": "6",
   "channel": "beta",
   "date": "2026-11-08",
