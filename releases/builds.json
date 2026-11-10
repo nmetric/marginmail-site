@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "8",
+  "channel": "beta",
+  "date": "2026-11-10",
+  "sentence": "Microsoft 365 accounts now finish their first sync, so their mail shows up in MarginMail."
+ },
+ {
+  "version": "1.0",
   "build": "7",
   "channel": "beta",
   "date": "2026-11-09",
