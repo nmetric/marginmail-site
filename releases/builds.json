@@ -1,6 +1,13 @@
 [
  {
   "version": "1.0",
+  "build": "9",
+  "channel": "beta",
+  "date": "2026-11-19",
+  "sentence": "You can now try Zen mode, a calmer, simpler MarginMail."
+ },
+ {
+  "version": "1.0",
   "build": "8",
   "channel": "beta",
   "date": "2026-11-10",
